@@ -363,7 +363,6 @@ export default function MyImage() {
               className="
         object-contain
         object-bottom
-        grayscale
         contrast-[1.03]
         drop-shadow-[0_25px_35px_rgba(0,0,0,0.18)]
         transition-all

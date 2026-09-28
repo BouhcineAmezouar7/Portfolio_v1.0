@@ -30,7 +30,7 @@ const socialLinks = [
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[calc(100svh-108px)] overflow-hidden px-4 pb-16 pt-10 sm:px-6 lg:px-8 lg:pb-20 lg:pt-16">
+    <section className="relative min-h-[calc(100svh-108px)] overflow-hidden px-4 pb-16 pt-10 sm:px-6 lg:px-8 lg:pb-20 lg:pt-6">
       {/* subtle background grid */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.025]"

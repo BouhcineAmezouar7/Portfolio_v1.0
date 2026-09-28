@@ -3,12 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  FiArrowUpRight,
-  FiGithub,
-  FiLinkedin,
-  FiMapPin,
-} from "react-icons/fi";
+import { FiArrowUpRight, FiGithub, FiLinkedin, FiMapPin } from "react-icons/fi";
 import PageTransition from "@/components/PageTransition";
 
 const facts = [
@@ -119,10 +114,7 @@ export default function AboutPage() {
             >
               ABOUT
               <br />
-
-              <span className="text-foreground/20">
-                BOUHCINE.
-              </span>
+              <span className="text-foreground/20">BOUHCINE.</span>
             </motion.h1>
 
             <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_420px] lg:items-end">
@@ -132,10 +124,7 @@ export default function AboutPage() {
                 transition={{ delay: 0.35 }}
                 className="flex items-center gap-4"
               >
-                <FiMapPin
-                  size={12}
-                  className="text-foreground/30"
-                />
+                <FiMapPin size={12} className="text-foreground/30" />
 
                 <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/30">
                   Casablanca, Morocco
@@ -195,21 +184,17 @@ export default function AboutPage() {
 
                 <div className="group relative aspect-[4/5] overflow-hidden bg-black">
                   <Image
-                    src="/me2.png"
+                    src="/me5.png"
                     alt="Bouhcine Amezouar"
                     fill
                     priority
-                    quality={90}
+                    quality={900}
                     sizes="(max-width: 1024px) 90vw, 430px"
                     className="
                       object-cover
-                      grayscale
                       contrast-[1.05]
                       transition-all
-                      duration-700
-                      group-hover:scale-[1.02]
-                     
-                    "
+                      duration-700"
                   />
 
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
@@ -261,15 +246,13 @@ export default function AboutPage() {
 
               <h2 className="mt-6 max-w-3xl text-4xl font-medium leading-[1.08] tracking-[-0.045em] text-foreground sm:text-5xl lg:text-6xl">
                 I enjoy understanding
-                <span className="text-accent/70">
-                  {" "}the complete system.
-                </span>
+                <span className="text-accent/70"> the complete system.</span>
               </h2>
 
               <div className="mt-10 grid gap-7 sm:grid-cols-2">
                 <p className="text-sm leading-7 text-muted">
-                  I&apos;m Bouhcine Amezouar, a 23-year-old Full-Stack Developer in
-                  Casablanca and a student at 1337 Coding School. I graduated
+                  I&apos;m Bouhcine Amezouar, a 23-year-old Full-Stack Developer
+                  in Casablanca and a student at 1337 Coding School. I graduated
                   from OFPPT&apos;s Web Full Stack program in 2024.
                 </p>
 
@@ -309,7 +292,6 @@ export default function AboutPage() {
                     "
                   >
                     My Projects
-
                     <FiArrowUpRight
                       size={17}
                       className="
@@ -414,10 +396,7 @@ export default function AboutPage() {
                 <h2 className="mt-5 text-4xl font-medium tracking-[-0.045em] text-foreground sm:text-5xl">
                   OFPPT
                   <br />
-
-                  <span className="text-accent/70">
-                    CFPM Sidi Moumen.
-                  </span>
+                  <span className="text-accent/70">CFPM Sidi Moumen.</span>
                 </h2>
 
                 <p className="mt-5 font-mono text-[9px] uppercase tracking-[0.18em] text-foreground/30">
@@ -462,16 +441,21 @@ export default function AboutPage() {
                   </p>
 
                   <div className="flex flex-wrap gap-2">
-                    {["Laravel", "React.js", "JavaScript", "HTML", "CSS", "MySQL"].map(
-                      (technology) => (
-                        <span
-                          key={technology}
-                          className="border border-border px-3 py-2 font-mono text-[9px] uppercase tracking-[0.12em] text-foreground/50"
-                        >
-                          {technology}
-                        </span>
-                      ),
-                    )}
+                    {[
+                      "Laravel",
+                      "React.js",
+                      "JavaScript",
+                      "HTML",
+                      "CSS",
+                      "MySQL",
+                    ].map((technology) => (
+                      <span
+                        key={technology}
+                        className="border border-border px-3 py-2 font-mono text-[9px] uppercase tracking-[0.12em] text-foreground/50"
+                      >
+                        {technology}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </motion.div>
@@ -489,10 +473,7 @@ export default function AboutPage() {
                 <h2 className="mt-5 text-4xl font-medium tracking-[-0.045em] text-foreground sm:text-5xl">
                   How I
                   <br />
-
-                  <span className="text-accent/70">
-                    approach work.
-                  </span>
+                  <span className="text-accent/70">approach work.</span>
                 </h2>
               </div>
 
@@ -547,16 +528,13 @@ export default function AboutPage() {
                 <h2 className="mt-5 text-4xl font-medium tracking-[-0.045em] text-foreground sm:text-5xl">
                   Tools I enjoy
                   <br />
-
-                  <span className="text-accent/70">
-                    working with.
-                  </span>
+                  <span className="text-accent/70">working with.</span>
                 </h2>
               </div>
 
               <p className="max-w-md text-sm leading-7 text-muted lg:justify-self-end">
-                My stack changes depending on the problem, but these are some
-                of the technologies I currently use most often.
+                My stack changes depending on the problem, but these are some of
+                the technologies I currently use most often.
               </p>
             </div>
 
@@ -610,7 +588,6 @@ export default function AboutPage() {
                 <h2 className="mt-5 text-5xl font-medium leading-[0.95] tracking-[-0.055em] text-foreground sm:text-6xl lg:text-7xl">
                   Want to build
                   <br />
-
                   <span className="text-foreground/20">
                     something together?
                   </span>
@@ -633,7 +610,6 @@ export default function AboutPage() {
                   "
                 >
                   Contact Me
-
                   <FiArrowUpRight
                     size={18}
                     className="

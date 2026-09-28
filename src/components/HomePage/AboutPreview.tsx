@@ -70,7 +70,7 @@ export default function AboutPreview() {
             "
           >
             {/* Portrait */}
-            <div className="relative max-w-[320px]">
+            <div className="relative max-w-[520px]">
               <div className="mb-3 flex items-center justify-between">
                 <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-accent/70">
                   Portrait
@@ -83,18 +83,15 @@ export default function AboutPreview() {
 
               <div className="group relative aspect-[3/4] overflow-hidden bg-black">
                 <Image
-                  src="/me.png"
+                  src="/me5.png"
                   alt="Bouhcine Amezouar"
                   fill
-                  quality={90}
-                  sizes="320px"
+                  quality={900}
+                  sizes="1080px"
                   className="
                     object-cover
-                    grayscale
                     transition-all
-                    duration-700
-                    group-hover:scale-[1.03]
-                   
+                    duration-700                   
                   "
                 />
 

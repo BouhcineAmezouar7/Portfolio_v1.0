@@ -180,6 +180,23 @@
   color: var(--accent-foreground);
 }
 
+/* Keep compact technical labels legible in both themes. Large decorative
+   headings retain their intentionally low-opacity treatment. */
+.font-mono:is(
+    [class~="text-foreground/15"],
+    [class~="text-foreground/20"],
+    [class~="text-foreground/25"],
+    [class~="text-foreground/30"],
+    [class~="text-foreground/35"],
+    [class~="text-foreground/40"]
+  ) {
+  color: color-mix(in srgb, var(--foreground) 68%, transparent);
+}
+
+.font-mono[class~="text-accent/70"] {
+  color: color-mix(in srgb, var(--accent) 90%, transparent);
+}
+
 input,
 textarea,
 select {
