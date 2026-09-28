@@ -25,7 +25,7 @@ const contactInfo = [
     number: "02",
     icon: <FiMapPin />,
     label: "Location",
-    value: "Morocco",
+    value: "Casablanca, Morocco",
     href: null,
   },
 ];

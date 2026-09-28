@@ -1,49 +1,39 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FiArrowUpRight, FiGithub, FiExternalLink } from "react-icons/fi";
+import { FiArrowUpRight } from "react-icons/fi";
 import Link from "next/link";
-import Image from "next/image";
 
 const featuredProjects = [
   {
     id: 1,
     number: "01",
-    title: "E-Commerce Platform",
+    title: "Maou3idy",
     description:
-      "A full-featured e-commerce experience with product management, authentication, orders and an administration dashboard.",
-    image: "/projects/project1.png",
-    tags: ["Next.js", "NestJS", "PostgreSQL", "Prisma"],
-    github: "https://github.com",
-    demo: "https://demo.com",
-    year: "2026",
-    type: "Full Stack",
+      "A healthcare appointment platform built by a five-person team. I owned the booking domain, from doctor availability and slots to patient scheduling and appointment lifecycles.",
+    tags: ["Next.js", "NestJS", "PostgreSQL", "RabbitMQ"],
+    year: "1337",
+    type: "Full Stack / Team",
   },
   {
     id: 2,
     number: "02",
-    title: "Task Management",
+    title: "Atlas Team Manager",
     description:
-      "A collaborative project management platform built around teams, workspaces, projects and structured task workflows.",
-    image: "/projects/project2.png",
+      "A full-stack platform for workspaces, members, projects and task boards, with authentication, role-based permissions and system administration.",
     tags: ["Next.js", "NestJS", "TypeScript", "Docker"],
-    github: "https://github.com",
-    demo: "https://demo.com",
-    year: "2026",
-    type: "Web Application",
+    year: "In progress",
+    type: "Personal Project",
   },
   {
     id: 3,
     number: "03",
-    title: "Analytics Dashboard",
+    title: "Webserv",
     description:
-      "A modern analytics experience for visualizing application data, monitoring metrics and exploring business performance.",
-    image: "/projects/project3.png",
-    tags: ["Next.js", "PostgreSQL", "D3.js"],
-    github: "https://github.com",
-    demo: "https://demo.com",
-    year: "2026",
-    type: "Dashboard",
+      "An HTTP server project built to understand request handling, sockets, server configuration and the client/server model beneath web frameworks.",
+    tags: ["HTTP", "Networking", "Sockets", "Linux"],
+    year: "1337",
+    type: "Systems / Networking",
   },
 ];
 
@@ -153,7 +143,7 @@ export default function ProjectsSection() {
                     ${reverse ? "lg:grid-cols-[0.65fr_1.35fr]" : ""}
                   `}
                 >
-                  {/* IMAGE */}
+                  {/* PROJECT VISUAL */}
                   <motion.div
                     initial={{
                       opacity: 0,
@@ -172,77 +162,12 @@ export default function ProjectsSection() {
                       ${reverse ? "lg:order-2" : ""}
                     `}
                   >
-                    <div className="group relative overflow-hidden border border-border bg-background">
-                      <div className="relative aspect-[16/10] overflow-hidden">
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          quality={90}
-                          sizes="(max-width: 1024px) 100vw, 750px"
-                          className="
-                            object-cover
-                            grayscale
-                            transition-all
-                            duration-700
-                            group-hover:scale-[1.025]
-                           
-                          "
-                        />
-
-                        {/* dark overlay */}
-                        <div className="pointer-events-none absolute inset-0 bg-black/10 transition-colors duration-500 group-hover:bg-background/0" />
-
-                        {/* PROJECT LINKS */}
-                        <div
-                          className="
-                            absolute right-4 top-4
-                            flex gap-2
-                            opacity-100
-                            transition-all duration-300
-                            sm:translate-y-2
-                            sm:opacity-0
-                            sm:group-hover:translate-y-0
-                            sm:group-hover:opacity-100
-                          "
-                        >
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`${project.title} GitHub`}
-                            className="
-                              flex h-11 w-11
-                              items-center justify-center
-                              border border-border
-                              bg-black/80
-                              text-on-image
-                              backdrop-blur-md
-                              transition-all
-                              hover:bg-foreground
-                              hover:text-background
-                            "
-                          >
-                            <FiGithub size={17} />
-                          </a>
-
-                          <a
-                            href={project.demo}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`${project.title} live demo`}
-                            className="
-                              flex h-11 w-11
-                              items-center justify-center
-                              bg-foreground
-                              text-background
-                              transition-colors
-                              hover:bg-foreground/80
-                            "
-                          >
-                            <FiExternalLink size={17} />
-                          </a>
-                        </div>
+                    <div className="group relative overflow-hidden border border-border bg-foreground text-background">
+                      <div className="relative flex aspect-[16/10] items-end overflow-hidden p-7 sm:p-10">
+                        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)", backgroundSize: "34px 34px" }} />
+                        <p className="relative max-w-[80%] text-[clamp(2.4rem,7vw,6rem)] font-medium uppercase leading-[0.82] tracking-[-0.07em] opacity-90 transition-transform duration-700 group-hover:-translate-y-2">
+                          {project.title}
+                        </p>
 
                         {/* CORNERS */}
                         <div className="pointer-events-none absolute left-4 top-4 h-5 w-5 border-l border-t border-foreground/50" />
@@ -253,7 +178,7 @@ export default function ProjectsSection() {
                       {/* IMAGE FOOTER */}
                       <div className="flex items-center justify-between border-t border-border px-4 py-3">
                         <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-accent/70">
-                          Project Preview
+                          Project / {project.type}
                         </span>
 
                         <span className="font-mono text-[8px] text-foreground/20">
@@ -321,38 +246,9 @@ export default function ProjectsSection() {
                       </div>
                     </div>
 
-                    {/* VIEW PROJECT */}
-                    <div className="mt-9">
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="
-                          group/link
-                          inline-flex
-                          items-center gap-5
-                          border-b border-foreground/30
-                          pb-2
-                          text-xs font-medium
-                          uppercase
-                          tracking-[0.12em]
-                          text-foreground
-                          transition-colors
-                          hover:border-foreground
-                        "
-                      >
-                        View Project
-                        <FiArrowUpRight
-                          size={16}
-                          className="
-                            transition-transform
-                            duration-300
-                            group-hover/link:translate-x-1
-                            group-hover/link:-translate-y-1
-                          "
-                        />
-                      </a>
-                    </div>
+                    <p className="mt-9 font-mono text-[9px] uppercase tracking-[0.18em] text-foreground/30">
+                      Project overview
+                    </p>
                   </motion.div>
                 </div>
               </motion.article>

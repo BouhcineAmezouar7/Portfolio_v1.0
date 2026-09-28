@@ -10,9 +10,9 @@ import {
 import Link from "next/link";
 
 const stats = [
-  { value: "02+", label: "Years Experience" },
-  { value: "08+", label: "Projects Built" },
-  { value: "15+", label: "Technologies" },
+  { value: "1337", label: "Current Student" },
+  { value: "2024", label: "OFPPT Graduate" },
+  { value: "06", label: "Months Interning" },
 ];
 
 export default function CTASection() {

@@ -6,9 +6,9 @@ import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 
 const stats = [
-  { value: "02+", label: "Years Experience" },
-  { value: "08+", label: "Projects Built" },
-  { value: "15+", label: "Technologies" },
+  { value: "1337", label: "Coding School" },
+  { value: "2024", label: "OFPPT Graduate" },
+  { value: "06", label: "Months Interning" },
 ];
 
 export default function AboutPreview() {
@@ -144,23 +144,23 @@ export default function AboutPreview() {
                   lg:text-5xl
                 "
               >
-                I build digital products
+                I build products end-to-end
                 <span className="text-foreground/30">
-                  {" "}where design meets clean engineering.
+                  {" "}from data models to user interfaces.
                 </span>
               </h3>
 
               <div className="mt-8 grid gap-6 sm:grid-cols-2">
                 <p className="text-sm leading-7 text-muted">
-                  I&apos;m Bouhcine, a Full Stack Developer focused on building
-                  modern and scalable web applications with thoughtful user
-                  experiences.
+                  I&apos;m Bouhcine, a Full-Stack Developer and student at 1337
+                  Coding School in Morocco. I started with Laravel and React
+                  and now work primarily with Next.js and NestJS.
                 </p>
 
                 <p className="text-sm leading-7 text-muted">
-                  I enjoy working across the stack, from crafting responsive
-                  interfaces to designing APIs, databases and backend
-                  architecture.
+                  I enjoy working across the stack—from responsive interfaces
+                  and REST APIs to database design, scheduling logic,
+                  microservices and containerized infrastructure.
                 </p>
               </div>
             </motion.div>

@@ -6,43 +6,57 @@ import { FiArrowUpRight, FiBriefcase, FiCalendar } from "react-icons/fi";
 const experiences = [
   {
     number: "01",
-    title: "Senior Full Stack Developer",
-    company: "Tech Solutions Inc.",
-    period: "2023 — Present",
+    title: "Software Engineering Student",
+    company: "1337 Coding School",
+    period: "2024 — Present",
     description:
-      "Leading development of enterprise web applications using React, Node.js, and cloud technologies. Mentoring junior developers and implementing best practices.",
+      "Strengthening my engineering foundations through project-based work in systems programming, networking, web development, Docker and team collaboration.",
     achievements: [
-      "Reduced application load time by 40%",
-      "Led team of 5 developers",
-      "Implemented CI/CD pipeline",
+      "Built Webserv and Inception",
+      "Full-stack work on ft_transcendence",
+      "Linux, networking and Docker",
     ],
     status: "Current",
   },
   {
     number: "02",
-    title: "Full Stack Developer",
-    company: "Digital Agency",
-    period: "2022 — 2023",
+    title: "Web Full-Stack Development",
+    company: "OFPPT — CFPM Sidi Moumen",
+    period: "2022 — 2024",
     description:
-      "Developed and maintained multiple client projects using modern web technologies. Collaborated with designers to create pixel-perfect interfaces.",
+      "Built my professional foundation in frontend development, backend development, databases and complete web application architecture in Casablanca.",
     achievements: [
-      "Delivered 15+ successful projects",
-      "Improved code quality by 35%",
-      "Introduced automated testing",
+      "Laravel + React.js",
+      "JavaScript, HTML and CSS",
+      "MySQL and application architecture",
+    ],
+    status: "Foundation",
+  },
+  {
+    number: "03",
+    title: "Full-Stack Developer — PFE Intern",
+    company: "DM-Decore",
+    period: "2 months",
+    description:
+      "Worked with a development team on an e-commerce application, connecting React interfaces with Laravel APIs and a MySQL database.",
+    achievements: [
+      "Laravel + React.js",
+      "REST API integration",
+      "Collaborative full-stack delivery",
     ],
     status: "Previous",
   },
   {
-    number: "03",
-    title: "Junior Developer",
-    company: "StartUp Co.",
-    period: "2021 — 2022",
+    number: "04",
+    title: "Web Development / Database Intern",
+    company: "NetoneMaroc",
+    period: "4 months",
     description:
-      "Started career building web applications with React and Node.js. Learned best practices and gained valuable experience in full-stack development.",
+      "Managed database information and designed frontend interfaces for displaying and interacting with structured data.",
     achievements: [
-      "Built 8+ web applications",
-      "Learned 10+ technologies",
-      "Contributed to open source",
+      "Database management",
+      "Frontend interface design",
+      "Data organization",
     ],
     status: "Previous",
   },
@@ -83,13 +97,13 @@ export default function ExperienceTimeline() {
         >
           <div>
             <p className="mb-4 font-mono text-[9px] uppercase tracking-[0.25em] text-accent/70">
-              Experience / Journey
+              Education / Experience / Journey
             </p>
 
             <h2 className="text-5xl font-medium leading-[0.9] tracking-[-0.055em] text-foreground sm:text-7xl lg:text-8xl">
-              Work
+              Career
               <br />
-              <span className="text-accent/45 dark:text-accent/50">Experience.</span>
+              <span className="text-accent/45 dark:text-accent/50">Path.</span>
             </h2>
           </div>
 
@@ -97,8 +111,8 @@ export default function ExperienceTimeline() {
             <div className="mb-5 h-px w-10 bg-foreground/30" />
 
             <p className="max-w-sm text-sm leading-7 text-muted">
-              A timeline of the roles, challenges and experiences that have
-              shaped the way I build digital products today.
+              The education, professional experience and project-based learning
+              that shaped the way I build digital products today.
             </p>
           </div>
         </motion.div>

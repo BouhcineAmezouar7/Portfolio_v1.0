@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FiDownload } from "react-icons/fi";
 import { motion } from "framer-motion";
 
 const links = [
@@ -95,10 +94,6 @@ export default function Nav() {
             Resume
           </span>
 
-          <FiDownload
-            size={13}
-            className="opacity-60 transition-opacity group-hover:opacity-100"
-          />
         </motion.div>
       </Link>
     </nav>

@@ -7,16 +7,13 @@ import {
   SiTypescript,
   SiJavascript,
   SiTailwindcss,
-  SiMongodb,
   SiGit,
   SiDocker,
   SiSqlite,
   SiMysql,
-  SiFigma,
   SiCss,
   SiHtml5,
   SiLaravel,
-  SiPython,
   SiSupabase,
   SiNestjs,
   SiPostgresql,
@@ -61,11 +58,6 @@ const skills = [
     category: "ORM",
   },
   {
-    name: "MongoDB",
-    icon: <SiMongodb />,
-    category: "Database",
-  },
-  {
     name: "MySQL",
     icon: <SiMysql />,
     category: "Database",
@@ -91,11 +83,6 @@ const skills = [
     category: "Backend",
   },
   {
-    name: "Python",
-    icon: <SiPython />,
-    category: "Language",
-  },
-  {
     name: "Supabase",
     icon: <SiSupabase />,
     category: "Backend",
@@ -109,11 +96,6 @@ const skills = [
     name: "CSS3",
     icon: <SiCss />,
     category: "Frontend",
-  },
-  {
-    name: "Figma",
-    icon: <SiFigma />,
-    category: "Design",
   },
 ];
 

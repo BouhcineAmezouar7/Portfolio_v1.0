@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import {
   FiArrowUpRight,
-  FiDownload,
   FiGithub,
   FiLinkedin,
   FiMail,
@@ -108,8 +107,8 @@ export default function HeroSection() {
               </p>
 
               <p className="max-w-lg text-sm leading-7 text-muted sm:text-base">
-                I build clean, scalable and performant digital experiences using
-                modern frontend and backend technologies.
+                1337 Coding School student building full-stack products with
+                Next.js, NestJS, TypeScript, PostgreSQL and Docker.
               </p>
             </motion.div>
 
@@ -140,7 +139,6 @@ export default function HeroSection() {
                   whileTap={{ scale: 0.98 }}
                   className="flex h-14 items-center justify-center gap-3 border border-border px-6 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
                 >
-                  <FiDownload size={17} />
                   Resume
                 </motion.div>
               </Link>

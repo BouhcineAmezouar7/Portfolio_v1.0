@@ -1,13 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import {
   FiArrowLeft,
   FiArrowUpRight,
-  FiExternalLink,
-  FiGithub,
 } from "react-icons/fi";
 import { useState } from "react";
 
@@ -15,84 +12,56 @@ const projects = [
   {
     id: 1,
     number: "01",
-    title: "E-Commerce Platform",
+    title: "Maou3idy",
     category: "Full Stack",
-    year: "2026",
+    year: "1337",
     description:
-      "A complete e-commerce platform with authentication, product management, orders, payments and an administration dashboard.",
-    image: "/projects/project1.png",
-    tags: ["Next.js", "NestJS", "PostgreSQL", "Prisma"],
-    github: "https://github.com",
-    demo: "https://demo.com",
+      "A healthcare appointment platform created by a five-person team for ft_transcendence. I built the booking and scheduling domain across the frontend, backend and database.",
+    tags: ["Next.js", "NestJS", "PostgreSQL", "RabbitMQ"],
   },
   {
     id: 2,
     number: "02",
-    title: "Team Management",
+    title: "Atlas Team Manager",
     category: "Full Stack",
-    year: "2026",
+    year: "In progress",
     description:
-      "A collaborative project management platform with workspaces, projects, tasks, team members and structured workflows.",
-    image: "/projects/project2.png",
+      "A team-management platform with workspaces, members, projects, task boards, authentication, role-based permissions and an administration dashboard.",
     tags: ["Next.js", "NestJS", "TypeScript", "Docker"],
-    github: "https://github.com",
-    demo: "https://demo.com",
   },
   {
     id: 3,
     number: "03",
-    title: "Analytics Dashboard",
-    category: "Frontend",
-    year: "2026",
+    title: "Webserv",
+    category: "Systems",
+    year: "1337",
     description:
-      "A modern analytics dashboard for visualizing application data, business metrics and performance.",
-    image: "/projects/project3.png",
-    tags: ["Next.js", "TypeScript", "D3.js"],
-    github: "https://github.com",
-    demo: "https://demo.com",
+      "An HTTP server project focused on sockets, request and response handling, configuration, networking and client/server architecture.",
+    tags: ["HTTP", "Networking", "Sockets", "Linux"],
   },
   {
     id: 4,
     number: "04",
-    title: "Doctor Reservation",
-    category: "Full Stack",
-    year: "2026",
+    title: "Inception",
+    category: "Infrastructure",
+    year: "1337",
     description:
-      "A healthcare marketplace where patients discover doctors, manage appointments and book available schedules.",
-    image: "/projects/project4.png",
-    tags: ["Next.js", "NestJS", "Prisma", "PostgreSQL"],
-    github: "https://github.com",
-    demo: "https://demo.com",
+      "A system-administration project that builds a multi-service environment with containers, images, volumes, networks and persistent data.",
+    tags: ["Docker", "Docker Compose", "Linux", "Networks"],
   },
   {
     id: 5,
     number: "05",
-    title: "Developer Portfolio",
+    title: "E-Commerce Frontend",
     category: "Frontend",
-    year: "2026",
+    year: "Practice project",
     description:
-      "A minimal developer portfolio focused on typography, motion, interaction and a monochrome visual identity.",
-    image: "/projects/project5.png",
-    tags: ["Next.js", "Tailwind", "Framer Motion"],
-    github: "https://github.com",
-    demo: "https://demo.com",
-  },
-  {
-    id: 6,
-    number: "06",
-    title: "REST API System",
-    category: "Backend",
-    year: "2025",
-    description:
-      "A structured REST API with authentication, authorization, validation, database integration and containerization.",
-    image: "/projects/project6.png",
-    tags: ["NestJS", "PostgreSQL", "Docker", "Prisma"],
-    github: "https://github.com",
-    demo: "https://demo.com",
+      "A frontend-focused storefront built to practice reusable components, responsive layouts, product presentation and navigation.",
+    tags: ["React", "JavaScript", "HTML", "CSS"],
   },
 ];
 
-const filters = ["All", "Full Stack", "Frontend", "Backend"];
+const filters = ["All", "Full Stack", "Systems", "Infrastructure", "Frontend"];
 
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -280,58 +249,19 @@ export default function ProjectsPage() {
                 </span>
               </div>
 
-              {/* IMAGE */}
-              <div className="relative m-4 overflow-hidden bg-black">
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    quality={90}
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover grayscale transition-all duration-700 group-hover:scale-[1.025]"
-                  />
-
-                  <div className="pointer-events-none absolute inset-0 bg-black/10 transition-colors duration-500 group-hover:bg-transparent" />
+              {/* PROJECT VISUAL */}
+              <div className="relative m-4 overflow-hidden bg-foreground text-background">
+                <div className="relative flex aspect-[16/10] items-end overflow-hidden p-6 sm:p-8">
+                  <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
+                  <p className="relative max-w-[85%] text-[clamp(2rem,5vw,4.5rem)] font-medium uppercase leading-[0.84] tracking-[-0.065em] transition-transform duration-700 group-hover:-translate-y-2">
+                    {project.title}
+                  </p>
 
                   {/* IMAGE CORNERS */}
                   <div className="absolute left-3 top-3 h-4 w-4 border-l border-t border-on-image/50" />
 
                   <div className="absolute bottom-3 right-3 h-4 w-4 border-b border-r border-on-image/50" />
 
-                  {/* LINKS */}
-                  <div
-                    className="
-                      absolute right-4 top-4
-                      flex gap-2
-                      opacity-100
-                      transition-all duration-300
-                      sm:translate-y-2
-                      sm:opacity-0
-                      sm:group-hover:translate-y-0
-                      sm:group-hover:opacity-100
-                    "
-                  >
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${project.title} GitHub`}
-                      className="flex h-10 w-10 items-center justify-center border border-on-image/20 bg-black/80 text-on-image backdrop-blur transition-all hover:bg-accent hover:text-accent-foreground"
-                    >
-                      <FiGithub size={15} />
-                    </a>
-
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${project.title} live demo`}
-                      className="flex h-10 w-10 items-center justify-center bg-foreground text-background transition-colors hover:bg-foreground/80"
-                    >
-                      <FiExternalLink size={15} />
-                    </a>
-                  </div>
                 </div>
               </div>
 
@@ -368,20 +298,11 @@ export default function ProjectsPage() {
                   ))}
                 </div>
 
-                {/* ACTION */}
+                {/* PROJECT META */}
                 <div className="mt-7 flex items-center justify-between">
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group/link inline-flex items-center gap-4 border-b border-foreground/20 pb-2 text-[10px] font-medium uppercase tracking-[0.15em] text-foreground transition-colors hover:border-foreground"
-                  >
-                    View Project
-                    <FiArrowUpRight
-                      size={14}
-                      className="transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1"
-                    />
-                  </a>
+                  <span className="font-mono text-[8px] uppercase tracking-[0.15em] text-foreground/30">
+                    Project overview
+                  </span>
 
                   <span className="font-mono text-[8px] uppercase tracking-[0.15em] text-foreground/15">
                     BA / {project.number}

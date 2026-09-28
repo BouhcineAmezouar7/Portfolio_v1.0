@@ -18,7 +18,7 @@ const services = [
     icon: <FiLayout />,
     title: "Frontend Development",
     description:
-      "Creating responsive, pixel-perfect interfaces with React, Next.js, and modern CSS frameworks.",
+      "Creating responsive product interfaces and dashboards with React, Next.js, TypeScript and Tailwind CSS.",
     skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
   },
   {
@@ -26,8 +26,8 @@ const services = [
     icon: <FiServer />,
     title: "Backend Development",
     description:
-      "Building scalable APIs and server-side applications with modern backend technologies.",
-    skills: ["NestJS", "Node.js", "REST APIs", "Authentication"],
+      "Building structured APIs, authentication flows and business logic with NestJS and TypeScript.",
+    skills: ["NestJS", "TypeScript", "REST APIs", "Authentication"],
   },
   {
     number: "03",
@@ -48,18 +48,18 @@ const services = [
   {
     number: "05",
     icon: <FiSmartphone />,
-    title: "Responsive Experiences",
+    title: "Booking Systems",
     description:
-      "Creating interfaces that feel consistent and intuitive across desktop, tablet, and mobile.",
-    skills: ["Responsive UI", "Mobile First", "UX", "Accessibility"],
+      "Connecting availability, time slots and appointment lifecycles across frontend, backend and database layers.",
+    skills: ["Scheduling", "Availability", "Appointments", "Role Access"],
   },
   {
     number: "06",
     icon: <FiGlobe />,
-    title: "Web Optimization",
+    title: "Containerized Architecture",
     description:
-      "Improving application performance, accessibility, SEO, and overall user experience.",
-    skills: ["SEO", "Performance", "A11y", "Optimization"],
+      "Running connected services with Docker and working with synchronous APIs and asynchronous messaging.",
+    skills: ["Docker", "Microservices", "RabbitMQ", "Linux"],
   },
 ];
 

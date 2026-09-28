@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   FiArrowUpRight,
-  FiDownload,
   FiGithub,
   FiLinkedin,
   FiMapPin,
@@ -15,23 +14,23 @@ import PageTransition from "@/components/PageTransition";
 const facts = [
   {
     number: "01",
-    value: "02+",
-    label: "Years Experience",
+    value: "23",
+    label: "Years Old",
   },
   {
     number: "02",
-    value: "08+",
-    label: "Projects Built",
+    value: "1337",
+    label: "Current School",
   },
   {
     number: "03",
-    value: "15+",
-    label: "Technologies",
+    value: "2024",
+    label: "OFPPT Graduate",
   },
   {
     number: "04",
-    value: "42",
-    label: "Network",
+    value: "06",
+    label: "Months Interning",
   },
 ];
 
@@ -139,7 +138,7 @@ export default function AboutPage() {
                 />
 
                 <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/30">
-                  Morocco
+                  Casablanca, Morocco
                 </span>
 
                 <div className="h-px w-10 bg-foreground/15" />
@@ -155,8 +154,8 @@ export default function AboutPage() {
                 transition={{ delay: 0.35 }}
                 className="text-sm leading-7 text-muted"
               >
-                I enjoy turning ideas into functional digital products,
-                combining thoughtful interfaces with reliable backend systems.
+                I build complete web applications—from database design and
+                backend business logic to APIs and responsive interfaces.
               </motion.p>
             </div>
           </section>
@@ -232,7 +231,7 @@ export default function AboutPage() {
 
                 <div className="mt-4 flex items-center justify-between">
                   <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/20">
-                    Based in Morocco
+                    Casablanca, Morocco
                   </span>
 
                   <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/20">
@@ -261,24 +260,23 @@ export default function AboutPage() {
               </p>
 
               <h2 className="mt-6 max-w-3xl text-4xl font-medium leading-[1.08] tracking-[-0.045em] text-foreground sm:text-5xl lg:text-6xl">
-                I like building things
+                I enjoy understanding
                 <span className="text-accent/70">
-                  {" "}that live on the web.
+                  {" "}the complete system.
                 </span>
               </h2>
 
               <div className="mt-10 grid gap-7 sm:grid-cols-2">
                 <p className="text-sm leading-7 text-muted">
-                  I&apos;m Bouhcine Amezouar, a Full Stack Developer focused on
-                  creating modern web applications. I enjoy working across the
-                  stack — from building interfaces to designing APIs and
-                  databases.
+                  I&apos;m Bouhcine Amezouar, a 23-year-old Full-Stack Developer in
+                  Casablanca and a student at 1337 Coding School. I graduated
+                  from OFPPT&apos;s Web Full Stack program in 2024.
                 </p>
 
                 <p className="text-sm leading-7 text-muted">
-                  My goal isn&apos;t only to make software work. I want the code to
-                  stay understandable, the architecture maintainable and the
-                  final experience simple for the person using it.
+                  I began with Laravel and React.js and now focus on Next.js,
+                  NestJS, TypeScript, PostgreSQL, Prisma and Docker while
+                  deepening my systems and networking foundations.
                 </p>
               </div>
 
@@ -289,8 +287,8 @@ export default function AboutPage() {
                   </span>
 
                   <p className="max-w-xl text-lg leading-8 tracking-[-0.02em] text-foreground/70">
-                    I learn best by building real projects, solving problems and
-                    understanding why things work.
+                    I enjoy building products end-to-end and understanding the
+                    engineering beneath the frameworks I use.
                   </p>
                 </div>
               </div>
@@ -341,7 +339,6 @@ export default function AboutPage() {
                       hover:text-background
                     "
                   >
-                    <FiDownload size={15} />
                     Resume
                   </motion.div>
                 </Link>
@@ -406,12 +403,87 @@ export default function AboutPage() {
             </div>
           </section>
 
+          {/* EDUCATION */}
+          <section className="border-b border-border py-14">
+            <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr]">
+              <div>
+                <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-accent/70">
+                  03 / Education
+                </p>
+
+                <h2 className="mt-5 text-4xl font-medium tracking-[-0.045em] text-foreground sm:text-5xl">
+                  OFPPT
+                  <br />
+
+                  <span className="text-accent/70">
+                    CFPM Sidi Moumen.
+                  </span>
+                </h2>
+
+                <p className="mt-5 font-mono text-[9px] uppercase tracking-[0.18em] text-foreground/30">
+                  Casablanca, Morocco · Graduated 2024
+                </p>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="border-t border-border"
+              >
+                <div className="border-b border-border py-7">
+                  <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/25">
+                    Full-Stack Program
+                  </p>
+
+                  <h3 className="mt-3 text-xl font-medium leading-8 text-foreground sm:text-2xl">
+                    Technicien Spécialisé en Développement Digital — Web Full
+                    Stack
+                  </h3>
+                </div>
+
+                <div className="grid gap-6 border-b border-border py-7 sm:grid-cols-2">
+                  <p className="text-sm leading-7 text-muted">
+                    My OFPPT training provided my initial professional
+                    foundation in web development.
+                  </p>
+
+                  <p className="text-sm leading-7 text-muted">
+                    I studied frontend development, backend development,
+                    databases, application architecture and the fundamentals
+                    required to build complete web applications.
+                  </p>
+                </div>
+
+                <div className="py-7">
+                  <p className="mb-4 font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/25">
+                    Primary stack
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {["Laravel", "React.js", "JavaScript", "HTML", "CSS", "MySQL"].map(
+                      (technology) => (
+                        <span
+                          key={technology}
+                          className="border border-border px-3 py-2 font-mono text-[9px] uppercase tracking-[0.12em] text-foreground/50"
+                        >
+                          {technology}
+                        </span>
+                      ),
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
           {/* PRINCIPLES */}
           <section className="border-b border-border py-14">
             <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr]">
               <div>
                 <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-accent/70">
-                  03 / Principles
+                  04 / Principles
                 </p>
 
                 <h2 className="mt-5 text-4xl font-medium tracking-[-0.045em] text-foreground sm:text-5xl">
@@ -469,7 +541,7 @@ export default function AboutPage() {
             <div className="mb-9 grid gap-6 lg:grid-cols-2 lg:items-end">
               <div>
                 <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-accent/70">
-                  04 / Technology
+                  05 / Technology
                 </p>
 
                 <h2 className="mt-5 text-4xl font-medium tracking-[-0.045em] text-foreground sm:text-5xl">
@@ -532,7 +604,7 @@ export default function AboutPage() {
             >
               <div>
                 <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-accent/70">
-                  05 / Let&apos;s Connect
+                  06 / Let&apos;s Connect
                 </p>
 
                 <h2 className="mt-5 text-5xl font-medium leading-[0.95] tracking-[-0.055em] text-foreground sm:text-6xl lg:text-7xl">
