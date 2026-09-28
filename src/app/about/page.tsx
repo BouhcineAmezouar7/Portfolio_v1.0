@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { FiArrowUpRight, FiGithub, FiLinkedin, FiMapPin } from "react-icons/fi";
-import PageTransition from "@/components/PageTransition";
 
 const facts = [
   {
@@ -63,8 +62,7 @@ const principles = [
 
 export default function AboutPage() {
   return (
-    <PageTransition>
-      <main className="relative min-h-screen overflow-hidden px-4 pb-24 pt-12 sm:px-6 lg:px-8 lg:pt-20">
+    <main className="relative min-h-screen overflow-hidden px-4 pb-24 pt-12 sm:px-6 lg:px-8 lg:pt-20">
         <div className="container mx-auto ">
           {/* TOP */}
           <motion.div
@@ -652,7 +650,6 @@ export default function AboutPage() {
             </div>
           </section>
         </div>
-      </main>
-    </PageTransition>
+    </main>
   );
 }

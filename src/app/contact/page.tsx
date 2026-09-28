@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
-import PageTransition from "@/components/PageTransition";
 import {
   FiMail,
   FiMapPin,
@@ -58,8 +57,7 @@ export default function Contact() {
   };
 
   return (
-    <PageTransition>
-      <main className="relative min-h-screen overflow-hidden px-4 pb-24 pt-12 sm:px-6 lg:px-8 lg:pt-20">
+    <main className="relative min-h-screen overflow-hidden px-4 pb-24 pt-12 sm:px-6 lg:px-8 lg:pt-20">
         <div className="container mx-auto ">
 
           {/* TOP META */}
@@ -538,7 +536,6 @@ export default function Contact() {
             </div>
           </motion.div>
         </div>
-      </main>
-    </PageTransition>
+    </main>
   );
 }
