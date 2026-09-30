@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   title: "Bouhcine Amezouar — Full-Stack Developer",
   description:
     "Portfolio of Bouhcine Amezouar, a Full-Stack Developer and 1337 Coding School student in Casablanca, Morocco.",
+  icons: {
+    icon: "/logo_icon.png",
+  },
 };
 
 export default function RootLayout({

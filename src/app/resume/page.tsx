@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { FiArrowLeft, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import {
+  FiArrowLeft,
+  FiDownload,
+  FiExternalLink,
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+} from "react-icons/fi";
 
 const experience = [
   {
@@ -12,14 +19,14 @@ const experience = [
   {
     role: "Full-Stack Developer — PFE Intern",
     place: "DM-Decore",
-    period: "2 months",
+    period: "1 month",
     summary:
       "Worked in a team on an e-commerce application using Laravel, React.js, MySQL and REST APIs.",
   },
   {
     role: "Web Development / Database Intern",
     place: "NetoneMaroc",
-    period: "4 months",
+    period: "3 months",
     summary:
       "Managed database information and designed frontend interfaces for displaying and interacting with structured data.",
   },
@@ -89,6 +96,25 @@ export default function ResumePage() {
               relational data models and backend business logic to APIs and
               responsive frontend interfaces.
             </p>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="/Bouhcine_Amezouar.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-border px-4 py-3 font-mono text-[9px] uppercase tracking-[0.14em] text-foreground transition-colors hover:border-accent hover:text-accent"
+              >
+                <FiExternalLink aria-hidden="true" />
+                Open PDF
+              </a>
+              <a
+                href="/Bouhcine_Amezouar.pdf"
+                download="Bouhcine_Amezouar_Resume.pdf"
+                className="inline-flex items-center gap-2 bg-foreground px-4 py-3 font-mono text-[9px] uppercase tracking-[0.14em] text-background transition-opacity hover:opacity-80"
+              >
+                <FiDownload aria-hidden="true" />
+                Download PDF
+              </a>
+            </div>
             <div className="flex flex-wrap gap-x-5 gap-y-3 font-mono text-[9px] uppercase tracking-[0.14em] text-foreground/40">
               <a className="inline-flex items-center gap-2 hover:text-accent" href="mailto:bouhcine_amezouar@gmail.com"><FiMail /> Email</a>
               <a className="inline-flex items-center gap-2 hover:text-accent" href="https://github.com/BouhcineAmezouar7" target="_blank" rel="noreferrer"><FiGithub /> GitHub</a>
@@ -141,7 +167,7 @@ export default function ResumePage() {
             </div>
             <div>
               <h3 className="text-lg font-medium text-foreground">Baccalaureate</h3>
-              <p className="mt-2 text-sm leading-7 text-muted">Life and Earth Sciences (SVT) · 2022</p>
+              <p className="mt-2 text-sm leading-7 text-muted">Life and Earth Sciences (SVT) · 2019-2021</p>
             </div>
           </div>
         </section>
