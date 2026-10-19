@@ -349,11 +349,11 @@ export default function MyImage() {
     "
           >
             <Image
-              src="/me4.png"
+              src="/mo.png"
               alt="Bouhcine Amezouar"
               priority
               fill
-              quality={100}
+              quality={900}
               sizes="
         (max-width: 640px) 280px,
         (max-width: 1024px) 320px,

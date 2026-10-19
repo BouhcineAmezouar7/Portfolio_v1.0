@@ -83,7 +83,7 @@ export default function AboutPreview() {
 
               <div className="group relative aspect-[3/4] overflow-hidden bg-black">
                 <Image
-                  src="/me5.png"
+                  src="/mee.png"
                   alt="Bouhcine Amezouar"
                   fill
                   quality={900}
@@ -254,12 +254,6 @@ export default function AboutPreview() {
             py-5
           "
         >
-          <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/20">
-            Design
-          </span>
-
-          <span className="text-foreground/15">✦</span>
-
           <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/20">
             Development
           </span>
