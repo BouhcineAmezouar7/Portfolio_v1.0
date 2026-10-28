@@ -86,29 +86,12 @@ export default function Header() {
 
             {/* Mobile Navigation */}
             <div className="flex items-center gap-4 xl:hidden">
-              <span className="hidden font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/30 sm:block">
-                Menu
-              </span>
 
               <MobileNav />
             </div>
           </div>
         </div>
 
-        {/* Bottom technical information */}
-        <div className="flex items-center justify-between px-2 pt-2">
-          <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/20">
-            BA / Portfolio
-          </span>
-
-          <div className="flex items-center gap-3">
-            <span className="h-px w-6 bg-foreground/10" />
-
-            <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/20">
-              2026
-            </span>
-          </div>
-        </div>
       </motion.div>
     </header>
   );

@@ -164,7 +164,6 @@ export default function ProjectsSection() {
                   >
                     <div className="group relative overflow-hidden border border-border bg-foreground text-background">
                       <div className="relative flex aspect-[16/10] items-end overflow-hidden p-7 sm:p-10">
-                        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)", backgroundSize: "34px 34px" }} />
                         <p className="relative max-w-[80%] text-[clamp(2.4rem,7vw,6rem)] font-medium uppercase leading-[0.82] tracking-[-0.07em] opacity-90 transition-transform duration-700 group-hover:-translate-y-2">
                           {project.title}
                         </p>

@@ -3,20 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-
-const links = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Projects", href: "/projects" },
-  { name: "Contact", href: "/contact" },
-];
+import {
+  mainNavigationLinks,
+  resumeNavigationLink,
+} from "@/data/portfolio";
 
 export default function Nav() {
   const pathname = usePathname();
 
   return (
     <nav className="flex items-center gap-7">
-      {links.map((link, index) => {
+      {mainNavigationLinks.map((link, index) => {
         const isActive = pathname === link.href;
 
         return (
@@ -75,7 +72,7 @@ export default function Nav() {
       <div className="h-5 w-px bg-foreground/10" />
 
       {/* Resume */}
-      <Link href="/resume">
+      <Link href={resumeNavigationLink.href}>
         <motion.div
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.97 }}
@@ -91,7 +88,7 @@ export default function Nav() {
           "
         >
           <span className="text-[10px] font-semibold uppercase tracking-[0.15em]">
-            Resume
+            {resumeNavigationLink.name}
           </span>
 
         </motion.div>

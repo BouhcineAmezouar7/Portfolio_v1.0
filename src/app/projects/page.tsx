@@ -252,7 +252,6 @@ export default function ProjectsPage() {
               {/* PROJECT VISUAL */}
               <div className="relative m-4 overflow-hidden bg-foreground text-background">
                 <div className="relative flex aspect-[16/10] items-end overflow-hidden p-6 sm:p-8">
-                  <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
                   <p className="relative max-w-[85%] text-[clamp(2rem,5vw,4.5rem)] font-medium uppercase leading-[0.84] tracking-[-0.065em] transition-transform duration-700 group-hover:-translate-y-2">
                     {project.title}
                   </p>
