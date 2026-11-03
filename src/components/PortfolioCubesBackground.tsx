@@ -42,7 +42,10 @@ export default function PortfolioCubesBackground() {
         };
 
   return (
-    <div className="pointer-events-none absolute inset-0 opacity-20" aria-hidden="true">
+    <div
+      className="pointer-events-none absolute inset-0 scale-[1.01] opacity-[0.10] blur-[1px]"
+      aria-hidden="true"
+    >
       <BackgroundCubesGrid
         cellSize={190}
         gap={0.04}
