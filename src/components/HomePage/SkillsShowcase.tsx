@@ -204,7 +204,8 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
     <motion.div
       layout
       initial={{ opacity: 0, y: 20, scale: 0.97 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.18 }}
       exit={{ opacity: 0, y: -10, scale: 0.97 }}
       transition={{
         duration: 0.35,
@@ -252,9 +253,7 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
               {skill.name}
             </h3>
 
-            <p className="mt-1 text-[11px] text-muted">
-              {skill.description}
-            </p>
+            <p className="mt-1 text-[11px] text-muted">{skill.description}</p>
           </div>
 
           <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.1em] text-muted">
@@ -417,10 +416,17 @@ export default function SkillsShowcase() {
 
         {/* FILTER + GRID BELOW HEADER */}
         <div className="min-w-0 pt-10">
-          <CategoryFilters
-            activeCategory={activeCategory}
-            onCategoryChange={setActiveCategory}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.55 }}
+          >
+            <CategoryFilters
+              activeCategory={activeCategory}
+              onCategoryChange={setActiveCategory}
+            />
+          </motion.div>
 
           <motion.div
             layout

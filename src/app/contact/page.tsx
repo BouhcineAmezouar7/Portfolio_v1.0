@@ -275,216 +275,222 @@ export default function Contact() {
                 <h2 className="mt-3 text-3xl font-medium tracking-[-0.04em] text-foreground sm:text-4xl">
                   Tell me about
                   <br />
-                  <span className="text-foreground/30">your project.</span>
+                  <span className="text-foreground/60">your project.</span>
                 </h2>
               </div>
 
-              <FiMail size={22} className="mt-1 text-foreground/20" />
+              <FiMail size={22} className="mt-1 text-foreground/55" />
             </div>
 
             <form onSubmit={handleSubmit} className="mt-8">
               {/* NAME + EMAIL */}
               <div className="grid gap-6 sm:grid-cols-2">
+                {/* NAME */}
                 <div>
                   <label
                     htmlFor="name"
                     className="mb-3 flex items-center justify-between"
                   >
-                    <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-muted">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/75">
                       Your Name
                     </span>
 
-                    <span className="font-mono text-[8px] text-foreground/15">
-                      01
-                    </span>
+                    <span className="font-mono text-[9px] text-foreground/50">01</span>
                   </label>
 
                   <input
-                    type="text"
                     id="name"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        name: e.target.value,
-                      })
-                    }
+                    type="text"
+                    name="name"
+                    autoComplete="name"
                     placeholder="John Doe"
                     required
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        name: e.target.value,
+                      }))
+                    }
                     className="
-                        w-full
-                        border-b border-border
-                        bg-transparent
-                        px-0 py-4
-                        text-sm text-foreground
-                        outline-none
-                        transition-colors
-                        placeholder:text-muted/20
-                        focus:border-foreground
-                      "
+          h-14 w-full
+          border border-border
+          bg-foreground/[0.025]
+          px-5
+          text-sm text-foreground
+          placeholder:text-foreground/50
+          outline-none
+          transition-all duration-300
+          hover:border-foreground/30
+          focus:border-accent
+          focus:bg-accent/[0.025]
+          focus:ring-2 focus:ring-accent/10
+        "
                   />
                 </div>
 
+                {/* EMAIL */}
                 <div>
                   <label
                     htmlFor="email"
                     className="mb-3 flex items-center justify-between"
                   >
-                    <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-muted">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/75">
                       Email Address
                     </span>
 
-                    <span className="font-mono text-[8px] text-foreground/15">
-                      02
-                    </span>
+                    <span className="font-mono text-[9px] text-foreground/50">02</span>
                   </label>
 
                   <input
-                    type="email"
                     id="email"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        email: e.target.value,
-                      })
-                    }
+                    type="email"
+                    name="email"
+                    autoComplete="email"
                     placeholder="john@example.com"
                     required
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        email: e.target.value,
+                      }))
+                    }
                     className="
-                        w-full
-                        border-b border-border
-                        bg-transparent
-                        px-0 py-4
-                        text-sm text-foreground
-                        outline-none
-                        transition-colors
-                        placeholder:text-muted/20
-                        focus:border-foreground
-                      "
+          h-14 w-full
+          border border-border
+          bg-foreground/[0.025]
+          px-5
+          text-sm text-foreground
+          placeholder:text-foreground/50
+          outline-none
+          transition-all duration-300
+          hover:border-foreground/30
+          focus:border-accent
+          focus:bg-accent/[0.025]
+          focus:ring-2 focus:ring-accent/10
+        "
                   />
                 </div>
               </div>
 
               {/* SUBJECT */}
-              <div className="mt-8">
+              <div className="mt-6">
                 <label
                   htmlFor="subject"
                   className="mb-3 flex items-center justify-between"
                 >
-                  <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-muted">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/75">
                     Subject
                   </span>
 
-                  <span className="font-mono text-[8px] text-foreground/15">
-                    03
-                  </span>
+                  <span className="font-mono text-[9px] text-foreground/50">03</span>
                 </label>
 
                 <input
-                  type="text"
                   id="subject"
-                  value={formData.subject}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      subject: e.target.value,
-                    })
-                  }
+                  type="text"
+                  name="subject"
                   placeholder="Project inquiry"
                   required
+                  value={formData.subject}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      subject: e.target.value,
+                    }))
+                  }
                   className="
-                      w-full
-                      border-b border-border
-                      bg-transparent
-                      px-0 py-4
-                      text-sm text-foreground
-                      outline-none
-                      transition-colors
-                      placeholder:text-muted/20
-                      focus:border-foreground
-                    "
+        h-14 w-full
+        border border-border
+        bg-foreground/[0.025]
+        px-5
+        text-sm text-foreground
+        placeholder:text-foreground/50
+        outline-none
+        transition-all duration-300
+        hover:border-foreground/30
+        focus:border-accent
+        focus:bg-accent/[0.025]
+        focus:ring-2 focus:ring-accent/10
+      "
                 />
               </div>
 
               {/* MESSAGE */}
-              <div className="mt-8">
+              <div className="mt-6">
                 <label
                   htmlFor="message"
                   className="mb-3 flex items-center justify-between"
                 >
-                  <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-muted">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/75">
                     Your Message
                   </span>
 
-                  <span className="font-mono text-[8px] text-foreground/15">
-                    04
-                  </span>
+                  <span className="font-mono text-[9px] text-foreground/50">04</span>
                 </label>
 
                 <textarea
                   id="message"
+                  name="message"
                   rows={6}
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      message: e.target.value,
-                    })
-                  }
                   placeholder="Tell me about your idea, project or opportunity..."
                   required
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      message: e.target.value,
+                    }))
+                  }
                   className="
-                      w-full resize-none
-                      border-b border-border
-                      bg-transparent
-                      px-0 py-4
-                      text-sm leading-7
-                      text-foreground
-                      outline-none
-                      transition-colors
-                      placeholder:text-muted/20
-                      focus:border-foreground
-                    "
+        min-h-[180px] w-full
+        resize-y
+        border border-border
+        bg-foreground/[0.025]
+        px-5 py-4
+        text-sm leading-7 text-foreground
+        placeholder:text-foreground/50
+        outline-none
+        transition-all duration-300
+        hover:border-foreground/30
+        focus:border-accent
+        focus:bg-accent/[0.025]
+        focus:ring-2 focus:ring-accent/10
+      "
                 />
               </div>
 
               {/* SUBMIT */}
               <div className="mt-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-                <p className="max-w-xs font-mono text-[8px] uppercase leading-5 tracking-[0.15em] text-foreground/20">
-                  By sending this form, you&apos;re starting a conversation. No
-                  spam. No unnecessary emails.
+                <p className="max-w-xs font-mono text-[9px] uppercase leading-5 tracking-[0.12em] text-foreground/60">
+                  This form opens your email application with your message
+                  prepared.
                 </p>
 
                 <motion.button
                   type="submit"
-                  whileHover={{
-                    y: -3,
-                  }}
-                  whileTap={{
-                    scale: 0.98,
-                  }}
+                  whileHover={{ y: -3 }}
+                  whileTap={{ scale: 0.98 }}
                   className="
-                      group flex h-16
-                      min-w-[210px]
-                      items-center justify-between
-                      gap-10
-                      bg-foreground
-                      px-6
-                      text-sm font-semibold
-                      text-background
-                      transition-colors
-                      hover:bg-foreground/90
-                    "
+        group flex h-16 min-w-[210px]
+        items-center justify-between
+        gap-10
+        bg-foreground px-6
+        text-sm font-semibold
+        text-background
+        transition-opacity
+        hover:opacity-85
+      "
                 >
                   Send Message
                   <FiSend
                     size={17}
                     className="
-                        transition-transform duration-300
-                        group-hover:translate-x-1
-                        group-hover:-translate-y-1
-                      "
+          transition-transform duration-300
+          group-hover:translate-x-1
+          group-hover:-translate-y-1
+        "
                   />
                 </motion.button>
               </div>

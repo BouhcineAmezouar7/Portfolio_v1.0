@@ -7,7 +7,9 @@ import {
   FiArrowLeft,
   FiArrowRight,
   FiArrowUpRight,
-  FiCheckCircle,
+  FiCheck,
+  FiCode,
+  FiLayers,
 } from "react-icons/fi";
 
 import { projects } from "@/data/portfolio";
@@ -42,10 +44,7 @@ export default async function ProjectDetailPage({
   params,
 }: ProjectDetailPageProps) {
   const { slug } = await params;
-
-  const index = projects.findIndex(
-    (item) => item.slug === slug
-  );
+  const index = projects.findIndex((item) => item.slug === slug);
 
   if (index === -1) notFound();
 
@@ -53,298 +52,461 @@ export default async function ProjectDetailPage({
   const previous = projects[index - 1];
   const next = projects[index + 1];
 
+  const diagram =
+    "diagram" in project &&
+    typeof project.diagram === "string"
+      ? project.diagram
+      : null;
+
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <div className="container mx-auto px-4 pb-20 pt-8 sm:px-6 lg:px-8 lg:pt-14">
+      <div className="container mx-auto px-4 pb-20 pt-8 sm:px-6 lg:px-8">
 
-        {/* BREADCRUMB */}
+        {/* TOP NAVIGATION */}
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-5">
-          <div className="flex items-center gap-3 text-sm">
-            <Link
-              href="/projects"
-              className="text-muted transition-colors hover:text-accent"
-            >
-              Projects
-            </Link>
+          <Link
+            href="/projects"
+            className="group inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+          >
+            <FiArrowLeft
+              size={16}
+              className="transition-transform group-hover:-translate-x-1"
+            />
+            All projects
+          </Link>
 
-            <FiArrowRight size={13} className="text-muted/40" />
-
-            <span className="font-medium text-foreground">
-              {project.title}
-            </span>
-          </div>
-
-          <span className="font-mono text-[10px] text-muted">
-            {String(index + 1).padStart(2, "0")}
-            {" / "}
+          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+            Project {String(index + 1).padStart(2, "0")} /{" "}
             {String(projects.length).padStart(2, "0")}
           </span>
         </div>
 
-        {/* HERO */}
-        <header className="grid gap-12 border-b border-border py-16 lg:grid-cols-[1fr_0.45fr] lg:items-end lg:py-24">
-          <div className="min-w-0">
-            <div className="mb-7 flex items-center gap-3">
-              <span className="h-2 w-2 rounded-full bg-accent" />
+        {/* =====================================
+            HERO — IMAGE LEFT / INFO RIGHT
+        ====================================== */}
 
-              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
-                Featured Project
+        <section className="grid gap-10 border-b border-border py-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14 lg:py-20">
+
+          {/* LEFT — IMAGE */}
+          <div className="min-w-0">
+            <div className="relative overflow-hidden border border-border bg-foreground/[0.035] p-3 sm:p-5 lg:p-7">
+
+              {/* IMAGE */}
+              <div className="relative aspect-[4/3] overflow-hidden border border-border bg-card">
+                <Image
+                  src={project.image}
+                  alt={`${project.title} project screenshot`}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 55vw"
+                  className="object-cover object-top"
+                />
+              </div>
+
+              {/* IMAGE NUMBER */}
+              <div className="absolute bottom-6 left-6 border border-border bg-background px-4 py-2 sm:bottom-9 sm:left-9">
+                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-foreground">
+                  Preview / {project.number}
+                </span>
+              </div>
+            </div>
+
+            {/* IMAGE FOOTER */}
+            <div className="mt-4 flex items-center justify-between gap-4">
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                Project screenshot
+              </span>
+
+              <span className="font-mono text-[10px] text-muted">
+                {project.year}
+              </span>
+            </div>
+          </div>
+
+          {/* RIGHT — PROJECT INFO */}
+          <div className="min-w-0 lg:pl-3">
+
+            {/* CATEGORY */}
+            <div className="mb-7 flex items-center gap-3">
+              <span className="h-2 w-2 bg-accent" />
+
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
+                {project.category}
               </span>
             </div>
 
-            <h1 className="max-w-5xl break-words text-[clamp(3.5rem,7vw,7.5rem)] font-medium leading-[0.95] tracking-[-0.075em]">
+            {/* TITLE */}
+            <h1 className="break-words text-[clamp(3.2rem,5.7vw,6.5rem)] font-medium leading-[0.96] tracking-[-0.075em] text-foreground">
               {project.title}
               <span className="text-accent">.</span>
             </h1>
 
-            <p className="mt-8 max-w-2xl text-base leading-8 text-muted sm:text-lg">
+            {/* DESCRIPTION */}
+            <p className="mt-8 max-w-xl text-sm leading-8 text-muted sm:text-base">
               {project.description}
             </p>
-          </div>
 
-          {/* HERO META */}
-          <div className="grid grid-cols-2 gap-6 border-t border-border pt-7 lg:grid-cols-1 lg:border-t-0 lg:border-l lg:pl-10">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-wider text-muted">
-                Project Category
-              </p>
-              <p className="mt-2 text-base font-medium">
-                {project.category}
-              </p>
-            </div>
+            {/* PROJECT META */}
+            <div className="mt-10 grid grid-cols-3 gap-4 border-y border-border py-6">
+              <div>
+                <p className="font-mono text-[9px] uppercase tracking-[0.13em] text-muted">
+                  Type
+                </p>
 
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-wider text-muted">
-                Project Type
-              </p>
-              <p className="mt-2 text-base font-medium">
-                {project.type}
-              </p>
-            </div>
-
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-wider text-muted">
-                Year
-              </p>
-              <p className="mt-2 text-base font-medium">
-                {project.year}
-              </p>
-            </div>
-          </div>
-        </header>
-
-        {/* VISUAL SHOWCASE */}
-        <section className="py-8 lg:py-12">
-          <figure>
-            <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-border bg-card">
-              <Image
-                src={project.image}
-                alt={`${project.title} project preview`}
-                fill
-                priority
-                sizes="(max-width: 1280px) 100vw, 1200px"
-                className="object-cover"
-              />
-            </div>
-            <figcaption className="mt-3 text-sm text-muted">
-              {project.title} — project overview
-            </figcaption>
-          </figure>
-
-          {"diagram" in project && (
-            <figure className="mt-8">
-              <div className="relative aspect-[640/312] overflow-hidden rounded-lg border border-border bg-white">
-                <Image
-                  src={project.diagram}
-                  alt="Diagram showing an HTTP request to the web server and its response to the browser"
-                  fill
-                  sizes="(max-width: 1280px) 100vw, 1200px"
-                  className="object-contain"
-                />
+                <p className="mt-2 break-words text-sm font-medium">
+                  {project.type}
+                </p>
               </div>
-              <figcaption className="mt-3 text-sm text-muted">
-                How a browser sends an HTTP request and receives a response.
-              </figcaption>
-            </figure>
-          )}
-        </section>
 
-        {/* OVERVIEW */}
-        <section className="grid gap-10 border-b border-border py-14 lg:grid-cols-[0.65fr_1fr] lg:gap-20 lg:py-20">
-          <div>
-            <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
-              01 / Overview
-            </span>
+              <div>
+                <p className="font-mono text-[9px] uppercase tracking-[0.13em] text-muted">
+                  Category
+                </p>
 
-            <h2 className="mt-5 text-3xl font-medium tracking-[-0.05em] sm:text-4xl">
-              The project
-              <br />
-              at a glance.
-            </h2>
-          </div>
+                <p className="mt-2 break-words text-sm font-medium">
+                  {project.category}
+                </p>
+              </div>
 
-          <div>
-            <p className="max-w-3xl text-xl leading-9 tracking-[-0.025em] text-foreground/85 sm:text-2xl sm:leading-10">
-              {project.description}
-            </p>
+              <div>
+                <p className="font-mono text-[9px] uppercase tracking-[0.13em] text-muted">
+                  Year
+                </p>
 
-            <div className="mt-10 flex flex-wrap gap-2">
-              {project.tags.slice(0, 5).map((tag) => (
-                <span
-                  key={tag}
-                  className="border border-border px-3 py-2 font-mono text-[11px] text-muted"
-                >
-                  {tag}
-                </span>
-              ))}
+                <p className="mt-2 text-sm font-medium">
+                  {project.year}
+                </p>
+              </div>
+            </div>
+
+            {/* TECH STACK PREVIEW */}
+            <div className="mt-7">
+              <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                Technologies
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+                {project.tags.slice(0, 6).map((tag) => (
+                  <span
+                    key={tag}
+                    className="border border-border px-3 py-2 font-mono text-[10px] text-foreground"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* ACTIONS */}
+            <div className="mt-10 flex flex-wrap items-center gap-5">
+              <a
+                href="#project-details"
+                className="group inline-flex h-13 items-center gap-8 bg-foreground px-6 text-sm font-medium text-background transition-opacity hover:opacity-85"
+              >
+                Explore Details
+
+                <FiArrowRight
+                  size={18}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </a>
+
+              <Link
+                href="/projects"
+                className="group inline-flex h-13 items-center gap-3 text-sm font-medium text-muted transition-colors hover:text-foreground"
+              >
+                All Projects
+                <FiArrowUpRight
+                  size={17}
+                  className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                />
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* FEATURES */}
-        <section className="border-b border-border py-14 lg:py-20">
-          <div className="mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+        {/* =====================================
+             PROJECT DETAILS — BELOW HERO
+        ====================================== */}
+
+        <div id="project-details" className="scroll-mt-24">
+
+          {/* OVERVIEW */}
+          <section className="grid gap-10 border-b border-border py-16 lg:grid-cols-[0.55fr_1fr] lg:gap-20 lg:py-24">
+
+            {/* LEFT */}
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
-                02 / Features
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
+                01 / Overview
               </span>
 
-              <h2 className="mt-5 text-3xl font-medium tracking-[-0.05em] sm:text-4xl">
-                What I built.
+              <h2 className="mt-6 text-3xl font-medium leading-tight tracking-[-0.055em] sm:text-5xl">
+                About the
+                <br />
+                project.
               </h2>
             </div>
 
-            <span className="font-mono text-[11px] text-muted">
-              {String(project.highlights.length).padStart(2, "0")} Features
-            </span>
-          </div>
+            {/* RIGHT */}
+            <div>
+              <p className="max-w-3xl text-lg leading-9 tracking-[-0.02em] text-foreground sm:text-xl">
+                {project.description}
+              </p>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            {project.highlights.map((highlight, index) => (
-              <div
-                key={`${index}-${highlight}`}
-                className="group flex min-h-[155px] flex-col justify-between rounded-lg border border-border p-6 transition-colors hover:border-accent/40 hover:bg-foreground/[0.02]"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] text-accent">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+              <div className="mt-10 grid gap-6 border-t border-border pt-7 sm:grid-cols-2">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+                    Project Type
+                  </p>
 
-                  <FiCheckCircle
-                    size={18}
-                    className="text-muted/40 transition-colors group-hover:text-accent"
-                  />
+                  <p className="mt-3 text-base font-medium">
+                    {project.type}
+                  </p>
                 </div>
 
-                <p className="mt-8 text-base leading-7 text-foreground">
-                  {highlight}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+                    Category
+                  </p>
 
-        {/* TECHNOLOGIES */}
-        <section className="border-b border-border py-14 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-[0.65fr_1fr] lg:gap-20">
+                  <p className="mt-3 text-base font-medium">
+                    {project.category}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* =====================================
+              FEATURES
+          ====================================== */}
+
+          <section className="border-b border-border py-16 lg:py-24">
+
+            {/* HEADER */}
+            <div className="mb-12 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+              <div>
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
+                  02 / Features
+                </span>
+
+                <h2 className="mt-6 text-3xl font-medium tracking-[-0.055em] sm:text-5xl">
+                  What I built.
+                </h2>
+              </div>
+
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                {String(project.highlights.length).padStart(2, "0")} Highlights
+              </span>
+            </div>
+
+            {/* FEATURE LIST */}
+            <div className="grid gap-px overflow-hidden border border-border bg-border md:grid-cols-2">
+              {project.highlights.map((highlight, index) => (
+                <div
+                  key={`${index}-${highlight}`}
+                  className="group flex min-h-[210px] flex-col justify-between bg-background p-7 transition-colors duration-300 hover:bg-foreground/[0.035] sm:p-8"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[11px] text-accent">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <FiCheck
+                      size={18}
+                      className="text-muted transition-colors group-hover:text-accent"
+                    />
+                  </div>
+
+                  <p className="mt-10 max-w-md text-base leading-7 text-foreground sm:text-lg">
+                    {highlight}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* =====================================
+              TECHNOLOGY STACK
+          ====================================== */}
+
+          <section className="grid gap-10 border-b border-border py-16 lg:grid-cols-[0.55fr_1fr] lg:gap-20 lg:py-24">
+
+            {/* LEFT */}
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
                 03 / Technology
               </span>
 
-              <h2 className="mt-5 text-3xl font-medium tracking-[-0.05em] sm:text-4xl">
-                Technology stack.
+              <h2 className="mt-6 text-3xl font-medium tracking-[-0.055em] sm:text-5xl">
+                Built with.
               </h2>
 
-              <p className="mt-5 max-w-sm text-sm leading-7 text-muted">
-                Frameworks, languages, and tools used
-                during the development of this project.
+              <p className="mt-6 max-w-sm text-sm leading-7 text-muted">
+                The technologies and tools used to bring
+                this project to life.
               </p>
             </div>
 
-            <div className="flex flex-wrap content-start gap-3">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="inline-flex h-12 items-center rounded-md border border-border px-5 text-sm font-medium transition-colors hover:border-accent/50 hover:text-accent"
-                >
-                  {tag}
+            {/* RIGHT */}
+            <div>
+              <div className="flex items-center justify-between border-b border-border pb-5">
+                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+                  Technology Stack
                 </span>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        {/* PROJECT NAVIGATION */}
+                <FiCode size={18} className="text-accent" />
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3">
+                {project.tags.map((tag, index) => (
+                  <div
+                    key={`${tag}-${index}`}
+                    className="group flex min-h-[110px] flex-col justify-between border-b border-r border-border p-5 transition-colors hover:bg-foreground/[0.035]"
+                  >
+                    <span className="font-mono text-[10px] text-accent">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="break-words text-sm font-medium text-foreground">
+                        {tag}
+                      </p>
+
+                      <FiLayers
+                        size={14}
+                        className="shrink-0 text-muted/40 transition-colors group-hover:text-accent"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* =====================================
+              OPTIONAL ARCHITECTURE
+          ====================================== */}
+
+          {diagram && (
+            <section className="border-b border-border py-16 lg:py-24">
+              <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
+                    04 / Architecture
+                  </span>
+
+                  <h2 className="mt-6 text-3xl font-medium tracking-[-0.055em] sm:text-5xl">
+                    Under the hood.
+                  </h2>
+                </div>
+
+                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+                  Technical Diagram
+                </span>
+              </div>
+
+              <div className="relative aspect-[640/312] overflow-hidden border border-border bg-white">
+                <Image
+                  src={diagram}
+                  alt={`${project.title} architecture diagram`}
+                  fill
+                  sizes="(max-width: 1280px) 100vw, 1200px"
+                  className="object-contain p-4 sm:p-8"
+                />
+              </div>
+            </section>
+          )}
+        </div>
+
+        {/* =====================================
+            PROJECT NAVIGATION
+        ====================================== */}
+
         <nav
           aria-label="Project navigation"
-          className="grid gap-4 py-12 sm:grid-cols-2"
+          className="grid border-b border-border sm:grid-cols-2"
         >
-          {previous ? (
-            <Link
-              href={`/projects/${previous.slug}`}
-              className="group flex min-h-[125px] flex-col justify-between rounded-lg border border-border p-6 transition-colors hover:border-accent/40"
-            >
-              <span className="flex items-center gap-3 text-xs text-muted">
-                <FiArrowLeft
-                  size={16}
-                  className="transition-transform group-hover:-translate-x-1"
-                />
-                Previous Project
-              </span>
+          {/* PREVIOUS */}
+          <div className="border-b border-border sm:border-b-0 sm:border-r">
+            {previous ? (
+              <Link
+                href={`/projects/${previous.slug}`}
+                className="group flex h-full min-h-[160px] flex-col justify-between p-6 transition-colors hover:bg-foreground/[0.025] sm:p-9"
+              >
+                <span className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+                  <FiArrowLeft
+                    size={16}
+                    className="transition-transform group-hover:-translate-x-1"
+                  />
+                  Previous Project
+                </span>
 
-              <span className="mt-6 text-xl font-medium transition-colors group-hover:text-accent">
-                {previous.title}
-              </span>
-            </Link>
-          ) : (
-            <div className="hidden sm:block" />
-          )}
+                <span className="mt-8 text-2xl font-medium tracking-[-0.04em] transition-colors group-hover:text-accent">
+                  {previous.title}
+                </span>
+              </Link>
+            ) : (
+              <div className="flex min-h-[160px] items-end p-9 text-sm text-muted">
+                Beginning of archive
+              </div>
+            )}
+          </div>
 
-          {next ? (
-            <Link
-              href={`/projects/${next.slug}`}
-              className="group flex min-h-[125px] flex-col items-end justify-between rounded-lg border border-border p-6 text-right transition-colors hover:border-accent/40"
-            >
-              <span className="flex items-center gap-3 text-xs text-muted">
-                Next Project
-                <FiArrowRight
-                  size={16}
-                  className="transition-transform group-hover:translate-x-1"
-                />
-              </span>
+          {/* NEXT */}
+          <div>
+            {next ? (
+              <Link
+                href={`/projects/${next.slug}`}
+                className="group flex h-full min-h-[160px] flex-col items-end justify-between p-6 text-right transition-colors hover:bg-foreground/[0.025] sm:p-9"
+              >
+                <span className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+                  Next Project
 
-              <span className="mt-6 text-xl font-medium transition-colors group-hover:text-accent">
-                {next.title}
-              </span>
-            </Link>
-          ) : (
-            <div className="hidden sm:block" />
-          )}
+                  <FiArrowRight
+                    size={16}
+                    className="transition-transform group-hover:translate-x-1"
+                  />
+                </span>
+
+                <span className="mt-8 text-2xl font-medium tracking-[-0.04em] transition-colors group-hover:text-accent">
+                  {next.title}
+                </span>
+              </Link>
+            ) : (
+              <div className="flex min-h-[160px] items-end justify-end p-9 text-sm text-muted">
+                End of archive
+              </div>
+            )}
+          </div>
         </nav>
 
-        {/* CONTACT CTA */}
-        <section className="flex flex-col justify-between gap-8 border-t border-border py-16 lg:flex-row lg:items-center">
+        {/* =====================================
+            FINAL CTA
+        ====================================== */}
+
+        <section className="flex flex-col justify-between gap-8 py-16 lg:flex-row lg:items-end">
           <div>
-            <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
-              Let&apos;s collaborate
+            <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.17em] text-accent">
+              Next Collaboration
             </p>
 
-            <h2 className="text-3xl font-medium tracking-[-0.05em] sm:text-4xl">
+            <h2 className="text-3xl font-medium tracking-[-0.055em] sm:text-5xl">
               Have a project in mind?
             </h2>
 
-            <p className="mt-4 text-sm leading-7 text-muted">
-              I&apos;m always open to discussing new projects
-              and interesting opportunities.
+            <p className="mt-5 max-w-lg text-sm leading-7 text-muted">
+              I'm open to interesting projects, collaborations,
+              and new development opportunities.
             </p>
           </div>
 
           <Link
             href="/contact"
-            className="group inline-flex h-14 w-fit items-center gap-8 rounded-md bg-accent px-6 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-85"
+            className="group inline-flex h-14 w-fit items-center gap-8 bg-foreground px-6 text-sm font-medium text-background transition-opacity hover:opacity-85"
           >
-            Get In Touch
+            Let's work together
+
             <FiArrowUpRight
               size={18}
               className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"

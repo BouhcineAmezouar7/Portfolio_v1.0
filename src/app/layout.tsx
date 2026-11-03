@@ -48,7 +48,6 @@ export default function RootLayout({
       <body
         className={`${jetBrainsMono.className} min-h-screen overflow-x-hidden bg-background`}
       >
-
         {/* Website content */}
         <div className="relative z-10">
           <Header />
