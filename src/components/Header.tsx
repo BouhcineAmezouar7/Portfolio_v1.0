@@ -21,7 +21,7 @@ export default function Header() {
             relative flex h-[72px]
             items-center justify-between
             border-y border-border
-            bg-background
+            bg-background/30
             px-2 sm:px-4
           "
         >

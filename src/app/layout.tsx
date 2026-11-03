@@ -46,7 +46,7 @@ export default function RootLayout({
       </head>
 
       <body
-        className={`${jetBrainsMono.className} min-h-screen overflow-x-hidden bg-background`}
+        className={`${jetBrainsMono.className} min-h-screen overflow-x-hidden bg-background/30`}
       >
         {/* Website content */}
         <div className="relative z-10">

@@ -24,7 +24,7 @@ export default function HeroSection() {
             className="border-b border-border pb-10 lg:border-b-0 lg:border-r lg:pb-12 lg:pr-12"
           >
             <div className="relative mx-auto max-w-[520px] lg:mx-0">
-              <div className="group relative aspect-[3/4] overflow-hidden bg-black">
+              <div className="group relative aspect-[3/4] overflow-hidden bg-black/10">
                 <Image
                   src="/mee.png"
                   alt={profile.name}
