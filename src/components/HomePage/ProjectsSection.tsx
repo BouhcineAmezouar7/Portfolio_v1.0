@@ -1,306 +1,304 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { FiArrowUpRight } from "react-icons/fi";
+import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const featuredProjects = [
-  {
-    id: 1,
-    number: "01",
-    title: "Maou3idy",
-    description:
-      "A healthcare appointment platform built by a five-person team. I owned the booking domain, from doctor availability and slots to patient scheduling and appointment lifecycles.",
-    tags: ["Next.js", "NestJS", "PostgreSQL", "RabbitMQ"],
-    year: "1337",
-    type: "Full Stack / Team",
-  },
-  {
-    id: 2,
-    number: "02",
-    title: "Atlas Team Manager",
-    description:
-      "A full-stack platform for workspaces, members, projects and task boards, with authentication, role-based permissions and system administration.",
-    tags: ["Next.js", "NestJS", "TypeScript", "Docker"],
-    year: "In progress",
-    type: "Personal Project",
-  },
-  {
-    id: 3,
-    number: "03",
-    title: "Webserv",
-    description:
-      "An HTTP server project built to understand request handling, sockets, server configuration and the client/server model beneath web frameworks.",
-    tags: ["HTTP", "Networking", "Sockets", "Linux"],
-    year: "1337",
-    type: "Systems / Networking",
-  },
-];
+import {
+  FiArrowLeft,
+  FiArrowRight,
+  FiArrowUpRight,
+  FiLayers,
+} from "react-icons/fi";
+
+import CardSwap, { Card, type CardSwapHandle } from "@/components/CardSwap";
+
+import { featuredProjects } from "@/data/portfolio";
 
 export default function ProjectsSection() {
-  return (
-    <section className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-      <div className="container mx-auto ">
-        {/* TOP LABEL */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center justify-between border-b border-border pb-4"
-        >
-          <div className="flex items-center gap-3">
-            <span className="h-1.5 w-1.5 bg-accent" />
+  const router = useRouter();
 
-            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted">
+  const deckRef = useRef<CardSwapHandle>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const activeProject = featuredProjects[activeIndex] ?? featuredProjects[0];
+
+  if (!activeProject) return null;
+
+  return (
+    <section
+      id="projects"
+      className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 lg:py-28"
+    >
+      <div className="container mx-auto">
+        {/* SECTION TOP */}
+        <div className="flex items-center justify-between gap-4 border-b border-border pb-5">
+          <div className="flex items-center gap-3">
+            <span className="h-2 w-2 rounded-full bg-accent" />
+
+            <span className="font-mono text-[10px] uppercase tracking-[0.17em] text-muted">
               Selected Work
             </span>
           </div>
 
-          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/20">
-            05 / Projects
+          <span className="font-mono text-[10px] text-muted">
+            {String(featuredProjects.length).padStart(2, "0")} Projects
           </span>
-        </motion.div>
+        </div>
 
         {/* HEADING */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="grid gap-8 border-b border-border py-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-end"
-        >
-          <div>
-            <p className="mb-4 font-mono text-[9px] uppercase tracking-[0.25em] text-accent/70">
-              Portfolio / Selected
+        <div className="flex flex-col justify-between gap-6 pt-10 sm:flex-row sm:items-end">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.16em] text-accent">
+              Portfolio / Highlights
             </p>
 
-            <h2 className="text-5xl font-medium leading-[0.9] tracking-[-0.055em] text-foreground sm:text-7xl lg:text-8xl">
-              Selected
-              <br />
-              <span className="text-accent/45 dark:text-accent/50">Projects.</span>
+            <h2 className="text-4xl font-medium leading-[1.05] tracking-[-0.06em] sm:text-5xl lg:text-6xl">
+              Work that
+              <span className="text-accent"> speaks.</span>
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="lg:pb-2">
-            <div className="mb-5 h-px w-10 bg-foreground/30" />
+          <p className="max-w-sm text-sm leading-7 text-muted">
+            A few projects that reflect my approach to building products,
+            solving problems, and exploring modern technologies.
+          </p>
+        </div>
 
-            <p className="max-w-sm text-sm leading-7 text-muted">
-              A selection of projects where I combine frontend development,
-              backend architecture and thoughtful interface design.
-            </p>
-          </div>
-        </motion.div>
+        {/* MAIN SHOWCASE */}
+        <div className="mt-12 grid gap-10 border-y border-border py-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-center lg:gap-14 lg:py-14">
+          {/* LEFT — PROJECT CARD SWAP */}
+          <motion.div
+            initial={{ opacity: 0, x: -25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7 }}
+            className="relative min-w-0"
+          >
+            {/* IMAGE META */}
+            <div className="mb-5 flex items-center justify-between">
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                Project Preview
+              </span>
 
-        {/* PROJECTS */}
-        <div>
-          {featuredProjects.map((project, index) => {
-            const reverse = index % 2 !== 0;
+              <span className="font-mono text-[10px] text-accent">
+                {String(activeIndex + 1).padStart(2, "0")} /{" "}
+                {String(featuredProjects.length).padStart(2, "0")}
+              </span>
+            </div>
 
-            return (
-              <motion.article
-                key={project.id}
-                initial={{
-                  opacity: 0,
-                  y: 40,
+            {/* SWAP CONTAINER */}
+            <div className="relative h-[300px] w-full sm:h-[430px] lg:h-[460px] xl:h-[510px]">
+              <CardSwap
+                ref={deckRef}
+                width={950}
+                height={560}
+                cardDistance={24}
+                verticalDistance={25}
+                depth={5}
+                skewAmount={1.5}
+                visibleCards={Math.min(3, featuredProjects.length)}
+                delay={5500}
+                speed={0.85}
+                bounce={0.25}
+                parallax={0.2}
+                hoverSpread={0.06}
+                dim={0.25}
+                cardRadius={5}
+                onChange={setActiveIndex}
+                onCardClick={(index) => {
+                  const project = featuredProjects[index];
+
+                  if (project) {
+                    router.push(`/projects/${project.slug}`);
+                  }
                 }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                  amount: 0.15,
-                }}
-                transition={{
-                  duration: 0.7,
-                }}
-                className="border-b border-border py-12 lg:py-16"
+                className="mx-auto max-w-full"
               >
-                {/* PROJECT META */}
-                <div className="mb-5 flex items-center justify-between">
-                  <div className="flex items-center gap-5">
-                    <span className="font-mono text-[9px] text-accent/70">
-                      {project.number}
-                    </span>
+                {featuredProjects.map((project) => (
+                  <Card key={project.id} customClass="bg-card">
+                    <div className="flex h-full flex-col overflow-hidden border border-border bg-card">
+                      {/* TOP BAR */}
+                      <div className="flex h-12 shrink-0 items-center justify-between gap-4 border-b border-border px-4">
+                        <div className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 bg-accent" />
 
-                    <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/35">
-                      {project.type}
-                    </span>
-                  </div>
+                          <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+                            {project.category}
+                          </span>
+                        </div>
 
-                  <span className="font-mono text-[9px] text-accent/70">
-                    {project.year}
+                        <span className="font-mono text-[10px] text-muted">
+                          {project.number}
+                        </span>
+                      </div>
+
+                      {/* IMAGE */}
+                      <div className="relative min-h-0 flex-1 overflow-hidden bg-background">
+                        <Image
+                          src={project.image}
+                          alt={`${project.title} project preview`}
+                          fill
+                          quality={90}
+                          sizes="(max-width: 1024px) 90vw, 55vw"
+                          className="pointer-events-none object-cover object-center"
+                        />
+
+                        {/* IMAGE GRADIENT */}
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+
+                        {/* BOTTOM IMAGE CONTENT */}
+                        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-white sm:p-7">
+                          <div>
+                            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/65">
+                              Featured Project
+                            </p>
+
+                            <h3 className="mt-2 text-xl font-medium tracking-[-0.04em] sm:text-3xl">
+                              {project.title}
+                            </h3>
+                          </div>
+
+                          <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-white text-black">
+                            <FiArrowUpRight size={19} />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </CardSwap>
+            </div>
+
+            {/* CARD NAVIGATION */}
+            <div className="mt-5 flex items-center justify-between gap-5">
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => deckRef.current?.prev()}
+                  aria-label="Previous project"
+                  className="flex h-11 w-11 items-center justify-center border border-border text-foreground transition-colors hover:border-accent hover:text-accent"
+                >
+                  <FiArrowLeft size={17} />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => deckRef.current?.next()}
+                  aria-label="Next project"
+                  className="flex h-11 w-11 items-center justify-center border border-border text-foreground transition-colors hover:border-accent hover:text-accent"
+                >
+                  <FiArrowRight size={17} />
+                </button>
+              </div>
+
+              <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+                Drag to Explore
+              </span>
+            </div>
+          </motion.div>
+
+          {/* RIGHT — ACTIVE PROJECT */}
+          <div className="flex min-w-0 flex-col justify-center">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={activeProject.id}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.25 }}
+              >
+                {/* NUMBER */}
+                <div className="mb-7 flex items-center gap-3">
+                  <FiLayers size={16} className="text-accent" />
+
+                  <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">
+                    Project / {activeProject.number}
                   </span>
                 </div>
 
-                <div
-                  className={`
-                    grid gap-8
-                    lg:grid-cols-[1.35fr_0.65fr]
-                    lg:items-stretch
-                    lg:gap-12
-                    ${reverse ? "lg:grid-cols-[0.65fr_1.35fr]" : ""}
-                  `}
-                >
-                  {/* PROJECT VISUAL */}
-                  <motion.div
-                    initial={{
-                      opacity: 0,
-                      x: reverse ? 30 : -30,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                      x: 0,
-                    }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.7,
-                      delay: 0.1,
-                    }}
-                    className={`
-                      ${reverse ? "lg:order-2" : ""}
-                    `}
-                  >
-                    <div className="group relative overflow-hidden border border-border bg-foreground text-background">
-                      <div className="relative flex aspect-[16/10] items-end overflow-hidden p-7 sm:p-10">
-                        <p className="relative max-w-[80%] text-[clamp(2.4rem,7vw,6rem)] font-medium uppercase leading-[0.82] tracking-[-0.07em] opacity-90 transition-transform duration-700 group-hover:-translate-y-2">
-                          {project.title}
-                        </p>
+                {/* TITLE */}
+                <h3 className="break-words text-3xl font-medium leading-[1.05] tracking-[-0.05em] sm:text-4xl lg:text-5xl">
+                  {activeProject.title}
+                </h3>
 
-                        {/* CORNERS */}
-                        <div className="pointer-events-none absolute left-4 top-4 h-5 w-5 border-l border-t border-foreground/50" />
+                {/* CATEGORY */}
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+                    {activeProject.type}
+                  </span>
 
-                        <div className="pointer-events-none absolute bottom-4 right-4 h-5 w-5 border-b border-r border-foreground/50" />
-                      </div>
+                  <span className="h-px w-6 bg-border" />
 
-                      {/* IMAGE FOOTER */}
-                      <div className="flex items-center justify-between border-t border-border px-4 py-3">
-                        <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-accent/70">
-                          Project / {project.type}
-                        </span>
-
-                        <span className="font-mono text-[8px] text-foreground/20">
-                          BA / {project.number}
-                        </span>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  {/* CONTENT */}
-                  <motion.div
-                    initial={{
-                      opacity: 0,
-                      x: reverse ? -30 : 30,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                      x: 0,
-                    }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.7,
-                      delay: 0.2,
-                    }}
-                    className={`
-                      flex flex-col justify-between
-                      ${reverse ? "lg:order-1" : ""}
-                    `}
-                  >
-                    <div>
-                      {/* Number */}
-                      <span className="font-mono text-[10px] text-foreground/20">
-                        / {project.number}
-                      </span>
-
-                      {/* TITLE */}
-                      <h3 className="mt-5 text-3xl font-medium leading-[1] tracking-[-0.04em] text-foreground sm:text-4xl lg:text-5xl">
-                        {project.title}
-                      </h3>
-
-                      {/* DESCRIPTION */}
-                      <p className="mt-6 max-w-md text-sm leading-7 text-muted">
-                        {project.description}
-                      </p>
-
-                      {/* TAGS */}
-                      <div className="mt-8 border-t border-border">
-                        {project.tags.map((tag, tagIndex) => (
-                          <div
-                            key={tag}
-                            className="
-                              flex items-center
-                              justify-between
-                              border-b border-border
-                              py-3
-                            "
-                          >
-                            <span className="text-xs text-muted">{tag}</span>
-
-                            <span className="font-mono text-[8px] text-foreground/20">
-                              0{tagIndex + 1}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <p className="mt-9 font-mono text-[9px] uppercase tracking-[0.18em] text-foreground/30">
-                      Project overview
-                    </p>
-                  </motion.div>
+                  <span className="font-mono text-[10px] text-muted">
+                    {activeProject.year}
+                  </span>
                 </div>
-              </motion.article>
-            );
-          })}
+
+                {/* DESCRIPTION */}
+                <p className="mt-7 max-w-md text-sm leading-8 text-muted">
+                  {activeProject.description}
+                </p>
+
+                {/* TECHNOLOGY STACK */}
+                <div className="mt-8 border-t border-border pt-6">
+                  <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                    Technologies
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {activeProject.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="border border-border px-3 py-2 font-mono text-[10px] text-foreground/80"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* VIEW PROJECT */}
+                <Link
+                  href={`/projects/${activeProject.slug}`}
+                  className="group mt-9 inline-flex h-12 items-center gap-6 bg-foreground px-5 text-sm font-semibold text-background transition-opacity hover:opacity-85"
+                >
+                  Explore Project
+                  <FiArrowUpRight
+                    size={18}
+                    className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                  />
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
 
-        {/* VIEW ALL */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col justify-between gap-6 pt-10 sm:flex-row sm:items-center"
-        >
-          <div>
-            <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/20">
-              Want to see more?
-            </span>
+        {/* SECTION FOOTER */}
+        <div className="flex flex-col justify-between gap-6 pt-9 sm:flex-row sm:items-center">
+          <p className="max-w-md text-sm leading-7 text-muted">
+            Each project represents a different challenge, from frontend design
+            to backend architecture.
+          </p>
 
-            <p className="mt-2 text-sm text-muted">
-              Explore the complete project archive.
-            </p>
-          </div>
-
-          <Link href="/projects">
-            <motion.div
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="
-                group flex h-14
-                items-center justify-between
-                gap-12
-                bg-foreground
-                px-6
-                text-sm font-semibold
-                text-background
-                transition-colors
-                hover:bg-foreground/90
-              "
-            >
-              All Projects
-              <FiArrowUpRight
-                size={18}
-                className="
-                  transition-transform duration-300
-                  group-hover:translate-x-1
-                  group-hover:-translate-y-1
-                "
-              />
-            </motion.div>
+          <Link
+            href="/projects"
+            className="group inline-flex h-13 w-fit items-center gap-8 border border-border px-6 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
+          >
+            View All Projects
+            <FiArrowRight
+              size={18}
+              className="transition-transform group-hover:translate-x-1"
+            />
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -11,6 +11,7 @@ import {
   FiGlobe,
   FiArrowUpRight,
 } from "react-icons/fi";
+import { portfolioYear, profile } from "@/data/portfolio";
 
 const services = [
   {
@@ -65,7 +66,7 @@ const services = [
 
 const ServicesSection = memo(function ServicesSection() {
   return (
-    <section className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+    <section className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 lg:py-0">
       <div className="container mx-auto ">
         {/* Top section label */}
         <motion.div
@@ -206,14 +207,14 @@ const ServicesSection = memo(function ServicesSection() {
         {/* Bottom */}
         <div className="mt-7 flex items-center justify-between">
           <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/20">
-            Bouhcine Amezouar © 2026
+            {profile.name} © {portfolioYear}
           </span>
 
           <div className="flex items-center gap-3">
             <div className="h-px w-10 bg-foreground/10" />
 
             <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/20">
-              Full Stack Development
+              {profile.role}
             </span>
           </div>
         </div>

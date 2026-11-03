@@ -8,40 +8,17 @@ import {
   FiLinkedin,
 } from "react-icons/fi";
 import Link from "next/link";
-
-const stats = [
-  { value: "1337", label: "Current Student" },
-  { value: "2024", label: "OFPPT Graduate" },
-  { value: "06", label: "Months Interning" },
-];
+import {
+  portfolioStats,
+  portfolioYear,
+  profile,
+  socialLinks,
+} from "@/data/portfolio";
 
 export default function CTASection() {
   return (
-    <section className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+    <section className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 lg:py-0">
       <div className="container mx-auto ">
-        {/* TOP */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center justify-between border-b border-border pb-4"
-        >
-          <div className="flex items-center gap-3">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping bg-accent opacity-30" />
-              <span className="relative inline-flex h-1.5 w-1.5 bg-accent" />
-            </span>
-
-            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted">
-              Available For Work
-            </span>
-          </div>
-
-          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/20">
-            07 / Contact
-          </span>
-        </motion.div>
 
         {/* MAIN CTA */}
         <div className="border-b border-border py-12 sm:py-16 lg:py-20">
@@ -176,7 +153,7 @@ export default function CTASection() {
         <div className="grid border-b border-border lg:grid-cols-[1fr_auto]">
           {/* Stats */}
           <div className="grid grid-cols-3 lg:max-w-2xl">
-            {stats.map((stat, index) => (
+            {portfolioStats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{
@@ -193,7 +170,7 @@ export default function CTASection() {
                 }}
                 className={`
                   py-7
-                  ${index !== stats.length - 1
+                  ${index !== portfolioStats.length - 1
                     ? "border-r border-border"
                     : ""
                   }
@@ -232,7 +209,7 @@ export default function CTASection() {
 
             <div className="flex gap-2">
               <a
-                href="https://github.com/BouhcineAmezouar7"
+                href={socialLinks[0].href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -251,7 +228,7 @@ export default function CTASection() {
               </a>
 
               <a
-                href="https://www.linkedin.com/in/bouhcine-amezouar/"
+                href={socialLinks[1].href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -270,7 +247,7 @@ export default function CTASection() {
               </a>
 
               <a
-                href="mailto:bouhcine_amezouar@gmail.com"
+                href={socialLinks[2].href}
                 aria-label="Email"
                 className="
                   flex h-10 w-10
@@ -299,7 +276,7 @@ export default function CTASection() {
             <div className="h-px w-8 bg-foreground/10" />
 
             <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/20">
-              Morocco / 2026
+              {profile.location} / {portfolioYear}
             </span>
           </div>
         </div>

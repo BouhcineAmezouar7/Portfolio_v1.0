@@ -20,6 +20,7 @@ export default function Nav() {
           <Link
             key={link.href}
             href={link.href}
+            aria-current={isActive ? "page" : undefined}
             className="group relative flex items-center gap-2 py-2"
           >
             {/* Number */}

@@ -23,7 +23,7 @@ export default function ThemedGlowCursor() {
 
   if (isDark === null) return null;
 
-  const cursorColor = isDark ? "#ffffff" : "#000000";
+  const cursorColor = isDark ? "#E1DCC9" : "#412D15";
 
   return (
     <GlowCursor

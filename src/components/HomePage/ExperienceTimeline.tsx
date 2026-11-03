@@ -2,65 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FiArrowUpRight, FiBriefcase, FiCalendar } from "react-icons/fi";
-
-const experiences = [
-  {
-    number: "01",
-    title: "Software Engineering Student",
-    company: "1337 Coding School",
-    period: "2024 — Present",
-    description:
-      "Strengthening my engineering foundations through project-based work in systems programming, networking, web development, Docker and team collaboration.",
-    achievements: [
-      "Built Webserv and Inception",
-      "Full-stack work on ft_transcendence",
-      "Linux, networking and Docker",
-    ],
-    status: "Current",
-  },
-  {
-    number: "02",
-    title: "Web Full-Stack Development",
-    company: "OFPPT — CFPM Sidi Moumen",
-    period: "2022 — 2024",
-    description:
-      "Built my professional foundation in frontend development, backend development, databases and complete web application architecture in Casablanca.",
-    achievements: [
-      "Laravel + React.js",
-      "JavaScript, HTML and CSS",
-      "MySQL and application architecture",
-    ],
-    status: "Foundation",
-  },
-  {
-    number: "03",
-    title: "Full-Stack Developer — PFE Intern",
-    company: "DM-Decore",
-    period: "2 months",
-    description:
-      "Worked with a development team on an e-commerce application, connecting React interfaces with Laravel APIs and a MySQL database.",
-    achievements: [
-      "Laravel + React.js",
-      "REST API integration",
-      "Collaborative full-stack delivery",
-    ],
-    status: "Previous",
-  },
-  {
-    number: "04",
-    title: "Web Development / Database Intern",
-    company: "NetoneMaroc",
-    period: "4 months",
-    description:
-      "Managed database information and designed frontend interfaces for displaying and interacting with structured data.",
-    achievements: [
-      "Database management",
-      "Frontend interface design",
-      "Data organization",
-    ],
-    status: "Previous",
-  },
-];
+import { experiences } from "@/data/portfolio";
 
 export default function ExperienceTimeline() {
   return (

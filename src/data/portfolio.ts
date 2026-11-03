@@ -11,6 +11,8 @@ export const profile = {
   resumePath: "/Bouhcine_Amezouar.pdf",
 } as const;
 
+export const portfolioYear = "2026";
+
 export const mainNavigationLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
@@ -50,14 +52,14 @@ export const socialLinks = [
 ] as const;
 
 export const portfolioStats = [
-  { value: "1337", label: "Coding School" },
+  { value: profile.school.split(" ")[0], label: "Coding School" },
   { value: profile.graduationYear, label: "OFPPT Graduate" },
   { value: profile.internshipMonths, label: "Months Interning" },
 ] as const;
 
 export const aboutFacts = [
   { number: "01", value: "23", label: "Years Old" },
-  { number: "02", value: "1337", label: "Current School" },
+  { number: "02", value: portfolioStats[0].value, label: "Current School" },
   {
     number: "03",
     value: profile.graduationYear,
@@ -84,61 +86,102 @@ export const coreStack = [
 export const projects = [
   {
     id: 1,
+    slug: "maou3idy",
     number: "01",
     title: "Maou3idy",
     category: "Full Stack",
+    image: "/projects/maou3idy_app.png",
     year: "1337",
     description:
       "A healthcare appointment platform created by a five-person team for ft_transcendence. I built the booking and scheduling domain across the frontend, backend and database.",
     tags: ["Next.js", "NestJS", "PostgreSQL", "RabbitMQ"],
+    highlights: [
+      "Doctor availability and appointment-slot management",
+      "Patient scheduling and appointment lifecycle",
+      "Frontend, backend and database ownership for the booking domain",
+      "Team delivery within the ft_transcendence project",
+    ],
     type: "Full Stack / Team",
     featured: true,
   },
   {
     id: 2,
+    slug: "atlas-team-manager",
     number: "02",
     title: "Atlas Team Manager",
     category: "Full Stack",
+    image: "/projects/team-project-management-platform.png",
     year: "In progress",
     description:
       "A team-management platform with workspaces, members, projects, task boards, authentication, role-based permissions and an administration dashboard.",
     tags: ["Next.js", "NestJS", "TypeScript", "Docker"],
+    highlights: [
+      "Workspace, member and project organization",
+      "Task-board workflows for team collaboration",
+      "Authentication and role-based permissions",
+      "Administration tools for managing the platform",
+    ],
     type: "Personal Project",
     featured: true,
   },
   {
     id: 3,
+    slug: "webserv",
     number: "03",
     title: "Webserv",
     category: "Systems",
+    image: "/projects/webserve_app.png",
+    diagram: "/projects/webserve.png",
     year: "1337",
     description:
       "An HTTP server project focused on sockets, request and response handling, configuration, networking and client/server architecture.",
     tags: ["HTTP", "Networking", "Sockets", "Linux"],
+    highlights: [
+      "Socket-based client and server communication",
+      "HTTP request parsing and response generation",
+      "Server configuration and routing behavior",
+      "Networking fundamentals beneath web frameworks",
+    ],
     type: "Systems / Networking",
     featured: true,
   },
   {
     id: 4,
+    slug: "inception",
     number: "04",
     title: "Inception",
     category: "Infrastructure",
+    image: "/projects/inception_app.png",
     year: "1337",
     description:
       "A system-administration project that builds a multi-service environment with containers, images, volumes, networks and persistent data.",
     tags: ["Docker", "Docker Compose", "Linux", "Networks"],
+    highlights: [
+      "Multi-service containerized environment",
+      "Custom images and service orchestration",
+      "Persistent data with volumes",
+      "Isolated service communication through Docker networks",
+    ],
     type: "Infrastructure",
     featured: false,
   },
   {
     id: 5,
+    slug: "e-commerce-frontend",
     number: "05",
     title: "E-Commerce Frontend",
     category: "Frontend",
+    image: "/projects/shop_app.png",
     year: "Practice project",
     description:
       "A frontend-focused storefront built to practice reusable components, responsive layouts, product presentation and navigation.",
     tags: ["React", "JavaScript", "HTML", "CSS"],
+    highlights: [
+      "Reusable interface components",
+      "Responsive storefront layouts",
+      "Product-focused presentation",
+      "Clear navigation across screen sizes",
+    ],
     type: "Frontend",
     featured: false,
   },

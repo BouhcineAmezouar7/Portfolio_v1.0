@@ -4,6 +4,7 @@ import { JetBrains_Mono } from "next/font/google";
 import PageTransition from "@/components/PageTransition";
 import ThemedGlowCursor from "@/components/ThemedGlowCursor";
 import type { Metadata } from "next";
+import { profile } from "@/data/portfolio";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -13,9 +14,8 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bouhcine Amezouar — Full-Stack Developer",
-  description:
-    "Portfolio of Bouhcine Amezouar, a Full-Stack Developer and 1337 Coding School student in Casablanca, Morocco.",
+  title: `${profile.name} — ${profile.role}`,
+  description: `Portfolio of ${profile.name}, a ${profile.role} and ${profile.school} student in ${profile.location}.`,
   icons: {
     icon: "/logo_icon.png",
   },

@@ -7,53 +7,12 @@ import {
   FiLinkedin,
   FiMail,
 } from "react-icons/fi";
-
-const experience = [
-  {
-    role: "Software Engineering Student",
-    place: "1337 Coding School",
-    period: "2024 — Present",
-    summary:
-      "Project-based work across programming, systems, networking, HTTP, Docker, backend architecture and collaborative full-stack development.",
-  },
-  {
-    role: "Full-Stack Developer — PFE Intern",
-    place: "DM-Decore",
-    period: "1 month",
-    summary:
-      "Worked in a team on an e-commerce application using Laravel, React.js, MySQL and REST APIs.",
-  },
-  {
-    role: "Web Development / Database Intern",
-    place: "NetoneMaroc",
-    period: "3 months",
-    summary:
-      "Managed database information and designed frontend interfaces for displaying and interacting with structured data.",
-  },
-];
-
-const projects = [
-  {
-    name: "Maou3idy — ft_transcendence",
-    detail:
-      "Healthcare appointment platform built by five developers. Owned booking and scheduling across doctor availability, slots, appointments, NestJS APIs, Prisma data models and Next.js interfaces.",
-  },
-  {
-    name: "Webserv",
-    detail:
-      "HTTP server project covering sockets, request/response handling, configuration and client/server architecture.",
-  },
-  {
-    name: "Inception",
-    detail:
-      "Containerized infrastructure project using Docker, Compose, volumes, networks and Linux service configuration.",
-  },
-  {
-    name: "Atlas Team Manager",
-    detail:
-      "Full-stack platform for workspaces, teams, projects and tasks with authentication, permissions and administration.",
-  },
-];
+import {
+  profile,
+  projects,
+  resumeExperiences,
+  socialLinks,
+} from "@/data/portfolio";
 
 const skills = [
   ["Frontend", "Next.js, React.js, TypeScript, Tailwind CSS, HTML5, CSS"],
@@ -81,15 +40,15 @@ export default function ResumePage() {
               Curriculum Vitae / Profile
             </p>
             <h1 className="text-[clamp(3.5rem,10vw,8rem)] font-medium uppercase leading-[0.82] tracking-[-0.07em] text-foreground">
-              Bouhcine
+              {profile.firstName}
               <br />
-              <span className="text-foreground/20">Amezouar.</span>
+              <span className="text-foreground/20">{profile.lastName}.</span>
             </h1>
           </div>
 
           <div className="space-y-5 lg:pb-1">
             <p className="text-lg font-medium text-foreground">
-              Full-Stack Developer · 1337 Coding School Student
+              {profile.role} · {profile.school} Student
             </p>
             <p className="max-w-xl text-sm leading-7 text-muted">
               I build products across the complete application stack, from
@@ -98,7 +57,7 @@ export default function ResumePage() {
             </p>
             <div className="flex flex-wrap gap-3">
               <a
-                href="/Bouhcine_Amezouar.pdf"
+                href={profile.resumePath}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 border border-border px-4 py-3 font-mono text-[9px] uppercase tracking-[0.14em] text-foreground transition-colors hover:border-accent hover:text-accent"
@@ -107,7 +66,7 @@ export default function ResumePage() {
                 Open PDF
               </a>
               <a
-                href="/Bouhcine_Amezouar.pdf"
+                href={profile.resumePath}
                 download="Bouhcine_Amezouar_Resume.pdf"
                 className="inline-flex items-center gap-2 bg-foreground px-4 py-3 font-mono text-[9px] uppercase tracking-[0.14em] text-background transition-opacity hover:opacity-80"
               >
@@ -116,10 +75,10 @@ export default function ResumePage() {
               </a>
             </div>
             <div className="flex flex-wrap gap-x-5 gap-y-3 font-mono text-[9px] uppercase tracking-[0.14em] text-foreground/40">
-              <a className="inline-flex items-center gap-2 hover:text-accent" href="mailto:bouhcine_amezouar@gmail.com"><FiMail /> Email</a>
-              <a className="inline-flex items-center gap-2 hover:text-accent" href="https://github.com/BouhcineAmezouar7" target="_blank" rel="noreferrer"><FiGithub /> GitHub</a>
-              <a className="inline-flex items-center gap-2 hover:text-accent" href="https://www.linkedin.com/in/bouhcine-amezouar/" target="_blank" rel="noreferrer"><FiLinkedin /> LinkedIn</a>
-              <span>Casablanca, Morocco</span>
+              <a className="inline-flex items-center gap-2 hover:text-accent" href={socialLinks[2].href}><FiMail /> Email</a>
+              <a className="inline-flex items-center gap-2 hover:text-accent" href={socialLinks[0].href} target="_blank" rel="noreferrer"><FiGithub /> GitHub</a>
+              <a className="inline-flex items-center gap-2 hover:text-accent" href={socialLinks[1].href} target="_blank" rel="noreferrer"><FiLinkedin /> LinkedIn</a>
+              <span>{profile.location}</span>
             </div>
           </div>
         </header>
@@ -129,16 +88,16 @@ export default function ResumePage() {
             Experience
           </h2>
           <div className="lg:pl-10">
-            {experience.map((item) => (
-              <article key={item.place} className="border-t border-border py-8 first:border-t-0">
+            {resumeExperiences.map((item) => (
+              <article key={item.id} className="border-t border-border py-8 first:border-t-0">
                 <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
                   <div>
-                    <h3 className="text-lg font-medium text-foreground">{item.role}</h3>
-                    <p className="mt-1 text-sm text-accent/70">{item.place}</p>
+                    <h3 className="text-lg font-medium text-foreground">{item.title}</h3>
+                    <p className="mt-1 text-sm text-accent/70">{item.company}</p>
                   </div>
                   <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-foreground/30">{item.period}</span>
                 </div>
-                <p className="mt-4 max-w-2xl text-sm leading-7 text-muted">{item.summary}</p>
+                <p className="mt-4 max-w-2xl text-sm leading-7 text-muted">{item.description}</p>
               </article>
             ))}
           </div>
@@ -150,14 +109,14 @@ export default function ResumePage() {
           </h2>
           <div className="space-y-8 py-10 lg:pl-10">
             <div>
-              <h3 className="text-lg font-medium text-foreground">1337 Coding School</h3>
+              <h3 className="text-lg font-medium text-foreground">{profile.school}</h3>
               <p className="mt-2 text-sm leading-7 text-muted">Software Engineering / Computer Programming · Current student</p>
             </div>
             <div>
               <h3 className="text-lg font-medium text-foreground">OFPPT — CFPM Sidi Moumen</h3>
               <p className="mt-2 text-sm leading-7 text-muted">
                 Technicien Spécialisé en Développement Digital — Web Full
-                Stack · Casablanca, Morocco · Graduated 2024
+                Stack · {profile.location} · Graduated {profile.graduationYear}
               </p>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">
                 Built a professional foundation in frontend and backend
@@ -178,9 +137,9 @@ export default function ResumePage() {
           </h2>
           <div className="lg:pl-10">
             {projects.map((project) => (
-              <article key={project.name} className="border-t border-border py-7 first:border-t-0">
-                <h3 className="text-base font-medium text-foreground">{project.name}</h3>
-                <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">{project.detail}</p>
+              <article key={project.id} className="border-t border-border py-7 first:border-t-0">
+                <h3 className="text-base font-medium text-foreground">{project.title}</h3>
+                <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">{project.description}</p>
               </article>
             ))}
           </div>

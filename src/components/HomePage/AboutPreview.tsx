@@ -1,283 +1,139 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
-import { FiArrowUpRight } from "react-icons/fi";
-
-const stats = [
-  { value: "1337", label: "Coding School" },
-  { value: "2024", label: "OFPPT Graduate" },
-  { value: "06", label: "Months Interning" },
-];
+import { FiArrowRight, FiArrowUpRight } from "react-icons/fi";
+import { profile } from "@/data/portfolio";
 
 export default function AboutPreview() {
   return (
-    <section className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-      <div className="container mx-auto ">
-
-        {/* SECTION TOP */}
-        <div className="mb-10 flex items-center justify-between border-b border-border pb-4">
+    <section
+      id="about"
+      className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 lg:py-0"
+    >
+      <div className="container mx-auto">
+        {/* SECTION HEADER */}
+        <div className="mb-12 flex items-center justify-between border-b border-border pb-5">
           <div className="flex items-center gap-3">
             <span className="h-2 w-2 bg-accent" />
 
-            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted">
-              About
+            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-foreground">
+              About Me
             </span>
           </div>
 
-          <span className="font-mono text-[10px] text-foreground/20">
-            02 / 05
+          <span className="font-mono text-[10px] uppercase tracking-widest text-muted">
+            02 / About
           </span>
         </div>
 
-        {/* HUGE TITLE */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="border-b border-border pb-8"
-        >
-          <h2
-            className="
-              text-[clamp(5rem,16vw,13rem)]
-              font-semibold
-              leading-[0.78]
-              tracking-[-0.08em]
-              text-foreground
-            "
-          >
-            ABOUT
-          </h2>
-        </motion.div>
-
         {/* MAIN CONTENT */}
-        <div className="grid border-b border-border lg:grid-cols-[0.7fr_1.3fr]">
-
-          {/* LEFT */}
+        <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+          {/* LEFT — BIG TYPOGRAPHY */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.7 }}
-            className="
-              border-b border-border
-              py-10
-              lg:border-b-0
-              lg:border-r
-              lg:pr-12
-            "
+            className="relative"
           >
-            {/* Portrait */}
-            <div className="relative max-w-[520px]">
-              <div className="mb-3 flex items-center justify-between">
-                <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-accent/70">
-                  Portrait
-                </span>
+            <p className="mb-6 font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
+              A little about me
+            </p>
 
-                <span className="font-mono text-[8px] text-foreground/20">
-                  001
-                </span>
-              </div>
+            <h2 className="max-w-3xl text-[clamp(3rem,6vw,7rem)] font-semibold leading-[0.98] tracking-[-0.07em] text-foreground">
+              I BUILD
+              <br />
+              PRODUCTS
+              <br />
+              <span className="text-accent">END TO END.</span>
+            </h2>
 
-              <div className="group relative aspect-[3/4] overflow-hidden bg-black">
-                <Image
-                  src="/mee.png"
-                  alt="Bouhcine Amezouar"
-                  fill
-                  quality={900}
-                  sizes="1080px"
-                  className="
-                    object-cover
-                    transition-all
-                    duration-700                   
-                  "
-                />
-
-                <div className="absolute inset-0 border border-border" />
-
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-5 pt-16">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-on-image/80">
-                    Full Stack Developer
-                  </p>
-                </div>
-              </div>
-
-              {/* Image caption */}
-              <div className="mt-4 flex items-center gap-3">
-                <div className="h-px w-8 bg-foreground/20" />
-
-                <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-accent/70">
-                  Morocco / 2026
-                </span>
-              </div>
+            <div className="mt-10 max-w-md border-l-2 border-accent pl-5">
+              <p className="text-sm leading-7 text-muted sm:text-base">
+                From the first idea to the final implementation, I enjoy turning
+                complex problems into clean, functional digital products.
+              </p>
             </div>
           </motion.div>
 
-          {/* RIGHT */}
-          <div className="py-10 lg:pl-14">
+          {/* RIGHT — BIOGRAPHY */}
+          <motion.div
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="flex flex-col justify-between"
+          >
+            <div>
+              {/* SMALL LABEL */}
+              <div className="mb-7 flex items-center gap-3">
+                <div className="h-px w-8 bg-accent" />
 
-            {/* INTRO */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-            >
-              <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/30">
-                Who am I?
-              </p>
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
+                  The Developer Behind The Code
+                </span>
+              </div>
 
-              <h3
-                className="
-                  max-w-3xl
-                  text-3xl
-                  font-medium
-                  leading-[1.15]
-                  tracking-[-0.035em]
-                  text-foreground
-                  sm:text-4xl
-                  lg:text-5xl
-                "
-              >
-                I build products end-to-end
-                <span className="text-foreground/30">
-                  {" "}from data models to user interfaces.
+              {/* INTRO */}
+              <h3 className="max-w-xl text-2xl font-medium leading-[1.35] tracking-[-0.035em] text-foreground sm:text-3xl lg:text-4xl">
+                Hey, I&apos;m {profile.firstName}.
+                <span className="text-foreground/40">
+                  {" "}
+                  A full-stack developer passionate about building meaningful
+                  software.
                 </span>
               </h3>
 
-              <div className="mt-8 grid gap-6 sm:grid-cols-2">
-                <p className="text-sm leading-7 text-muted">
-                  I&apos;m Bouhcine, a Full-Stack Developer and student at 1337
-                  Coding School in Morocco. I started with Laravel and React
-                  and now work primarily with Next.js and NestJS.
+              {/* PARAGRAPHS */}
+              <div className="mt-8 space-y-5">
+                <p className="text-sm leading-8 text-muted sm:text-base">
+                  I&apos;m currently studying at{" "}
+                  <span className="font-medium text-foreground">
+                    {profile.school}
+                  </span>
+                  , part of the 42 Network. My journey began with Laravel and
+                  React, and today I focus on Next.js, NestJS, TypeScript, and
+                  PostgreSQL.
                 </p>
 
-                <p className="text-sm leading-7 text-muted">
-                  I enjoy working across the stack—from responsive interfaces
-                  and REST APIs to database design, scheduling logic,
-                  microservices and containerized infrastructure.
+                <p className="text-sm leading-8 text-muted sm:text-base">
+                  I enjoy working across the entire development process — from
+                  responsive interfaces and REST APIs to database design,
+                  authentication, microservices, and infrastructure.
                 </p>
               </div>
-            </motion.div>
 
-            {/* STATS */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="
-                mt-12 grid
-                grid-cols-3
-                border-y border-border
-              "
-            >
-              {stats.map((stat, index) => (
-                <div
-                  key={stat.label}
-                  className={`
-                    py-6
-                    ${index !== stats.length - 1
-                      ? "border-r border-border"
-                      : ""
-                    }
-                    ${index !== 0 ? "pl-5 sm:pl-7" : ""}
-                  `}
-                >
-                  <p className="text-2xl font-medium text-foreground sm:text-3xl lg:text-4xl">
-                    {stat.value}
-                  </p>
-
-                  <p className="mt-2 max-w-[100px] font-mono text-[8px] uppercase leading-4 tracking-[0.15em] text-foreground/30">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </motion.div>
-
-            {/* CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="mt-10 flex items-center gap-6"
-            >
+              {/* CTA */}
               <Link
                 href="/about"
-                className="
-                  group flex h-14
-                  items-center gap-10
-                  bg-foreground
-                  px-6
-                  text-sm font-medium
-                  text-background
-                  transition-all
-                  hover:bg-foreground/90
-                "
+                className="group mt-9 inline-flex h-13 w-fit items-center gap-8 bg-accent px-6 text-sm font-semibold text-accent-foreground transition-all duration-300 hover:opacity-85"
               >
-                Explore My Story
-
+                More About Me
                 <FiArrowUpRight
-                  size={17}
-                  className="
-                    transition-transform
-                    duration-300
-                    group-hover:translate-x-1
-                    group-hover:-translate-y-1
-                  "
+                  size={18}
+                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
                 />
               </Link>
+            </div>
 
-              <span className="hidden font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/20 sm:block">
-                More about
-                <br />
-                my journey
+            {/* BOTTOM DETAIL */}
+            <div className="mt-12 flex items-center justify-between border-t border-border pt-5">
+              <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+                Based in {profile.location}
               </span>
-            </motion.div>
-          </div>
+
+              <FiArrowRight size={18} className="text-accent" />
+            </div>
+          </motion.div>
         </div>
 
-        {/* BOTTOM MARQUEE-LIKE LINE */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="
-            flex items-center
-            gap-5
-            overflow-hidden
-            border-b border-border
-            py-5
-          "
-        >
-          <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/20">
-            Development
+        {/* BOTTOM LINE */}
+        <div className="mt-14 flex items-center justify-between gap-4 border-t border-border pt-5">
+          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted">
+            Always Learning. Always Building.
           </span>
-
-          <span className="text-foreground/15">✦</span>
-
-          <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/20">
-            Frontend
-          </span>
-
-          <span className="text-foreground/15">✦</span>
-
-          <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/20">
-            Backend
-          </span>
-
-          <span className="text-foreground/15">✦</span>
-
-          <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/20">
-            Problem Solving
-          </span>
-
-          <div className="h-px min-w-20 flex-1 bg-foreground/10" />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

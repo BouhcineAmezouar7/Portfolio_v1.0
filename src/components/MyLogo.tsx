@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { profile } from "@/data/portfolio";
 import { motion } from "framer-motion";
 import { memo } from "react";
 
@@ -38,7 +39,7 @@ const BrandLogo = memo(function BrandLogo({
       {/* LIGHT MODE */}
       <Image
         src="/logo-dark-transparent.png"
-        alt="Bouhcine Amezouar"
+        alt={profile.name}
         width={s.width}
         height={s.height}
         priority
@@ -54,7 +55,7 @@ const BrandLogo = memo(function BrandLogo({
       {/* DARK MODE */}
       <Image
         src="/logo-light-transparent.png"
-        alt="Bouhcine Amezouar"
+        alt={profile.name}
         width={s.width}
         height={s.height}
         priority
