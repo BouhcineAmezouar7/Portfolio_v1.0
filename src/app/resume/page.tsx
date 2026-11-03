@@ -6,6 +6,7 @@ import {
   FiGithub,
   FiLinkedin,
   FiMail,
+  FiPhone,
 } from "react-icons/fi";
 import {
   profile,
@@ -16,10 +17,11 @@ import {
 
 const skills = [
   ["Frontend", "Next.js, React.js, TypeScript, Tailwind CSS, HTML5, CSS"],
-  ["Backend", "NestJS, Laravel, REST APIs, authentication, authorization"],
-  ["Data", "PostgreSQL, Prisma, MySQL, SQLite, Supabase"],
+  ["Backend", "NestJS, Laravel, Node.js, REST APIs, microservices"],
+  ["Data", "PostgreSQL, Prisma ORM, MySQL"],
   ["Architecture", "Microservices, RabbitMQ, database design, RBAC"],
-  ["Tools", "Docker, Git, Linux, Docker Compose"],
+  ["DevOps & Tools", "Docker, Docker Compose, Git, Linux, RabbitMQ"],
+  ["Concepts", "Software architecture, authentication, role management, API integration, OOP"],
 ];
 
 export default function ResumePage() {
@@ -51,9 +53,10 @@ export default function ResumePage() {
               {profile.role} · {profile.school} Student
             </p>
             <p className="max-w-xl text-sm leading-7 text-muted">
-              I build products across the complete application stack, from
-              relational data models and backend business logic to APIs and
-              responsive frontend interfaces.
+              Full-stack developer with hands-on experience building web
+              applications, REST APIs, microservices, authentication systems,
+              database-driven features, and responsive interfaces. Currently
+              focused on backend development and system architecture.
             </p>
             <div className="flex flex-wrap gap-3">
               <a
@@ -76,6 +79,7 @@ export default function ResumePage() {
             </div>
             <div className="flex flex-wrap gap-x-5 gap-y-3 font-mono text-[9px] uppercase tracking-[0.14em] text-foreground/40">
               <a className="inline-flex items-center gap-2 hover:text-accent" href={socialLinks[2].href}><FiMail /> Email</a>
+              <a className="inline-flex items-center gap-2 hover:text-accent" href={profile.phoneHref}><FiPhone /> {profile.phone}</a>
               <a className="inline-flex items-center gap-2 hover:text-accent" href={socialLinks[0].href} target="_blank" rel="noreferrer"><FiGithub /> GitHub</a>
               <a className="inline-flex items-center gap-2 hover:text-accent" href={socialLinks[1].href} target="_blank" rel="noreferrer"><FiLinkedin /> LinkedIn</a>
               <span>{profile.location}</span>
@@ -110,7 +114,7 @@ export default function ResumePage() {
           <div className="space-y-8 py-10 lg:pl-10">
             <div>
               <h3 className="text-lg font-medium text-foreground">{profile.school}</h3>
-              <p className="mt-2 text-sm leading-7 text-muted">Software Engineering / Computer Programming · Current student</p>
+              <p className="mt-2 text-sm leading-7 text-muted">42 Network · Programming and Software Engineering · Current student</p>
             </div>
             <div>
               <h3 className="text-lg font-medium text-foreground">OFPPT — CFPM Sidi Moumen</h3>
@@ -126,7 +130,7 @@ export default function ResumePage() {
             </div>
             <div>
               <h3 className="text-lg font-medium text-foreground">Baccalaureate</h3>
-              <p className="mt-2 text-sm leading-7 text-muted">Life and Earth Sciences (SVT) · 2019-2021</p>
+              <p className="mt-2 text-sm leading-7 text-muted">Life and Earth Sciences (SVT) · {profile.baccalaureateYear}</p>
             </div>
           </div>
         </section>
@@ -156,6 +160,18 @@ export default function ResumePage() {
                 <span className="text-sm leading-6 text-muted">{value}</span>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="grid border-t border-border lg:grid-cols-[0.35fr_0.65fr]">
+          <h2 className="py-10 text-3xl font-medium tracking-[-0.04em] text-foreground lg:border-r lg:border-border">
+            Languages
+          </h2>
+          <div className="py-10 lg:pl-10">
+            <div className="grid gap-2 sm:grid-cols-[130px_1fr]">
+              <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-accent/70">Arabic</span>
+              <span className="text-sm text-muted">Native</span>
+            </div>
           </div>
         </section>
       </div>

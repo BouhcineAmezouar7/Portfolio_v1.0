@@ -136,6 +136,15 @@
   .h3 {
     @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold;
   }
+
+  .home-section-title {
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: clamp(3rem, 6vw, 6.75rem);
+    font-weight: 600;
+    line-height: 0.92;
+    letter-spacing: -0.065em;
+    color: var(--foreground);
+  }
 }
 
 /* ===== Scrollbar Customization ===== */
@@ -287,4 +296,44 @@ html {
 /* Better mobile input styling */
 input, textarea, select {
   font-size: 16px !important; /* Prevents zoom on iOS */
+}
+
+/* Technology brand colors with theme-aware contrast. */
+.skill-icon,
+.skill-icon-wash {
+  color: var(--skill-light);
+}
+
+.skill-accent {
+  background-color: var(--skill-light);
+}
+
+.skill-card:hover {
+  border-color: color-mix(in srgb, var(--skill-light) 52%, var(--border));
+  background-color: color-mix(in srgb, var(--skill-light) 7%, var(--background));
+}
+
+.skill-card:hover .skill-card-arrow {
+  color: var(--skill-light);
+  border-color: color-mix(in srgb, var(--skill-light) 48%, var(--border));
+  transform: rotate(45deg);
+}
+
+.dark .skill-icon,
+.dark .skill-icon-wash {
+  color: var(--skill-dark);
+}
+
+.dark .skill-accent {
+  background-color: var(--skill-dark);
+}
+
+.dark .skill-card:hover {
+  border-color: color-mix(in srgb, var(--skill-dark) 52%, var(--border));
+  background-color: color-mix(in srgb, var(--skill-dark) 9%, var(--background));
+}
+
+.dark .skill-card:hover .skill-card-arrow {
+  color: var(--skill-dark);
+  border-color: color-mix(in srgb, var(--skill-dark) 48%, var(--border));
 }

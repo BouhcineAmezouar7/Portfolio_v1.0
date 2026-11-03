@@ -1,242 +1,226 @@
+
 "use client";
 
 import { motion } from "framer-motion";
-import { FiArrowUpRight, FiBriefcase, FiCalendar } from "react-icons/fi";
+import {
+  FiArrowRight,
+  FiBriefcase,
+  FiCheck,
+} from "react-icons/fi";
+
 import { experiences } from "@/data/portfolio";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 25 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default function ExperienceTimeline() {
   return (
-    <section className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-      <div className="container mx-auto ">
-        {/* TOP LABEL */}
+    <section
+      id="experience"
+      className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 lg:py-28"
+    >
+      <div className="container mx-auto">
+
+        {/* SECTION HEADER */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center justify-between border-b border-border pb-5"
+        >
+          <div className="flex items-center gap-3">
+            <span className="h-1.5 w-1.5 bg-accent" />
+
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+              Career / Experience
+            </span>
+          </div>
+
+          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+            05 / Experience
+          </span>
+        </motion.div>
+
+        {/* MAIN HEADING */}
+        <div className="grid gap-10 border-b border-border py-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:py-16">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.65 }}
+          >
+            <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
+              My Professional Journey
+            </p>
+
+            <h2 className="home-section-title">
+              EXPERIENCE
+              <br />
+              <span className="text-accent">
+                & GROWTH.
+              </span>
+            </h2>
+          </motion.div>
+
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.65, delay: 0.1 }}
+            className="max-w-md text-sm leading-7 text-muted"
+          >
+            A journey of learning, collaboration, and
+            building real-world applications through
+            education and professional experience.
+          </motion.p>
+        </div>
+
+        {/* EXPERIENCE LIST */}
+        <div className="relative">
+
+          {/* TABLE HEADER */}
+          <div className="hidden grid-cols-[180px_1fr_120px] gap-8 border-b border-border py-5 font-mono text-[10px] uppercase tracking-[0.15em] text-muted lg:grid">
+            <span>Period</span>
+            <span>Experience / Organization</span>
+            <span className="text-right">Status</span>
+          </div>
+
+          {/* ENTRIES */}
+          {experiences.map((exp, index) => {
+            const isCurrent = exp.status === "Current";
+
+            return (
+              <motion.article
+                key={`${exp.company}-${exp.title}-${index}`}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{
+                  duration: 0.55,
+                  delay: index * 0.08,
+                }}
+                className="group relative border-b border-border transition-colors duration-300 hover:bg-foreground/[0.025]"
+              >
+                <div className="grid gap-6 py-9 lg:grid-cols-[180px_1fr_120px] lg:gap-8 lg:px-4 lg:py-10">
+
+                  {/* DATE */}
+                  <div>
+                    <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-accent">
+                      {exp.period}
+                    </span>
+
+                    <span className="mt-3 block font-mono text-[9px] uppercase tracking-[0.15em] text-muted">
+                      {exp.number ||
+                        String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+
+                  {/* MAIN DETAILS */}
+                  <div className="min-w-0">
+
+                    {/* COMPANY */}
+                    <div className="mb-3 flex items-center gap-3">
+                      <FiBriefcase
+                        size={15}
+                        className="shrink-0 text-accent"
+                      />
+
+                      <span className="text-sm font-medium text-muted">
+                        {exp.company}
+                      </span>
+                    </div>
+
+                    {/* ROLE */}
+                    <h3 className="text-2xl font-medium leading-tight tracking-[-0.045em] text-foreground transition-colors duration-300 group-hover:text-accent sm:text-3xl">
+                      {exp.title}
+                    </h3>
+
+                    {/* DESCRIPTION */}
+                    <p className="mt-5 max-w-2xl text-sm leading-7 text-muted">
+                      {exp.description}
+                    </p>
+
+                    {/* ACHIEVEMENTS */}
+                    {exp.achievements.length > 0 && (
+                      <div className="mt-6 flex flex-col gap-3">
+                        {exp.achievements.map(
+                          (achievement, achievementIndex) => (
+                            <div
+                              key={`${achievementIndex}-${achievement}`}
+                              className="flex items-start gap-3"
+                            >
+                              <FiCheck
+                                size={14}
+                                className="mt-1 shrink-0 text-accent"
+                              />
+
+                              <span className="max-w-xl text-[13px] leading-6 text-muted">
+                                {achievement}
+                              </span>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* STATUS */}
+                  <div className="flex items-start lg:justify-end">
+                    <span
+                      className={`inline-flex items-center gap-2 border px-3 py-2 font-mono text-[10px] uppercase tracking-[0.1em] ${
+                        isCurrent
+                          ? "border-accent/40 text-accent"
+                          : "border-border text-muted"
+                      }`}
+                    >
+                      {isCurrent && (
+                        <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                      )}
+
+                      {exp.status}
+                    </span>
+                  </div>
+                </div>
+
+                {/* HOVER LINE */}
+                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+              </motion.article>
+            );
+          })}
+        </div>
+
+        {/* BOTTOM NOTE */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex items-center justify-between border-b border-border pb-4"
+          className="mt-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-center"
         >
-          <div className="flex items-center gap-3">
-            <span className="h-1.5 w-1.5 bg-accent" />
-
-            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted">
-              Career Path
-            </span>
-          </div>
-
-          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/20">
-            06 / Experience
-          </span>
-        </motion.div>
-
-        {/* HEADER */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="grid gap-8 border-b border-border py-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-end"
-        >
-          <div>
-            <p className="mb-4 font-mono text-[9px] uppercase tracking-[0.25em] text-accent/70">
-              Education / Experience / Journey
-            </p>
-
-            <h2 className="text-5xl font-medium leading-[0.9] tracking-[-0.055em] text-foreground sm:text-7xl lg:text-8xl">
-              Career
-              <br />
-              <span className="text-accent/45 dark:text-accent/50">Path.</span>
-            </h2>
-          </div>
-
-          <div className="lg:pb-2">
-            <div className="mb-5 h-px w-10 bg-foreground/30" />
-
-            <p className="max-w-sm text-sm leading-7 text-muted">
-              The education, professional experience and project-based learning
-              that shaped the way I build digital products today.
-            </p>
-          </div>
-        </motion.div>
-
-        {/* EXPERIENCE LIST */}
-        <div>
-          {experiences.map((exp, index) => (
-            <motion.article
-              key={`${exp.company}-${exp.title}`}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{
-                once: true,
-                amount: 0.2,
-              }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.08,
-              }}
-              className="
-                group
-                border-b border-border
-                transition-colors duration-500
-                hover:bg-foreground/[0.025]
-              "
-            >
-              <div
-                className="
-                  grid gap-8
-                  py-10
-                  lg:grid-cols-[80px_0.8fr_1.2fr]
-                  lg:gap-12
-                  lg:px-4
-                  lg:py-14
-                "
-              >
-                {/* NUMBER */}
-                <div>
-                  <div
-                    className="
-                      flex h-12 w-12
-                      items-center justify-center
-                      border border-border
-                      font-mono text-[10px]
-                      text-foreground/30
-                      transition-all duration-500
-                      group-hover:border-foreground
-                      group-hover:bg-foreground
-                      group-hover:text-background
-                    "
-                  >
-                    {exp.number}
-                  </div>
-                </div>
-
-                {/* ROLE */}
-                <div className="flex flex-col justify-between">
-                  <div>
-                    {/* Status */}
-                    <div className="mb-5 flex items-center gap-2">
-                      {exp.status === "Current" && (
-                        <span className="relative flex h-1.5 w-1.5">
-                          <span className="absolute inline-flex h-full w-full animate-ping bg-foreground opacity-30" />
-
-                          <span className="relative inline-flex h-1.5 w-1.5 bg-foreground" />
-                        </span>
-                      )}
-
-                      <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-accent/70">
-                        {exp.status}
-                      </span>
-                    </div>
-
-                    {/* TITLE */}
-                    <h3 className="max-w-sm text-2xl font-medium leading-tight tracking-[-0.035em] text-foreground sm:text-3xl">
-                      {exp.title}
-                    </h3>
-
-                    {/* COMPANY */}
-                    <div className="mt-5 flex items-center gap-3">
-                      <FiBriefcase size={13} className="text-foreground/30" />
-
-                      <span className="text-xs uppercase tracking-[0.1em] text-muted">
-                        {exp.company}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* PERIOD */}
-                  <div className="mt-8 flex items-center gap-3 lg:mt-12">
-                    <FiCalendar size={12} className="text-accent/70" />
-
-                    <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-foreground/30">
-                      {exp.period}
-                    </span>
-                  </div>
-                </div>
-
-                {/* DETAILS */}
-                <div>
-                  <p className="max-w-xl text-sm leading-7 text-muted">
-                    {exp.description}
-                  </p>
-
-                  {/* ACHIEVEMENTS */}
-                  <div className="mt-8">
-                    <div className="mb-4 flex items-center gap-4">
-                      <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-accent/70">
-                        Key Achievements
-                      </span>
-
-                      <div className="h-px flex-1 bg-foreground/10" />
-                    </div>
-
-                    <div className="border-t border-border">
-                      {exp.achievements.map((achievement, achievementIndex) => (
-                        <div
-                          key={achievement}
-                          className="
-                            grid grid-cols-[35px_1fr]
-                            border-b border-border
-                            py-3
-                          "
-                        >
-                          <span className="font-mono text-[8px] text-foreground/20">
-                            0{achievementIndex + 1}
-                          </span>
-
-                          <span className="text-xs leading-5 text-muted sm:text-sm">
-                            {achievement}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* DECORATIVE ARROW */}
-                  <div className="mt-6 flex justify-end">
-                    <FiArrowUpRight
-                      size={17}
-                      className="
-                        text-foreground/15
-                        transition-all duration-500
-                        group-hover:-translate-y-1
-                        group-hover:translate-x-1
-                        group-hover:text-foreground
-                      "
-                    />
-                  </div>
-                </div>
-              </div>
-            </motion.article>
-          ))}
-        </div>
-
-        {/* BOTTOM */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col justify-between gap-5 pt-7 sm:flex-row sm:items-center"
-        >
-          <div className="flex items-center gap-3">
-            <span className="h-1.5 w-1.5 bg-foreground/40" />
-
-            <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/20">
-              Professional Journey
-            </span>
-          </div>
-
           <div className="flex items-center gap-4">
-            <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/20">
-              {String(experiences.length).padStart(2, "0")} Positions
+            <span className="flex h-11 w-11 items-center justify-center border border-border text-accent">
+              <FiArrowRight size={18} />
             </span>
 
-            <div className="h-px w-10 bg-foreground/10" />
+            <div>
+              <p className="text-sm font-medium text-foreground">
+                The journey continues.
+              </p>
 
-            <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/20">
-              2021 — Present
-            </span>
+              <p className="mt-1 text-xs text-muted">
+                Learning, building, and improving every day.
+              </p>
+            </div>
           </div>
+
+          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+            {String(experiences.length).padStart(2, "0")} Milestones
+          </span>
         </motion.div>
       </div>
     </section>

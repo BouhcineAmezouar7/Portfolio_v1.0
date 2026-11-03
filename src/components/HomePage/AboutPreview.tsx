@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FiArrowRight, FiArrowUpRight } from "react-icons/fi";
+import { FiArrowUpRight } from "react-icons/fi";
 import { profile } from "@/data/portfolio";
 
 export default function AboutPreview() {
@@ -41,7 +41,7 @@ export default function AboutPreview() {
               A little about me
             </p>
 
-            <h2 className="max-w-3xl text-[clamp(3rem,6vw,7rem)] font-semibold leading-[0.98] tracking-[-0.07em] text-foreground">
+            <h2 className="home-section-title max-w-3xl">
               I BUILD
               <br />
               PRODUCTS
@@ -78,29 +78,24 @@ export default function AboutPreview() {
               {/* INTRO */}
               <h3 className="max-w-xl text-2xl font-medium leading-[1.35] tracking-[-0.035em] text-foreground sm:text-3xl lg:text-4xl">
                 Hey, I&apos;m {profile.firstName}.
-                <span className="text-foreground/40">
-                  {" "}
-                  A full-stack developer passionate about building meaningful
-                  software.
+                <span className="text-muted">
+                  {" "}A full-stack developer who turns complex requirements
+                  into focused, dependable products.
                 </span>
               </h3>
 
               {/* PARAGRAPHS */}
               <div className="mt-8 space-y-5">
                 <p className="text-sm leading-8 text-muted sm:text-base">
-                  I&apos;m currently studying at{" "}
-                  <span className="font-medium text-foreground">
-                    {profile.school}
-                  </span>
-                  , part of the 42 Network. My journey began with Laravel and
-                  React, and today I focus on Next.js, NestJS, TypeScript, and
-                  PostgreSQL.
+                  I like owning the full path from product decisions and
+                  interface structure to the systems that make an application
+                  reliable behind the scenes.
                 </p>
 
                 <p className="text-sm leading-8 text-muted sm:text-base">
-                  I enjoy working across the entire development process — from
-                  responsive interfaces and REST APIs to database design,
-                  authentication, microservices, and infrastructure.
+                  My approach is practical: understand the problem, keep the
+                  architecture clear, and deliver an experience that feels
+                  considered at every screen size.
                 </p>
               </div>
 
@@ -116,23 +111,7 @@ export default function AboutPreview() {
                 />
               </Link>
             </div>
-
-            {/* BOTTOM DETAIL */}
-            <div className="mt-12 flex items-center justify-between border-t border-border pt-5">
-              <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
-                Based in {profile.location}
-              </span>
-
-              <FiArrowRight size={18} className="text-accent" />
-            </div>
           </motion.div>
-        </div>
-
-        {/* BOTTOM LINE */}
-        <div className="mt-14 flex items-center justify-between gap-4 border-t border-border pt-5">
-          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted">
-            Always Learning. Always Building.
-          </span>
         </div>
       </div>
     </section>

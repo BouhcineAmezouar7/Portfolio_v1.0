@@ -84,7 +84,11 @@ export default function HeroSection() {
               className="mt-9 grid gap-6 border-t border-border pt-7 sm:grid-cols-[160px_1fr]"
             >
               <p className="text-sm font-medium uppercase tracking-[0.12em] text-foreground">
-                {profile.role.replace("-", " ").split(" ").slice(0, 2).join(" ")}
+                {profile.role
+                  .replace("-", " ")
+                  .split(" ")
+                  .slice(0, 2)
+                  .join(" ")}
                 <br />
                 {profile.role.split(" ").at(-1)}
               </p>

@@ -10,6 +10,7 @@ import {
   FiGithub,
   FiLinkedin,
   FiArrowUpRight,
+  FiPhone,
 } from "react-icons/fi";
 import {
   portfolioYear,
@@ -27,6 +28,13 @@ const contactInfo = [
   },
   {
     number: "02",
+    icon: <FiPhone />,
+    label: "Phone",
+    value: profile.phone,
+    href: profile.phoneHref,
+  },
+  {
+    number: "03",
     icon: <FiMapPin />,
     label: "Location",
     value: profile.location,

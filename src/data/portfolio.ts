@@ -3,12 +3,16 @@ export const profile = {
   firstName: "Bouhcine",
   lastName: "Amezouar",
   role: "Full-Stack Developer",
-  email: "bouhcine_amezouar@gmail.com",
+  age: "23",
+  email: "amezouarbouhcine@gmail.com",
+  phone: "+212 675 853 859",
+  phoneHref: "tel:+212675853859",
   location: "Casablanca, Morocco",
   school: "1337 Coding School",
   graduationYear: "2024",
-  internshipMonths: "06",
+  baccalaureateYear: "2022",
   resumePath: "/Bouhcine_Amezouar.pdf",
+  portfolioUrl: "https://amezouarbouhcine.vercel.app/",
 } as const;
 
 export const portfolioYear = "2026";
@@ -40,7 +44,7 @@ export const socialLinks = [
   {
     id: "linkedin",
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/bouhcine-amezouar/",
+    href: "https://www.linkedin.com/in/bouhcine-amezouar-18ba65402",
     external: true,
   },
   {
@@ -49,38 +53,6 @@ export const socialLinks = [
     href: `mailto:${profile.email}`,
     external: false,
   },
-] as const;
-
-export const portfolioStats = [
-  { value: profile.school.split(" ")[0], label: "Coding School" },
-  { value: profile.graduationYear, label: "OFPPT Graduate" },
-  { value: profile.internshipMonths, label: "Months Interning" },
-] as const;
-
-export const aboutFacts = [
-  { number: "01", value: "23", label: "Years Old" },
-  { number: "02", value: portfolioStats[0].value, label: "Current School" },
-  {
-    number: "03",
-    value: profile.graduationYear,
-    label: "OFPPT Graduate",
-  },
-  {
-    number: "04",
-    value: profile.internshipMonths,
-    label: "Months Interning",
-  },
-] as const;
-
-export const coreStack = [
-  "Next.js",
-  "React",
-  "TypeScript",
-  "NestJS",
-  "PostgreSQL",
-  "Prisma",
-  "Docker",
-  "Git",
 ] as const;
 
 export const projects = [
@@ -93,13 +65,21 @@ export const projects = [
     image: "/projects/maou3idy_app.png",
     year: "1337",
     description:
-      "A healthcare appointment platform created by a five-person team for ft_transcendence. I built the booking and scheduling domain across the frontend, backend and database.",
-    tags: ["Next.js", "NestJS", "PostgreSQL", "RabbitMQ"],
+      "A healthcare appointment platform built by a five-developer team for ft_transcendence. I owned the booking and scheduling workflows across the Next.js frontend and NestJS services.",
+    tags: [
+      "Next.js",
+      "NestJS",
+      "TypeScript",
+      "PostgreSQL",
+      "Prisma",
+      "Docker",
+      "RabbitMQ",
+    ],
     highlights: [
+      "Appointment booking, scheduling, cancellation, and completion workflows",
       "Doctor availability and appointment-slot management",
-      "Patient scheduling and appointment lifecycle",
-      "Frontend, backend and database ownership for the booking domain",
-      "Team delivery within the ft_transcendence project",
+      "Doctor dashboard and patient booking interfaces with Next.js",
+      "NestJS service integration in a PostgreSQL and Prisma microservices architecture",
     ],
     type: "Full Stack / Team",
     featured: true,
@@ -113,13 +93,20 @@ export const projects = [
     image: "/projects/team-project-management-platform.png",
     year: "In progress",
     description:
-      "A team-management platform with workspaces, members, projects, task boards, authentication, role-based permissions and an administration dashboard.",
-    tags: ["Next.js", "NestJS", "TypeScript", "Docker"],
+      "A full-stack team-management platform for organizing workspaces, projects, members, and tasks, with secure authentication and role-based access.",
+    tags: [
+      "Next.js",
+      "NestJS",
+      "TypeScript",
+      "PostgreSQL",
+      "Prisma",
+      "Better Auth",
+    ],
     highlights: [
       "Workspace, member and project organization",
       "Task-board workflows for team collaboration",
-      "Authentication and role-based permissions",
-      "Administration tools for managing the platform",
+      "Email verification and password recovery",
+      "Authentication and role-based access with Better Auth",
     ],
     type: "Personal Project",
     featured: true,
@@ -134,8 +121,8 @@ export const projects = [
     diagram: "/projects/webserve.png",
     year: "1337",
     description:
-      "An HTTP server project focused on sockets, request and response handling, configuration, networking and client/server architecture.",
-    tags: ["HTTP", "Networking", "Sockets", "Linux"],
+      "An HTTP server built in C++ to explore sockets, request and response handling, networking, and client/server architecture.",
+    tags: ["C++", "HTTP", "Networking", "Sockets", "Linux"],
     highlights: [
       "Socket-based client and server communication",
       "HTTP request parsing and response generation",
@@ -205,11 +192,11 @@ export const experiences = [
     company: "1337 Coding School",
     period: "2024 — Present",
     description:
-      "Strengthening my engineering foundations through project-based work in systems programming, networking, web development, Docker and team collaboration.",
+      "Developing programming, problem-solving, and software-engineering skills through project-based work in systems, networking, infrastructure, and full-stack development.",
     achievements: [
-      "Built Webserv and Inception",
-      "Full-stack work on ft_transcendence",
-      "Linux, networking and Docker",
+      "Built Webserv in C++ and the containerized Inception infrastructure",
+      "Delivered Maou3idy with a five-developer ft_transcendence team",
+      "Owned booking and scheduling workflows across Next.js and NestJS",
     ],
     status: "Current",
   },
@@ -233,9 +220,9 @@ export const experiences = [
     number: "03",
     title: "Full-Stack Developer — PFE Intern",
     company: "DM-Decore",
-    period: "2 months",
+    period: "May 2023 — June 2023",
     description:
-      "Worked with a development team on an e-commerce application, connecting React interfaces with Laravel APIs and a MySQL database.",
+      "Collaborated with a team on an e-commerce application using Laravel and React.js, building interfaces and integrating them with backend APIs and database operations.",
     achievements: [
       "Laravel + React.js",
       "REST API integration",
@@ -248,9 +235,9 @@ export const experiences = [
     number: "04",
     title: "Web Development / Database Intern",
     company: "NetoneMaroc",
-    period: "4 months",
+    period: "July 2023 — September 2023",
     description:
-      "Managed database information and designed frontend interfaces for displaying and interacting with structured data.",
+      "Managed and organized application data and designed frontend interfaces for viewing and interacting with structured database information.",
     achievements: [
       "Database management",
       "Frontend interface design",
