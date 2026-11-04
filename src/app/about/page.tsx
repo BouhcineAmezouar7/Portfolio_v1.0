@@ -208,10 +208,10 @@ export default function AboutPage() {
                 >
                   I&apos;m{" "}
                   <span className="font-medium text-foreground">{profile.name}</span>
-                  , a {profile.age}-year-old full-stack developer based in{" "}
-                  {profile.location}. I enjoy building modern applications,
-                  combining thoughtful frontend interfaces with solid backend
-                  engineering.
+                  , a {profile.age}-year-old software engineering student and
+                  full-stack developer based in {profile.location}. I build
+                  modern applications by connecting thoughtful interfaces with
+                  reliable backend systems.
                 </p>
 
                 <p
@@ -236,8 +236,8 @@ export default function AboutPage() {
                     value: profile.location,
                   },
                   {
-                    label: "02 / Specialization",
-                    value: "Full-stack Development",
+                    label: "02 / Born",
+                    value: `${profile.birthDateLabel} · ${profile.age} years old`,
                   },
                   {
                     label: "03 / Education",

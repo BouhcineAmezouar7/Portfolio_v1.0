@@ -20,6 +20,12 @@ import {
   SiPrisma,
   SiRabbitmq,
   SiLinux,
+  SiC,
+  SiCplusplus,
+  SiPhp,
+  SiExpress,
+  SiSqlite,
+  SiVercel,
 } from "react-icons/si";
 import { FiArrowUpRight } from "react-icons/fi";
 import type { IconType } from "react-icons";
@@ -66,6 +72,24 @@ const skills: Skill[] = [
     description: "Programming language",
   },
   {
+    name: "C",
+    icon: SiC,
+    category: "Languages",
+    description: "Systems programming",
+  },
+  {
+    name: "C++",
+    icon: SiCplusplus,
+    category: "Languages",
+    description: "Systems programming",
+  },
+  {
+    name: "PHP",
+    icon: SiPhp,
+    category: "Languages",
+    description: "Backend language",
+  },
+  {
     name: "Tailwind CSS",
     icon: SiTailwindcss,
     category: "Frontend",
@@ -74,6 +98,12 @@ const skills: Skill[] = [
   {
     name: "NestJS",
     icon: SiNestjs,
+    category: "Backend",
+    description: "Node.js framework",
+  },
+  {
+    name: "Express.js",
+    icon: SiExpress,
     category: "Backend",
     description: "Node.js framework",
   },
@@ -94,6 +124,12 @@ const skills: Skill[] = [
     icon: SiMysql,
     category: "Database",
     description: "Relational database",
+  },
+  {
+    name: "SQLite",
+    icon: SiSqlite,
+    category: "Database",
+    description: "Embedded database",
   },
   {
     name: "Docker",
@@ -132,6 +168,12 @@ const skills: Skill[] = [
     description: "Development environment",
   },
   {
+    name: "Vercel",
+    icon: SiVercel,
+    category: "Tools",
+    description: "Web deployment",
+  },
+  {
     name: "HTML5",
     icon: SiHtml5,
     category: "Frontend",
@@ -163,6 +205,12 @@ const skillColors: Record<string, { light: string; dark: string }> = {
   Linux: { light: "#3b4252", dark: "#facc15" },
   HTML5: { light: "#d94820", dark: "#ff704d" },
   CSS3: { light: "#1565b5", dark: "#58a6e7" },
+  C: { light: "#3949ab", dark: "#7f8de1" },
+  "C++": { light: "#00599c", dark: "#659ad2" },
+  PHP: { light: "#4f5b93", dark: "#8892bf" },
+  "Express.js": { light: "#303030", dark: "#f0f0f0" },
+  SQLite: { light: "#0f80cc", dark: "#58b4e8" },
+  Vercel: { light: "#111827", dark: "#f8fafc" },
 };
 
 const categories: Category[] = [

@@ -84,14 +84,12 @@ export default function HeroSection() {
               transition={{ duration: 0.75, delay: 0.46, ease: homeEase }}
               className="mt-9 grid gap-6 border-t border-border pt-7 sm:grid-cols-[160px_1fr]"
             >
-              <p className="text-sm font-medium uppercase tracking-[0.12em] text-foreground">
-                {profile.role
-                  .replace("-", " ")
-                  .split(" ")
-                  .slice(0, 2)
-                  .join(" ")}
+              <p className="text-sm font-medium uppercase leading-6 tracking-[0.1em] text-foreground">
+                Software Engineering
                 <br />
-                {profile.role.split(" ").at(-1)}
+                Student &amp; Full-Stack
+                <br />
+                Developer
               </p>
 
               <p className="max-w-xl text-sm leading-7 text-muted sm:text-base">

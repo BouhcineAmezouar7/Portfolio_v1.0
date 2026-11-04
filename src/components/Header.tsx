@@ -54,11 +54,11 @@ export default function Header() {
             {/* small portfolio label */}
             <div className="hidden sm:block">
               <p className="font-mono text-[9px] uppercase leading-[1.5] tracking-[0.2em] text-foreground/30">
-                Full Stack
+                Software Eng.
               </p>
 
               <p className="font-mono text-[9px] uppercase leading-[1.5] tracking-[0.2em] text-foreground/30">
-                Developer
+                Full-Stack Dev.
               </p>
             </div>
           </div>

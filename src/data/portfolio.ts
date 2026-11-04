@@ -2,16 +2,20 @@ export const profile = {
   name: "Bouhcine Amezouar",
   firstName: "Bouhcine",
   lastName: "Amezouar",
-  role: "Full-Stack Developer",
+  role: "Software Engineering Student & Full-Stack Developer",
+  birthDate: "2003-09-02",
+  birthDateLabel: "02 September 2003",
   age: "23",
   email: "amezouarbouhcine@gmail.com",
   phone: "+212 675 853 859",
   phoneHref: "tel:+212675853859",
   location: "Casablanca, Morocco",
   school: "1337 Coding School",
+  schoolPeriod: "2025 — Present",
+  ofpptPeriod: "2021 — 2023",
   graduationYear: "2024",
-  baccalaureateYear: "2022",
-  resumePath: "/Bouhcine_Amezouar.pdf",
+  baccalaureateYear: "2021",
+  resumePath: "/resume/Bouhcine_Amezouar.pdf",
   portfolioUrl: "https://amezouarbouhcine.vercel.app/",
 } as const;
 
@@ -91,7 +95,7 @@ export const projects = [
     title: "Atlas Team Manager",
     category: "Full Stack",
     image: "/projects/team-project-management-platform.png",
-    year: "In progress",
+    year: "Completed",
     description:
       "A full-stack team-management platform for organizing workspaces, projects, members, and tasks, with secure authentication and role-based access.",
     tags: [
@@ -100,6 +104,7 @@ export const projects = [
       "TypeScript",
       "PostgreSQL",
       "Prisma",
+      "Docker",
       "Better Auth",
     ],
     highlights: [
@@ -190,7 +195,7 @@ export const experiences = [
     number: "01",
     title: "Software Engineering Student",
     company: "1337 Coding School",
-    period: "2024 — Present",
+    period: "2025 — Present",
     description:
       "Developing programming, problem-solving, and software-engineering skills through project-based work in systems, networking, infrastructure, and full-stack development.",
     achievements: [
@@ -205,7 +210,7 @@ export const experiences = [
     number: "02",
     title: "Web Full-Stack Development",
     company: "OFPPT — CFPM Sidi Moumen",
-    period: "2022 — 2024",
+    period: "2021 — 2023",
     description:
       "Built my professional foundation in frontend development, backend development, databases and complete web application architecture in Casablanca.",
     achievements: [

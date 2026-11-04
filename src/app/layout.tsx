@@ -17,7 +17,7 @@ const jetBrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: `${profile.name} — ${profile.role}`,
-  description: `Portfolio of ${profile.name}, a ${profile.role} and ${profile.school} student in ${profile.location}.`,
+  description: `Portfolio of ${profile.name}, a ${profile.role} based in ${profile.location} and currently studying at ${profile.school}.`,
   icons: {
     icon: "/logo/logo_icon_white.png",
   },
