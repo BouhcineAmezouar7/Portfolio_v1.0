@@ -51,7 +51,7 @@ export default function RootLayout({
         className={`${jetBrainsMono.className} min-h-screen overflow-x-hidden bg-background/30`}
       >
         {/* Shared background layer for every route */}
-        <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden blur-xs">
+        <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden dark:blur-none blur-[4px]">
           <PortfolioCubesBackground />
         </div>
 

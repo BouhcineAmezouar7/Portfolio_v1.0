@@ -55,7 +55,7 @@ export default function ProjectsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background px-4 pb-24 pt-12 text-foreground sm:px-6 lg:px-8 lg:pt-10">
+    <main className="min-h-screen px-4 pb-24 pt-12 text-foreground sm:px-6 lg:px-8 lg:pt-10">
       <div className="container mx-auto">
         {/* BACK */}
         <motion.div

@@ -3,305 +3,459 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { FiArrowRight, FiArrowUpRight, FiDownload } from "react-icons/fi";
-import { profile } from "@/data/portfolio";
 import {
-  revealLeft,
-  revealRight,
-  revealUp,
-  siteEase,
-  siteViewport,
-} from "@/lib/site-motion";
+  FiArrowDown,
+  FiArrowRight,
+  FiArrowUpRight,
+  FiDownload,
+} from "react-icons/fi";
+
+import { profile } from "@/data/portfolio";
+
+const colors = {
+  bg: "var(--background)",
+  surface: "var(--card)",
+  accent: "var(--accent)",
+  muted: "var(--muted)",
+  border: "var(--border)",
+};
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 const principles = [
   {
-    number: "01",
+    id: "01",
     title: "Clarity before complexity",
-    description:
-      "I reduce a problem to its essential decisions before choosing an architecture or writing code.",
+    text: "Understand the real problem before choosing a solution.",
   },
   {
-    number: "02",
+    id: "02",
     title: "Ownership end to end",
-    description:
-      "I consider the full experience—from the first interaction to the data and systems supporting it.",
+    text: "Build thoughtful interfaces backed by reliable systems.",
   },
   {
-    number: "03",
+    id: "03",
     title: "Useful over impressive",
-    description:
-      "I value maintainable solutions that serve people well over complexity added only for appearance.",
+    text: "Prioritize simplicity, performance and maintainability.",
   },
-] as const;
+];
 
 const process = [
   {
-    number: "01",
+    id: "01",
     title: "Understand",
-    description: "Define the real problem, constraints, and desired outcome.",
+    text: "Explore the problem and define the goal.",
   },
   {
-    number: "02",
+    id: "02",
     title: "Shape",
-    description: "Turn ambiguity into a clear flow and technical direction.",
+    text: "Design the architecture and user experience.",
   },
   {
-    number: "03",
+    id: "03",
     title: "Build",
-    description: "Implement in focused layers with deliberate boundaries.",
+    text: "Develop clean and maintainable solutions.",
   },
   {
-    number: "04",
+    id: "04",
     title: "Refine",
-    description: "Test the details, simplify friction, and improve the result.",
+    text: "Test, improve and simplify the result.",
   },
-] as const;
+];
 
 export default function AboutPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden px-4 pb-24 pt-12 sm:px-6 lg:px-8 lg:pt-20">
-      <div className="container mx-auto">
-        <motion.div
-          variants={revealUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.65, ease: siteEase }}
-          className="flex items-center justify-between border-b border-border pb-5"
-        >
-          <div className="flex items-center gap-3">
-            <span className="h-1.5 w-1.5 bg-accent" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
-              About / Profile
-            </span>
-          </div>
-          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
-            01 / Introduction
-          </span>
-        </motion.div>
+    <main className="min-h-screen overflow-hidden bg-transparent text-foreground">
+      <div className="container mx-auto px-4 pb-20 pt-10 sm:px-6 lg:px-8 lg:pt-16">
 
-        <section className="grid border-b border-border py-12 lg:grid-cols-[1.25fr_0.75fr] lg:items-end lg:gap-16 lg:py-20">
-          <motion.div
-            variants={revealUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.75, delay: 0.08, ease: siteEase }}
-          >
-            <p className="mb-6 font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
-              The person behind the work
-            </p>
-            <h1 className="font-primary text-[clamp(3.7rem,9vw,9rem)] font-semibold leading-[0.84] tracking-[-0.075em] text-foreground">
-              MORE THAN
-              <br />
-              <span className="text-accent">THE CODE.</span>
+        {/* HERO HEADER */}
+        <motion.section
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease }}
+          className="border-b pb-9 pt-12 lg:pt-16"
+          style={{ borderColor: colors.border }}
+        >
+          <div className="mb-6 flex items-center gap-3">
+            <span
+              className="font-mono text-[10px] uppercase tracking-[0.22em]"
+              style={{ color: colors.accent }}
+            >
+              02 / About me
+            </span>
+
+            <span
+              className="h-px w-10"
+              style={{ backgroundColor: colors.accent }}
+            />
+          </div>
+
+          <div className="flex flex-col justify-between gap-7 lg:flex-row lg:items-end">
+            <h1 className="text-[clamp(4.5rem,12vw,12rem)] font-bold uppercase leading-[0.8] tracking-[-0.09em]">
+              ABOUT
+              <span style={{ color: colors.accent }}>.</span>
             </h1>
+
+            <div className="flex items-center gap-3 lg:pb-2">
+              <span
+                className="font-mono text-[10px] uppercase tracking-[0.15em]"
+                style={{ color: colors.muted }}
+              >
+                Discover my story
+              </span>
+
+              <FiArrowDown size={18} style={{ color: colors.accent }} />
+            </div>
+          </div>
+        </motion.section>
+
+        {/* MAIN PROFILE */}
+        <section className="grid gap-10 py-10 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16 lg:py-16">
+          {/* LEFT IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75, ease }}
+          >
+            <div className="group relative border border-border bg-card p-3 sm:p-5">
+              <div className="relative aspect-[3/4] w-full overflow-hidden bg-background/40">
+                <Image
+                  src="/my_images/mee.png"
+                  alt={`${profile.name}, full-stack developer`}
+                  fill
+                  priority
+                  quality={90}
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.025]"
+                />
+                <div className="pointer-events-none absolute inset-0 border border-border" />
+              </div>
+
+              <div className="absolute left-7 top-7 flex items-center gap-2 bg-background/90 px-3 py-2 backdrop-blur-sm sm:left-9 sm:top-9">
+                <span className="h-1.5 w-1.5 bg-accent" />
+                <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-foreground">
+                  Portrait / 001
+                </span>
+              </div>
+
+              <div className="absolute bottom-7 right-7 flex h-10 w-10 items-center justify-center bg-accent text-accent-foreground sm:bottom-9 sm:right-9">
+                <FiArrowUpRight size={17} />
+              </div>
+            </div>
+
+            <div
+              className="flex items-center justify-between border-b py-5"
+              style={{ borderColor: colors.border }}
+            >
+              <span
+                className="font-mono text-[10px] uppercase tracking-[0.15em]"
+                style={{ color: colors.muted }}
+              >
+                Full-stack developer
+              </span>
+
+              <span
+                className="font-mono text-[10px]"
+                style={{ color: colors.accent }}
+              >
+                © BA
+              </span>
+            </div>
           </motion.div>
 
+          {/* RIGHT INFORMATION */}
           <motion.div
-            variants={revealUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.75, delay: 0.2, ease: siteEase }}
-            className="mt-10 border-t border-border pt-7 lg:mt-0"
+            initial={{ opacity: 0, x: 35 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75, delay: 0.1, ease }}
+            className="flex flex-col justify-between"
           >
-            <p className="text-lg leading-8 tracking-[-0.025em] text-foreground">
-              I&apos;m {profile.firstName}, a {profile.age}-year-old full-stack
-              developer based in {profile.location} and a student at{" "}
-              {profile.school}, part of the 42 Network.
-            </p>
-            <p className="mt-5 text-sm leading-7 text-muted">
-              After graduating from OFPPT in {profile.graduationYear} and
-              completing two internships, I joined 1337 to deepen my
-              programming and software-engineering skills. I&apos;m especially
-              interested in backend development, system architecture, and
-              complete full-stack applications.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div>
+              <div className="mb-7 flex items-center gap-3">
+                <span
+                  className="h-px w-10"
+                  style={{ backgroundColor: colors.accent }}
+                />
+
+                <span
+                  className="font-mono text-[10px] uppercase tracking-[0.2em]"
+                  style={{ color: colors.accent }}
+                >
+                  The developer behind the work
+                </span>
+              </div>
+
+              {/* LARGE STATEMENT */}
+              <h2 className="max-w-3xl text-[clamp(1.9rem,3.5vw,3.9rem)] font-bold uppercase leading-[1.12] tracking-[-0.055em]">
+                TURNING COMPLEX IDEAS INTO
+                <span style={{ color: colors.accent }}>
+                  {" "}
+                  SIMPLE DIGITAL EXPERIENCES.
+                </span>
+              </h2>
+
+              <div
+                className="my-8 h-px w-full"
+                style={{ backgroundColor: colors.border }}
+              />
+
+              <div className="space-y-5">
+                <p
+                  className="text-sm leading-8 sm:text-base"
+                  style={{ color: colors.muted }}
+                >
+                  I&apos;m{" "}
+                  <span className="font-medium text-foreground">{profile.name}</span>
+                  , a {profile.age}-year-old full-stack developer based in{" "}
+                  {profile.location}. I enjoy building modern applications,
+                  combining thoughtful frontend interfaces with solid backend
+                  engineering.
+                </p>
+
+                <p
+                  className="text-sm leading-8 sm:text-base"
+                  style={{ color: colors.muted }}
+                >
+                  After graduating from OFPPT in {profile.graduationYear}, I
+                  continued my software engineering journey at {profile.school},
+                  part of the 42 Network. My interests include backend
+                  architecture, systems and full-stack development.
+                </p>
+              </div>
+
+              {/* INFORMATION GRID */}
+              <div
+                className="mt-10 grid grid-cols-2 gap-x-7 gap-y-8 border-y py-8"
+                style={{ borderColor: colors.border }}
+              >
+                {[
+                  {
+                    label: "01 / Location",
+                    value: profile.location,
+                  },
+                  {
+                    label: "02 / Specialization",
+                    value: "Full-stack Development",
+                  },
+                  {
+                    label: "03 / Education",
+                    value: profile.school,
+                  },
+                  {
+                    label: "04 / Interests",
+                    value: "Backend & Architecture",
+                  },
+                ].map((item) => (
+                  <div key={item.label}>
+                    <p
+                      className="mb-2 font-mono text-[9px] uppercase tracking-[0.15em]"
+                      style={{ color: colors.accent }}
+                    >
+                      {item.label}
+                    </p>
+
+                    <p className="text-sm font-medium leading-6">
+                      {item.value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ACTIONS */}
+            <div className="mt-9 flex flex-wrap gap-3">
               <a
                 href={profile.resumePath}
                 download
-                className="group inline-flex h-13 items-center gap-5 bg-foreground px-5 text-sm font-semibold text-background transition-opacity hover:opacity-85"
+                className="group inline-flex h-12 items-center gap-8 px-5 text-sm font-semibold transition-opacity hover:opacity-80"
+                style={{
+                  backgroundColor: colors.accent,
+                  color: colors.bg,
+                }}
               >
-                Download Resume
-                <FiDownload aria-hidden="true" />
+                Download CV
+                <FiDownload size={17} />
               </a>
+
               <Link
                 href="/projects"
-                className="group inline-flex h-13 items-center gap-5 border border-border px-5 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+                className="group inline-flex h-12 items-center gap-8 border px-5 text-sm font-medium transition-colors hover:border-accent"
+                style={{ borderColor: colors.border }}
               >
                 View Projects
-                <FiArrowUpRight
-                  aria-hidden="true"
-                  className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"
-                />
+                <FiArrowUpRight size={17} style={{ color: colors.accent }} />
               </Link>
             </div>
           </motion.div>
         </section>
 
-        <section className="grid border-b border-border lg:grid-cols-[0.8fr_1.2fr]">
-          <motion.div
-            variants={revealLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={siteViewport}
-            transition={{ duration: 0.75, ease: siteEase }}
-            className="border-b border-border py-12 lg:border-b-0 lg:border-r lg:pr-12 lg:py-16"
-          >
-            <div className="relative mx-auto aspect-[4/5] max-w-[470px] overflow-hidden bg-black lg:mx-0">
-              <Image
-                src="/my_images/wooo.png"
-                alt={profile.name}
-                fill
-                sizes="(max-width: 1024px) 90vw, 38vw"
-                className="object-contain object-bottom"
-              />
-              <div className="pointer-events-none absolute inset-0 border border-border" />
-              <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-foreground px-5 py-4 text-background">
-                <span className="font-mono text-[9px] uppercase tracking-[0.18em]">
-                  Curious by default
-                </span>
-                <span className="font-mono text-[9px] uppercase tracking-[0.18em]">
-                  BA / 01
-                </span>
-              </div>
-            </div>
-          </motion.div>
-
-          <div className="py-12 lg:py-16 lg:pl-14">
-            <motion.div
-              variants={revealRight}
-              initial="hidden"
-              whileInView="visible"
-              viewport={siteViewport}
-              transition={{ duration: 0.7, ease: siteEase }}
-            >
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
-                02 / How I think
+        {/* PHILOSOPHY */}
+        <section
+          className="border-t py-16 lg:py-24"
+          style={{ borderColor: colors.border }}
+        >
+          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+            <div>
+              <p
+                className="mb-6 font-mono text-[10px] uppercase tracking-[0.2em]"
+                style={{ color: colors.accent }}
+              >
+                03 / Philosophy
               </p>
-              <h2 className="home-section-title mt-6">
-                GOOD WORK
+
+              <h2 className="text-[clamp(2.8rem,5vw,6rem)] font-bold uppercase leading-[0.9] tracking-[-0.07em]">
+                HOW I
                 <br />
-                <span className="text-accent">STARTS CLEAR.</span>
+                <span style={{ color: colors.accent }}>THINK.</span>
               </h2>
-              <p className="mt-8 max-w-2xl text-sm leading-8 text-muted sm:text-base">
-                I&apos;m most engaged when a project needs both product judgment
-                and engineering depth. I like asking what matters, finding the
-                simplest useful shape, and then building it carefully enough to
-                grow without becoming difficult to understand.
-              </p>
-            </motion.div>
 
-            <div className="mt-12 border-t border-border">
-              {principles.map((principle, index) => (
-                <motion.article
-                  key={principle.title}
-                  initial={{ opacity: 0, x: 22, filter: "blur(6px)" }}
-                  whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                  viewport={siteViewport}
-                  transition={{ duration: 0.6, delay: index * 0.07, ease: siteEase }}
-                  className="grid gap-4 border-b border-border py-6 sm:grid-cols-[50px_0.8fr_1.2fr] sm:items-start"
+              <p
+                className="mt-7 max-w-md text-sm leading-8"
+                style={{ color: colors.muted }}
+              >
+                Good software starts with good decisions. These principles guide
+                the way I approach development.
+              </p>
+            </div>
+
+            <div className="border-t" style={{ borderColor: colors.border }}>
+              {principles.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.08,
+                  }}
+                  className="grid gap-4 border-b py-7 sm:grid-cols-[45px_1fr_1.2fr]"
+                  style={{ borderColor: colors.border }}
                 >
-                  <span className="font-mono text-[10px] text-accent">
-                    {principle.number}
+                  <span
+                    className="font-mono text-[10px]"
+                    style={{ color: colors.accent }}
+                  >
+                    {item.id}
                   </span>
-                  <h3 className="text-base font-semibold tracking-[-0.025em] text-foreground">
-                    {principle.title}
+
+                  <h3 className="text-lg font-semibold tracking-tight">
+                    {item.title}
                   </h3>
-                  <p className="text-sm leading-7 text-muted">
-                    {principle.description}
+
+                  <p
+                    className="text-sm leading-7"
+                    style={{ color: colors.muted }}
+                  >
+                    {item.text}
                   </p>
-                </motion.article>
+                </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="border-b border-border py-14 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:gap-16">
-            <motion.div
-              variants={revealLeft}
-              initial="hidden"
-              whileInView="visible"
-              viewport={siteViewport}
-              transition={{ duration: 0.7, ease: siteEase }}
-            >
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
-                03 / Process
+        {/* DEVELOPMENT PROCESS */}
+        <section
+          className="border-t py-16 lg:py-24"
+          style={{ borderColor: colors.border }}
+        >
+          <div className="mb-12 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+            <div>
+              <p
+                className="mb-6 font-mono text-[10px] uppercase tracking-[0.2em]"
+                style={{ color: colors.accent }}
+              >
+                04 / Development process
               </p>
-              <h2 className="home-section-title mt-6">
+
+              <h2 className="text-[clamp(2.8rem,5vw,6rem)] font-bold uppercase leading-[0.9] tracking-[-0.07em]">
                 FROM IDEA
                 <br />
-                <span className="text-accent">TO OUTCOME.</span>
+                <span style={{ color: colors.accent }}>TO REALITY.</span>
               </h2>
-              <p className="mt-7 max-w-md text-sm leading-7 text-muted">
-                A simple working rhythm keeps decisions visible and progress
-                grounded in the problem being solved.
-              </p>
-            </motion.div>
-
-            <div className="grid border-l border-t border-border sm:grid-cols-2">
-              {process.map((step, index) => (
-                <motion.article
-                  key={step.title}
-                  initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
-                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  viewport={siteViewport}
-                  transition={{ duration: 0.6, delay: index * 0.07, ease: siteEase }}
-                  className="group flex min-h-[220px] flex-col justify-between border-b border-r border-border p-6 transition-colors duration-300 hover:bg-card"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] text-accent">
-                      {step.number}
-                    </span>
-                    <FiArrowUpRight
-                      aria-hidden="true"
-                      className="text-muted transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-accent"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold tracking-[-0.035em] text-foreground">
-                      {step.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-muted">
-                      {step.description}
-                    </p>
-                  </div>
-                </motion.article>
-              ))}
             </div>
+
+            <p
+              className="max-w-sm text-sm leading-8"
+              style={{ color: colors.muted }}
+            >
+              A simple process focused on understanding, building and improving
+              useful products.
+            </p>
+          </div>
+
+          <div className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {process.map((item) => (
+              <div
+                key={item.id}
+                className="group flex min-h-[240px] flex-col justify-between p-6 transition-colors hover:bg-accent/5"
+                style={{ backgroundColor: colors.surface }}
+              >
+                <div className="flex items-center justify-between">
+                  <span
+                    className="font-mono text-[11px]"
+                    style={{ color: colors.accent }}
+                  >
+                    {item.id}
+                  </span>
+
+                  <FiArrowUpRight size={17} style={{ color: colors.accent }} />
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold">{item.title}</h3>
+
+                  <p
+                    className="mt-3 text-sm leading-7"
+                    style={{ color: colors.muted }}
+                  >
+                    {item.text}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
-        <section className="py-16 lg:py-20">
-          <motion.div
-            variants={revealUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={siteViewport}
-            transition={{ duration: 0.7, ease: siteEase }}
-            className="grid gap-9 lg:grid-cols-[1fr_auto] lg:items-end"
-          >
+        {/* CONTACT CTA */}
+        <section
+          className="border-t py-16 lg:py-24"
+          style={{ borderColor: colors.border }}
+        >
+          <div className="flex flex-col justify-between gap-10 lg:flex-row lg:items-end">
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
-                04 / Next conversation
+              <p
+                className="mb-6 font-mono text-[10px] uppercase tracking-[0.2em]"
+                style={{ color: colors.accent }}
+              >
+                05 / Next chapter
               </p>
-              <h2 className="home-section-title mt-6">
-                HAVE A PROBLEM
+
+              <h2 className="text-[clamp(3rem,6vw,7rem)] font-bold uppercase leading-[0.9] tracking-[-0.07em]">
+                LET&apos;S
                 <br />
-                <span className="text-accent">WORTH SOLVING?</span>
+                <span style={{ color: colors.accent }}>CONNECT.</span>
               </h2>
             </div>
+
             <Link
               href="/contact"
-              className="group inline-flex h-16 w-fit min-w-[210px] items-center justify-between gap-10 bg-foreground px-6 text-sm font-semibold text-background transition-opacity hover:opacity-85"
+              className="group inline-flex h-14 w-fit items-center justify-between gap-12 px-6 text-sm font-semibold transition-opacity hover:opacity-80"
+              style={{
+                backgroundColor: colors.accent,
+                color: colors.bg,
+              }}
             >
-              Start a Conversation
+              Get in touch
               <FiArrowRight
-                aria-hidden="true"
+                size={19}
                 className="transition-transform group-hover:translate-x-1"
               />
             </Link>
-          </motion.div>
+          </div>
         </section>
       </div>
     </main>
