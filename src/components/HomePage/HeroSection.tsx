@@ -26,7 +26,7 @@ export default function HeroSection() {
             <div className="relative mx-auto max-w-[520px] lg:mx-0">
               <div className="group relative aspect-[3/4] overflow-hidden bg-black/10">
                 <Image
-                  src="/mee.png"
+                  src="/my_images/mee.png"
                   alt={profile.name}
                   fill
                   priority

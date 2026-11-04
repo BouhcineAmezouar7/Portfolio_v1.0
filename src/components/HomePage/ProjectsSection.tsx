@@ -1,77 +1,34 @@
+
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { FiArrowUpRight } from "react-icons/fi";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FiArrowLeft, FiArrowRight, FiArrowUpRight } from "react-icons/fi";
-
-import CardSwap, { Card, type CardSwapHandle } from "@/components/CardSwap";
 
 import { featuredProjects } from "@/data/portfolio";
 
-/* ----------------------------------------
-   RESPONSIVE DECK DIMENSIONS
------------------------------------------ */
-
-function useDeckSize() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(340);
-
-  useEffect(() => {
-    const element = containerRef.current;
-    if (!element) return;
-
-    const update = () => {
-      const available = element.clientWidth;
-
-      setWidth(Math.min(680, Math.max(200, available - 56)));
-    };
-
-    update();
-
-    const observer = new ResizeObserver(update);
-    observer.observe(element);
-
-    return () => observer.disconnect();
-  }, []);
-
-  const height = Math.round(width * 0.63);
-
-  return {
-    containerRef,
-    width,
-    height,
-  };
-}
-
-/* ----------------------------------------
-   MAIN COMPONENT
------------------------------------------ */
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function ProjectsSection() {
-  const router = useRouter();
-  const deckRef = useRef<CardSwapHandle>(null);
-
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const { containerRef, width, height } = useDeckSize();
-
-  const total = featuredProjects.length;
-
-  const activeProject = featuredProjects[activeIndex] ?? featuredProjects[0];
-
-  if (!activeProject) return null;
-
   return (
     <section
       id="projects"
       className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 lg:py-28"
     >
       <div className="container mx-auto">
-        {/* SECTION LABEL */}
-        <div className="flex items-center justify-between border-b border-border pb-5">
+
+        {/* =====================================
+            SECTION TOP LABEL
+            SAME STYLE AS SKILLS
+        ====================================== */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-12 flex items-center justify-between border-b border-border pb-5"
+        >
           <div className="flex items-center gap-3">
             <span className="h-1.5 w-1.5 bg-accent" />
 
@@ -83,255 +40,289 @@ export default function ProjectsSection() {
           <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
             04 / Projects
           </span>
-        </div>
+        </motion.div>
 
-        {/* HEADING */}
+        {/* =====================================
+            SECTION HEADING
+            SAME STYLE AS SKILLS
+        ====================================== */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.65 }}
-          className="grid gap-8 border-b border-border py-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end"
+          transition={{ duration: 0.7 }}
+          className="grid gap-8 border-b border-border pb-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end"
         >
+          {/* LEFT HEADING */}
           <div>
             <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
-              Projects / Highlights
+              Portfolio / Selected
             </p>
 
             <h2 className="home-section-title">
               SELECTED
               <br />
-              <span className="text-accent">WORK.</span>
+              <span className="text-accent">PROJECTS.</span>
             </h2>
           </div>
 
-          <p className="max-w-md text-sm leading-7 text-muted">
-            A collection of projects focused on solving real problems through
-            modern web technologies and thoughtful engineering.
-          </p>
+          {/* RIGHT DESCRIPTION */}
+          <div className="lg:pb-1">
+            <div className="mb-6 h-px w-12 bg-accent" />
+
+            <p className="max-w-md text-sm leading-7 text-muted">
+              A selection of projects where I combine frontend
+              development, backend architecture and thoughtful
+              interface design.
+            </p>
+          </div>
         </motion.div>
 
-        {/* MAIN CONTENT */}
-        <div className="grid gap-12 border-b border-border py-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:gap-14 lg:py-16">
-          {/* LEFT — CARDSWAP */}
-          <div className="min-w-0">
-            {/* DECK HEADER */}
-            <div className="mb-5 flex items-center justify-between">
-              <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
-                Project Preview
-              </span>
+        {/* =====================================
+            PROJECTS LIST
+        ====================================== */}
+        <div>
+          {featuredProjects.map((project, index) => {
+            const reverse = index % 2 !== 0;
 
-              <span className="font-mono text-[11px] text-foreground">
-                {String(activeIndex + 1).padStart(2, "0")}
-                <span className="mx-2 text-muted">/</span>
-                {String(total).padStart(2, "0")}
-              </span>
-            </div>
-
-            {/* CARDSWAP CONTAINER */}
-            <div className="relative h-[300px] w-full sm:h-[430px] lg:h-[460px] xl:h-[510px]">
-              <CardSwap
-                ref={deckRef}
-                width={950}
-                height={560}
-                cardDistance={24}
-                verticalDistance={25}
-                depth={5}
-                skewAmount={1.5}
-                visibleCards={Math.min(3, featuredProjects.length)}
-                delay={5500}
-                speed={0.85}
-                bounce={0.25}
-                parallax={0.2}
-                hoverSpread={0.06}
-                dim={0.25}
-                cardRadius={5}
-                onChange={setActiveIndex}
-                onCardClick={(index) => {
-                  const project = featuredProjects[index];
-
-                  if (project) {
-                    router.push(`/projects/${project.slug}`);
-                  }
+            return (
+              <motion.article
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{
+                  once: true,
+                  amount: 0.15,
                 }}
-                className="mx-auto max-w-full"
+                transition={{
+                  duration: 0.65,
+                  ease,
+                }}
+                className="border-b border-border py-12 lg:py-16"
               >
-                {featuredProjects.map((project) => (
-                  <Card key={project.id} customClass="bg-card">
-                    <div className="flex h-full flex-col overflow-hidden border border-border bg-card">
-                      {/* TOP BAR */}
-                      <div className="flex h-13 shrink-0 items-center justify-between gap-4 border-b border-border px-4">
-                        <div className="flex items-center gap-2">
-                          <span className="h-1.5 w-1.5 bg-accent" />
+                {/* PROJECT META */}
+                <div className="mb-7 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-4">
+                    <span className="font-mono text-[10px] text-accent">
+                      {project.number}
+                    </span>
 
-                          <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                            {project.category}
-                          </span>
-                        </div>
+                    <span className="h-px w-7 bg-border" />
 
-                        <span className="font-mono text-[10px] text-muted">
-                          {project.number}
-                        </span>
-                      </div>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+                      {project.type}
+                    </span>
+                  </div>
 
-                      {/* IMAGE */}
-                      <div className="relative min-h-0 flex-1 overflow-hidden bg-background">
-                        <Image
-                          src={project.image}
-                          alt={`${project.title} project preview`}
-                          fill
-                          quality={90}
-                          sizes="(max-width: 1024px) 90vw, 55vw"
-                          className="pointer-events-none object-cover object-center"
-                        />
+                  <span className="font-mono text-[10px] text-muted">
+                    {project.year}
+                  </span>
+                </div>
 
-                        {/* IMAGE GRADIENT */}
-                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+                {/* =====================================
+                    PROJECT GRID
+                    SAME IMAGE SIZE FOR ALL PROJECTS
+                ====================================== */}
+                <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-8 xl:gap-12">
 
-                        {/* BOTTOM IMAGE CONTENT */}
-                        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-white sm:p-7">
-                          <div>
-                            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/65">
-                              Featured Project
-                            </p>
+                  {/* =====================================
+                      PROJECT IMAGE
+                      ORIGINAL DESIGN PRESERVED
+                  ====================================== */}
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      x: reverse ? 25 : -25,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      x: 0,
+                    }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.65,
+                      delay: 0.1,
+                      ease,
+                    }}
+                    className={`min-w-0 ${
+                      reverse ? "lg:order-2" : "lg:order-1"
+                    }`}
+                  >
+                    <div className="group relative w-full">
+                      <div className="relative overflow-hidden border border-border bg-card">
 
-                            <h3 className="mt-2 text-xl font-medium tracking-[-0.04em] sm:text-3xl">
-                              {project.title}
-                            </h3>
+                        {/* FULL IMAGE */}
+                        <div className="relative aspect-[16/10] overflow-hidden bg-foreground/5">
+                          <Image
+                            src={project.image}
+                            alt={`${project.title} project interface`}
+                            fill
+                            quality={90}
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                            className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                          />
+
+                          {/* ORIGINAL DARK GRADIENT */}
+                          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/20" />
+
+                          {/* TOP META */}
+                          <div className="absolute inset-x-0 top-0 flex items-center justify-between gap-4 p-5 text-on-image sm:p-7">
+                            <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-on-image/75">
+                              {project.category}
+                            </span>
+
+                            <span className="font-mono text-[9px] text-on-image/70">
+                              {project.year}
+                            </span>
                           </div>
 
-                          <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-white text-black">
-                            <FiArrowUpRight size={19} />
+                          {/* LARGE PROJECT TITLE */}
+                          <p className="absolute bottom-0 left-0 max-w-[90%] break-words p-6 text-[clamp(2.2rem,6vw,5.5rem)] font-medium uppercase leading-[0.84] tracking-[-0.07em] text-on-image transition-transform duration-700 group-hover:-translate-y-1 sm:p-9">
+                            {project.title}
+                          </p>
+
+                          {/* DECORATIVE CORNERS */}
+                          <div className="pointer-events-none absolute left-4 top-4 h-5 w-5 border-l border-t border-on-image/60" />
+
+                          <div className="pointer-events-none absolute bottom-4 right-4 h-5 w-5 border-b border-r border-on-image/60" />
+                        </div>
+
+                        {/* IMAGE FOOTER */}
+                        <div className="flex items-center justify-between gap-4 border-t border-border bg-card px-4 py-3 text-card-foreground">
+                          <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-accent">
+                            Project / {project.type}
+                          </span>
+
+                          <span className="font-mono text-[8px] text-card-foreground/40">
+                            BA / {project.number}
                           </span>
                         </div>
                       </div>
                     </div>
-                  </Card>
-                ))}
-              </CardSwap>
-            </div>
+                  </motion.div>
 
-            {/* FIXED NAVIGATION */}
-            <div className="mt-3 flex items-center justify-between gap-4 border-t border-border pt-5">
-              {/* ARROWS */}
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => deckRef.current?.prev()}
-                  disabled={total < 2}
-                  aria-label="Previous project"
-                  className="group flex h-11 w-11 items-center justify-center border border-border text-foreground transition-colors hover:bg-foreground hover:text-background disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  <FiArrowLeft
-                    size={17}
-                    className="transition-transform group-hover:-translate-x-0.5"
-                  />
-                </button>
+                  {/* =====================================
+                      PROJECT INFORMATION
+                  ====================================== */}
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      x: reverse ? -25 : 25,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      x: 0,
+                    }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.65,
+                      delay: 0.15,
+                      ease,
+                    }}
+                    className={`flex min-w-0 flex-col ${
+                      reverse ? "lg:order-1" : "lg:order-2"
+                    }`}
+                  >
+                    {/* PROJECT LABEL */}
+                    <div className="mb-5 flex items-center gap-3">
+                      <span className="h-1.5 w-1.5 bg-accent" />
 
-                <button
-                  type="button"
-                  onClick={() => deckRef.current?.next()}
-                  disabled={total < 2}
-                  aria-label="Next project"
-                  className="group flex h-11 w-11 items-center justify-center border border-border text-foreground transition-colors hover:bg-foreground hover:text-background disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  <FiArrowRight
-                    size={17}
-                    className="transition-transform group-hover:translate-x-0.5"
-                  />
-                </button>
-              </div>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">
+                        Featured / {project.number}
+                      </span>
+                    </div>
 
-              <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-muted">
-                Drag or use arrows
-              </span>
-            </div>
-          </div>
+                    {/* TITLE */}
+                    <h3 className="break-words text-3xl font-medium leading-[1.05] tracking-[-0.05em] text-foreground sm:text-4xl xl:text-5xl">
+                      {project.title}
+                      <span className="text-accent">.</span>
+                    </h3>
 
-          {/* RIGHT — ACTIVE PROJECT DETAILS */}
-          <div className="min-w-0">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={activeProject.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.25 }}
-              >
-                {/* PROJECT LABEL */}
-                <div className="flex items-center gap-3">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">
-                    Project / {activeProject.number}
-                  </span>
-
-                  <span className="h-px flex-1 bg-border" />
-                </div>
-
-                {/* PROJECT TITLE */}
-                <h3 className="mt-7 break-words text-[clamp(2.4rem,4vw,4.2rem)] font-semibold leading-[1.02] tracking-[-0.06em] text-foreground">
-                  {activeProject.title}
-                </h3>
-
-                {/* META */}
-                <div className="mt-5 flex flex-wrap items-center gap-3">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
-                    {activeProject.type}
-                  </span>
-
-                  <span className="h-px w-6 bg-border" />
-
-                  <span className="font-mono text-[10px] text-muted">
-                    {activeProject.year}
-                  </span>
-                </div>
-
-                {/* DESCRIPTION */}
-                <p className="mt-7 max-w-md text-sm leading-8 text-muted">
-                  {activeProject.description}
-                </p>
-
-                {/* HIGHLIGHT */}
-                {activeProject.highlights?.[0] && (
-                  <div className="mt-8 border-t border-border pt-6">
-                    <p className="mb-3 font-mono text-[9px] uppercase tracking-[0.15em] text-accent">
-                      Core Contribution
+                    {/* DESCRIPTION */}
+                    <p className="mt-6 max-w-lg text-sm leading-7 text-muted">
+                      {project.description}
                     </p>
 
-                    <p className="text-sm leading-7 text-foreground">
-                      {activeProject.highlights[0]}
-                    </p>
-                  </div>
-                )}
+                    {/* TECHNOLOGIES */}
+                    <div className="mt-8">
+                      <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+                        Technologies used
+                      </p>
 
-                {/* LINK */}
-                <Link
-                  href={`/projects/${activeProject.slug}`}
-                  className="group mt-9 inline-flex h-12 items-center gap-7 bg-foreground px-5 text-sm font-medium text-background transition-opacity hover:opacity-85"
-                >
-                  Explore Project
-                  <FiArrowUpRight
-                    size={18}
-                    className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                  />
-                </Link>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="border border-border px-3 py-2 font-mono text-[10px] text-foreground transition-colors duration-300 hover:border-accent hover:text-accent"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* CORE CONTRIBUTION */}
+                    {project.highlights?.[0] && (
+                      <div className="mt-8 border-t border-border pt-6">
+                        <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.16em] text-accent">
+                          Core contribution
+                        </p>
+
+                        <p className="max-w-lg text-sm leading-7 text-muted">
+                          {project.highlights[0]}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* BOTTOM META */}
+                    <div className="mt-9 flex items-center justify-between border-t border-border pt-5">
+                      <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-muted">
+                        {project.category}
+                      </span>
+
+                      <span className="font-mono text-[9px] text-accent">
+                        / {project.number}
+                      </span>
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.article>
+            );
+          })}
         </div>
 
-        {/* BOTTOM LINK */}
-        <div className="flex justify-end pt-9">
+        {/* =====================================
+            VIEW ALL PROJECTS
+        ====================================== */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col justify-between gap-6 pt-10 sm:flex-row sm:items-center"
+        >
+          <div>
+            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+              Want to see more?
+            </span>
+
+            <p className="mt-2 text-sm text-muted">
+              Explore the complete project archive.
+            </p>
+          </div>
+
           <Link
             href="/projects"
-            className="group inline-flex h-12 items-center gap-7 border border-border px-5 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+            className="group flex h-12 items-center justify-between gap-9 bg-foreground px-5 text-sm font-medium text-background transition-opacity hover:opacity-85"
           >
-            View All Projects
-            <FiArrowRight
-              size={17}
-              className="transition-transform group-hover:translate-x-1"
+            All Projects
+
+            <FiArrowUpRight
+              size={18}
+              className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
             />
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

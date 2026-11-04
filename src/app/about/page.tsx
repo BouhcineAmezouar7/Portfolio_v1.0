@@ -145,7 +145,7 @@ export default function AboutPage() {
           >
             <div className="relative mx-auto aspect-[4/5] max-w-[470px] overflow-hidden bg-black lg:mx-0">
               <Image
-                src="/wooo.png"
+                src="/my_images/wooo.png"
                 alt={profile.name}
                 fill
                 sizes="(max-width: 1024px) 90vw, 38vw"

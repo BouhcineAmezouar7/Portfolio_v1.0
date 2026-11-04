@@ -35,15 +35,15 @@ export default function PortfolioCubesBackground() {
           glowColor: "#e1dcc9",
         }
       : {
-          topColor: "#ffffff",
-          leftColor: "#e1dcc9",
-          rightColor: "#c7baa0",
-          glowColor: "#412d15",
+          topColor: "#e1dcc9",
+          leftColor: "#412d15",
+          rightColor: "#1f150c",
+          glowColor: "#000000",
         };
 
   return (
     <div
-      className="pointer-events-none absolute inset-0 scale-[1.01] opacity-[0.10] blur-[1px]"
+      className="pointer-events-none absolute inset-0 scale-[1.01] opacity-[0.07] blur-[1px]"
       aria-hidden="true"
     >
       <BackgroundCubesGrid

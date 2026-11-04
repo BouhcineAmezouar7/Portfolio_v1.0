@@ -3,6 +3,7 @@ import "./globals.css";
 import { JetBrains_Mono } from "next/font/google";
 import PageTransition from "@/components/PageTransition";
 import ThemedGlowCursor from "@/components/ThemedGlowCursor";
+import PortfolioCubesBackground from "@/components/PortfolioCubesBackground";
 import type { Metadata } from "next";
 import { profile } from "@/data/portfolio";
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   title: `${profile.name} — ${profile.role}`,
   description: `Portfolio of ${profile.name}, a ${profile.role} and ${profile.school} student in ${profile.location}.`,
   icons: {
-    icon: "/logo_icon.png",
+    icon: "/logo/logo_icon_white.png",
   },
 };
 
@@ -48,6 +49,11 @@ export default function RootLayout({
       <body
         className={`${jetBrainsMono.className} min-h-screen overflow-x-hidden bg-background/30`}
       >
+        {/* Shared background layer for every route */}
+        <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden blur-xs">
+          <PortfolioCubesBackground />
+        </div>
+
         {/* Website content */}
         <div className="relative z-10">
           <Header />

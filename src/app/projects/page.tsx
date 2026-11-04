@@ -14,7 +14,7 @@ import {
 
 import { projects, projectFilters } from "@/data/portfolio";
 
-const PROJECTS_PER_PAGE = 4;
+const PROJECTS_PER_PAGE = 6;
 
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState("All");

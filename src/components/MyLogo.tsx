@@ -38,7 +38,7 @@ const BrandLogo = memo(function BrandLogo({
     <div className="group relative flex items-center">
       {/* LIGHT MODE */}
       <Image
-        src="/logo-dark-transparent.png"
+        src="/logo/logo-dark-transparent.png"
         alt={profile.name}
         width={s.width}
         height={s.height}
@@ -54,7 +54,7 @@ const BrandLogo = memo(function BrandLogo({
 
       {/* DARK MODE */}
       <Image
-        src="/logo-light-transparent.png"
+        src="/logo/logo-light-transparent.png"
         alt={profile.name}
         width={s.width}
         height={s.height}
