@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 import { profile } from "@/data/portfolio";
+import { revealLeft, revealRight, siteViewport as homeViewport } from "@/lib/site-motion";
 
 export default function AboutPreview() {
   return (
@@ -31,10 +32,10 @@ export default function AboutPreview() {
         <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
           {/* LEFT — BIG TYPOGRAPHY */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7 }}
+            variants={revealLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={homeViewport}
             className="relative"
           >
             <p className="mb-6 font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
@@ -59,10 +60,10 @@ export default function AboutPreview() {
 
           {/* RIGHT — BIOGRAPHY */}
           <motion.div
-            initial={{ opacity: 0, y: 35 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
+            variants={revealRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={homeViewport}
             className="flex flex-col justify-between"
           >
             <div>

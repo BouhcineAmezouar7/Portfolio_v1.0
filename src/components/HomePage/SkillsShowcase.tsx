@@ -23,6 +23,7 @@ import {
 } from "react-icons/si";
 import { FiArrowUpRight } from "react-icons/fi";
 import type { IconType } from "react-icons";
+import { revealUp, siteEase as homeEase, siteViewport as homeViewport } from "@/lib/site-motion";
 
 type Category =
   | "All"
@@ -203,13 +204,14 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 20, scale: 0.97 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.18 }}
+      initial={{ opacity: 0, y: 38, scale: 0.94, filter: "blur(7px)" }}
+      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      viewport={homeViewport}
       exit={{ opacity: 0, y: -10, scale: 0.97 }}
       transition={{
-        duration: 0.35,
-        delay: Math.min(index * 0.025, 0.2),
+        duration: 0.62,
+        delay: Math.min(index * 0.045, 0.32),
+        ease: homeEase,
       }}
       style={colorVariables}
       className="skill-card group relative flex min-h-[205px] flex-col justify-between overflow-hidden border border-border bg-background p-5 transition-colors duration-300 sm:min-h-[230px] sm:p-6"
@@ -367,10 +369,10 @@ export default function SkillsShowcase() {
       <div className="container mx-auto">
         {/* TOP SECTION LABEL */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          variants={revealUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={homeViewport}
           className="mb-12 flex items-center justify-between border-b border-border pb-5"
         >
           <div className="flex items-center gap-3">
@@ -388,10 +390,10 @@ export default function SkillsShowcase() {
 
         {/* FULL-WIDTH HEADER */}
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          variants={revealUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={homeViewport}
           className="grid gap-8 border-b border-border pb-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end"
         >
           <div>
@@ -417,10 +419,10 @@ export default function SkillsShowcase() {
         {/* FILTER + GRID BELOW HEADER */}
         <div className="min-w-0 pt-10">
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.55 }}
+            initial={{ opacity: 0, y: 28, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={homeViewport}
+            transition={{ duration: 0.7, ease: homeEase }}
           >
             <CategoryFilters
               activeCategory={activeCategory}

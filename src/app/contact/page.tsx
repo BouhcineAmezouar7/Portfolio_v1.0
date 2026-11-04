@@ -17,6 +17,7 @@ import {
   profile,
   socialLinks as portfolioSocialLinks,
 } from "@/data/portfolio";
+import { revealLeft, revealRight, revealUp, siteEase } from "@/lib/site-motion";
 
 const contactInfo = [
   {
@@ -79,12 +80,10 @@ export default function Contact() {
         {/* HERO */}
         <div className="border-b border-border py-12 lg:py-16">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.7,
-              delay: 0.1,
-            }}
+            variants={revealUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.8, delay: 0.08, ease: siteEase }}
           >
             <p className="mb-5 font-mono text-[9px] uppercase tracking-[0.25em] text-accent/70">
               Have something in mind?
@@ -98,12 +97,10 @@ export default function Contact() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.6,
-              delay: 0.3,
-            }}
+            variants={revealUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.7, delay: 0.22, ease: siteEase }}
             className="mt-12 grid gap-8 lg:grid-cols-[1fr_420px] lg:items-end"
           >
             <div className="flex items-center gap-4">
@@ -130,18 +127,10 @@ export default function Contact() {
         <div className="grid border-b border-border lg:grid-cols-[0.7fr_1.3fr]">
           {/* LEFT */}
           <motion.aside
-            initial={{
-              opacity: 0,
-              x: -30,
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 0.7,
-              delay: 0.3,
-            }}
+            variants={revealLeft}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.75, delay: 0.25, ease: siteEase }}
             className="border-b border-border py-10 lg:border-b-0 lg:border-r lg:pr-10"
           >
             <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-accent/70">
@@ -251,18 +240,10 @@ export default function Contact() {
 
           {/* FORM */}
           <motion.div
-            initial={{
-              opacity: 0,
-              x: 30,
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 0.7,
-              delay: 0.4,
-            }}
+            variants={revealRight}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.75, delay: 0.32, ease: siteEase }}
             className="py-10 lg:pl-12"
           >
             {/* FORM HEADER */}
@@ -295,7 +276,9 @@ export default function Contact() {
                       Your Name
                     </span>
 
-                    <span className="font-mono text-[9px] text-foreground/50">01</span>
+                    <span className="font-mono text-[9px] text-foreground/50">
+                      01
+                    </span>
                   </label>
 
                   <input
@@ -339,7 +322,9 @@ export default function Contact() {
                       Email Address
                     </span>
 
-                    <span className="font-mono text-[9px] text-foreground/50">02</span>
+                    <span className="font-mono text-[9px] text-foreground/50">
+                      02
+                    </span>
                   </label>
 
                   <input
@@ -384,7 +369,9 @@ export default function Contact() {
                     Subject
                   </span>
 
-                  <span className="font-mono text-[9px] text-foreground/50">03</span>
+                  <span className="font-mono text-[9px] text-foreground/50">
+                    03
+                  </span>
                 </label>
 
                 <input
@@ -427,7 +414,9 @@ export default function Contact() {
                     Your Message
                   </span>
 
-                  <span className="font-mono text-[9px] text-foreground/50">04</span>
+                  <span className="font-mono text-[9px] text-foreground/50">
+                    04
+                  </span>
                 </label>
 
                 <textarea
@@ -500,9 +489,10 @@ export default function Contact() {
 
         {/* BOTTOM */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
+          variants={revealUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.6, delay: 0.55, ease: siteEase }}
           className="flex flex-col justify-between gap-4 pt-5 sm:flex-row sm:items-center"
         >
           <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/15">

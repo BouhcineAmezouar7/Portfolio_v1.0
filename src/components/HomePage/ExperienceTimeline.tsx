@@ -9,11 +9,7 @@ import {
 } from "react-icons/fi";
 
 import { experiences } from "@/data/portfolio";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 25 },
-  visible: { opacity: 1, y: 0 },
-};
+import { revealUp, siteEase as homeEase, siteViewport as homeViewport } from "@/lib/site-motion";
 
 export default function ExperienceTimeline() {
   return (
@@ -25,10 +21,10 @@ export default function ExperienceTimeline() {
 
         {/* SECTION HEADER */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          variants={revealUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={homeViewport}
           className="flex items-center justify-between border-b border-border pb-5"
         >
           <div className="flex items-center gap-3">
@@ -47,11 +43,10 @@ export default function ExperienceTimeline() {
         {/* MAIN HEADING */}
         <div className="grid gap-10 border-b border-border py-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:py-16">
           <motion.div
-            variants={fadeUp}
+            variants={revealUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ duration: 0.65 }}
+            viewport={homeViewport}
           >
             <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
               My Professional Journey
@@ -67,11 +62,11 @@ export default function ExperienceTimeline() {
           </motion.div>
 
           <motion.p
-            variants={fadeUp}
+            variants={revealUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ duration: 0.65, delay: 0.1 }}
+            viewport={homeViewport}
+            transition={{ delay: 0.12 }}
             className="max-w-md text-sm leading-7 text-muted"
           >
             A journey of learning, collaboration, and
@@ -97,12 +92,13 @@ export default function ExperienceTimeline() {
             return (
               <motion.article
                 key={`${exp.company}-${exp.title}-${index}`}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
+                initial={{ opacity: 0, y: 48, x: index % 2 === 0 ? -18 : 18, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, y: 0, x: 0, filter: "blur(0px)" }}
+                viewport={homeViewport}
                 transition={{
-                  duration: 0.55,
-                  delay: index * 0.08,
+                  duration: 0.78,
+                  delay: index * 0.1,
+                  ease: homeEase,
                 }}
                 className="group relative border-b border-border transition-colors duration-300 hover:bg-foreground/[0.025]"
               >
@@ -196,10 +192,10 @@ export default function ExperienceTimeline() {
 
         {/* BOTTOM NOTE */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          variants={revealUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={homeViewport}
           className="mt-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-center"
         >
           <div className="flex items-center gap-4">

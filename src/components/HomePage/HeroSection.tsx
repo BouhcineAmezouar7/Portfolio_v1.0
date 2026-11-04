@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiArrowUpRight, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import { portfolioYear, profile, socialLinks } from "@/data/portfolio";
+import { siteEase as homeEase } from "@/lib/site-motion";
 
 const socialIcons = {
   github: <FiGithub />,
@@ -18,9 +19,9 @@ export default function HeroSection() {
       <div className="container relative mx-auto">
         <div className="grid border-b border-border lg:grid-cols-[0.72fr_1.28fr]">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+            initial={{ opacity: 0, x: -52, scale: 0.97, filter: "blur(10px)" }}
+            animate={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1, delay: 0.05, ease: homeEase }}
             className="border-b border-border pb-10 lg:border-b-0 lg:border-r lg:pb-12 lg:pr-12"
           >
             <div className="relative mx-auto max-w-[520px] lg:mx-0">
@@ -54,9 +55,9 @@ export default function HeroSection() {
 
           <div className="flex flex-col justify-center py-10 lg:pl-12 lg:pt-12">
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
+              initial={{ opacity: 0, y: 22, filter: "blur(6px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.65, delay: 0.2, ease: homeEase }}
               className="mb-6 flex items-center gap-3"
             >
               <span className="text-xs uppercase tracking-[0.25em] text-accent">
@@ -66,9 +67,9 @@ export default function HeroSection() {
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.25 }}
+              initial={{ opacity: 0, y: 58, filter: "blur(12px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 1, delay: 0.28, ease: homeEase }}
               className="text-[clamp(3.4rem,8.5vw,8.5rem)] font-medium leading-[0.79] tracking-[-0.075em]"
             >
               <span className="text-foreground">BOUHCINE</span>
@@ -78,9 +79,9 @@ export default function HeroSection() {
             </motion.h1>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              initial={{ opacity: 0, y: 32, filter: "blur(7px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.75, delay: 0.46, ease: homeEase }}
               className="mt-9 grid gap-6 border-t border-border pt-7 sm:grid-cols-[160px_1fr]"
             >
               <p className="text-sm font-medium uppercase tracking-[0.12em] text-foreground">
@@ -100,9 +101,9 @@ export default function HeroSection() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.55 }}
+              transition={{ duration: 0.7, delay: 0.6, ease: homeEase }}
               className="mt-9 flex flex-col gap-3 sm:flex-row"
             >
               <Link
@@ -125,9 +126,9 @@ export default function HeroSection() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.75, ease: homeEase }}
               className="mt-10 flex items-center gap-3"
             >
               <span className="mr-2 text-[10px] uppercase tracking-[0.2em] text-foreground/30">

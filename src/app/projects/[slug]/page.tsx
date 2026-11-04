@@ -13,6 +13,7 @@ import {
 } from "react-icons/fi";
 
 import { projects } from "@/data/portfolio";
+import SiteReveal from "@/components/SiteReveal";
 
 type ProjectDetailPageProps = {
   params: Promise<{ slug: string }>;
@@ -63,7 +64,8 @@ export default async function ProjectDetailPage({
       <div className="container mx-auto px-4 pb-20 pt-8 sm:px-6 lg:px-8">
 
         {/* TOP NAVIGATION */}
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-5">
+        <SiteReveal>
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-5">
           <Link
             href="/projects"
             className="group inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
@@ -79,7 +81,8 @@ export default async function ProjectDetailPage({
             Project {String(index + 1).padStart(2, "0")} /{" "}
             {String(projects.length).padStart(2, "0")}
           </span>
-        </div>
+          </div>
+        </SiteReveal>
 
         {/* =====================================
             HERO — IMAGE LEFT / INFO RIGHT
@@ -88,7 +91,7 @@ export default async function ProjectDetailPage({
         <section className="grid gap-10 border-b border-border py-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14 lg:py-20">
 
           {/* LEFT — IMAGE */}
-          <div className="min-w-0">
+          <SiteReveal direction="left" className="min-w-0">
             <div className="relative overflow-hidden border border-border bg-foreground/[0.035] p-3 sm:p-5 lg:p-7">
 
               {/* IMAGE */}
@@ -121,10 +124,10 @@ export default async function ProjectDetailPage({
                 {project.year}
               </span>
             </div>
-          </div>
+          </SiteReveal>
 
           {/* RIGHT — PROJECT INFO */}
-          <div className="min-w-0 lg:pl-3">
+          <SiteReveal direction="right" delay={0.1} className="min-w-0 lg:pl-3">
 
             {/* CATEGORY */}
             <div className="mb-7 flex items-center gap-3">
@@ -222,7 +225,7 @@ export default async function ProjectDetailPage({
                 />
               </Link>
             </div>
-          </div>
+          </SiteReveal>
         </section>
 
         {/* =====================================
@@ -232,7 +235,8 @@ export default async function ProjectDetailPage({
         <div id="project-details" className="scroll-mt-24">
 
           {/* OVERVIEW */}
-          <section className="grid gap-10 border-b border-border py-16 lg:grid-cols-[0.55fr_1fr] lg:gap-20 lg:py-24">
+          <SiteReveal>
+            <section className="grid gap-10 border-b border-border py-16 lg:grid-cols-[0.55fr_1fr] lg:gap-20 lg:py-24">
 
             {/* LEFT */}
             <div>
@@ -275,13 +279,15 @@ export default async function ProjectDetailPage({
                 </div>
               </div>
             </div>
-          </section>
+            </section>
+          </SiteReveal>
 
           {/* =====================================
               FEATURES
           ====================================== */}
 
-          <section className="border-b border-border py-16 lg:py-24">
+          <SiteReveal direction="left">
+            <section className="border-b border-border py-16 lg:py-24">
 
             {/* HEADER */}
             <div className="mb-12 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
@@ -324,13 +330,15 @@ export default async function ProjectDetailPage({
                 </div>
               ))}
             </div>
-          </section>
+            </section>
+          </SiteReveal>
 
           {/* =====================================
               TECHNOLOGY STACK
           ====================================== */}
 
-          <section className="grid gap-10 border-b border-border py-16 lg:grid-cols-[0.55fr_1fr] lg:gap-20 lg:py-24">
+          <SiteReveal direction="right">
+            <section className="grid gap-10 border-b border-border py-16 lg:grid-cols-[0.55fr_1fr] lg:gap-20 lg:py-24">
 
             {/* LEFT */}
             <div>
@@ -382,14 +390,16 @@ export default async function ProjectDetailPage({
                 ))}
               </div>
             </div>
-          </section>
+            </section>
+          </SiteReveal>
 
           {/* =====================================
               OPTIONAL ARCHITECTURE
           ====================================== */}
 
           {diagram && (
-            <section className="border-b border-border py-16 lg:py-24">
+            <SiteReveal>
+              <section className="border-b border-border py-16 lg:py-24">
               <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
                 <div>
                   <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
@@ -415,7 +425,8 @@ export default async function ProjectDetailPage({
                   className="object-contain p-4 sm:p-8"
                 />
               </div>
-            </section>
+              </section>
+            </SiteReveal>
           )}
         </div>
 
@@ -423,10 +434,11 @@ export default async function ProjectDetailPage({
             PROJECT NAVIGATION
         ====================================== */}
 
-        <nav
-          aria-label="Project navigation"
-          className="grid border-b border-border sm:grid-cols-2"
-        >
+        <SiteReveal>
+          <nav
+            aria-label="Project navigation"
+            className="grid border-b border-border sm:grid-cols-2"
+          >
           {/* PREVIOUS */}
           <div className="border-b border-border sm:border-b-0 sm:border-r">
             {previous ? (
@@ -479,13 +491,15 @@ export default async function ProjectDetailPage({
               </div>
             )}
           </div>
-        </nav>
+          </nav>
+        </SiteReveal>
 
         {/* =====================================
             FINAL CTA
         ====================================== */}
 
-        <section className="flex flex-col justify-between gap-8 py-16 lg:flex-row lg:items-end">
+        <SiteReveal>
+          <section className="flex flex-col justify-between gap-8 py-16 lg:flex-row lg:items-end">
           <div>
             <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.17em] text-accent">
               Next Collaboration
@@ -496,7 +510,7 @@ export default async function ProjectDetailPage({
             </h2>
 
             <p className="mt-5 max-w-lg text-sm leading-7 text-muted">
-              I'm open to interesting projects, collaborations,
+              I&apos;m open to interesting projects, collaborations,
               and new development opportunities.
             </p>
           </div>
@@ -505,14 +519,15 @@ export default async function ProjectDetailPage({
             href="/contact"
             className="group inline-flex h-14 w-fit items-center gap-8 bg-foreground px-6 text-sm font-medium text-background transition-opacity hover:opacity-85"
           >
-            Let's work together
+            Let&apos;s work together
 
             <FiArrowUpRight
               size={18}
               className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
             />
           </Link>
-        </section>
+          </section>
+        </SiteReveal>
       </div>
     </main>
   );

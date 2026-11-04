@@ -5,6 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiArrowRight, FiArrowUpRight, FiDownload } from "react-icons/fi";
 import { profile } from "@/data/portfolio";
+import {
+  revealLeft,
+  revealRight,
+  revealUp,
+  siteEase,
+  siteViewport,
+} from "@/lib/site-motion";
 
 const principles = [
   {
@@ -50,19 +57,15 @@ const process = [
   },
 ] as const;
 
-const reveal = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export default function AboutPage() {
   return (
     <main className="relative min-h-screen overflow-hidden px-4 pb-24 pt-12 sm:px-6 lg:px-8 lg:pt-20">
       <div className="container mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          variants={revealUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.65, ease: siteEase }}
           className="flex items-center justify-between border-b border-border pb-5"
         >
           <div className="flex items-center gap-3">
@@ -78,10 +81,10 @@ export default function AboutPage() {
 
         <section className="grid border-b border-border py-12 lg:grid-cols-[1.25fr_0.75fr] lg:items-end lg:gap-16 lg:py-20">
           <motion.div
-            variants={reveal}
+            variants={revealUp}
             initial="hidden"
             animate="visible"
-            transition={{ duration: 0.7, delay: 0.1 }}
+            transition={{ duration: 0.75, delay: 0.08, ease: siteEase }}
           >
             <p className="mb-6 font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
               The person behind the work
@@ -94,10 +97,10 @@ export default function AboutPage() {
           </motion.div>
 
           <motion.div
-            variants={reveal}
+            variants={revealUp}
             initial="hidden"
             animate="visible"
-            transition={{ duration: 0.7, delay: 0.25 }}
+            transition={{ duration: 0.75, delay: 0.2, ease: siteEase }}
             className="mt-10 border-t border-border pt-7 lg:mt-0"
           >
             <p className="text-lg leading-8 tracking-[-0.025em] text-foreground">
@@ -137,10 +140,11 @@ export default function AboutPage() {
 
         <section className="grid border-b border-border lg:grid-cols-[0.8fr_1.2fr]">
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7 }}
+            variants={revealLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={siteViewport}
+            transition={{ duration: 0.75, ease: siteEase }}
             className="border-b border-border py-12 lg:border-b-0 lg:border-r lg:pr-12 lg:py-16"
           >
             <div className="relative mx-auto aspect-[4/5] max-w-[470px] overflow-hidden bg-black lg:mx-0">
@@ -165,11 +169,11 @@ export default function AboutPage() {
 
           <div className="py-12 lg:py-16 lg:pl-14">
             <motion.div
-              variants={reveal}
+              variants={revealRight}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.65 }}
+              viewport={siteViewport}
+              transition={{ duration: 0.7, ease: siteEase }}
             >
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
                 02 / How I think
@@ -191,10 +195,10 @@ export default function AboutPage() {
               {principles.map((principle, index) => (
                 <motion.article
                   key={principle.title}
-                  initial={{ opacity: 0, x: 18 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
-                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  initial={{ opacity: 0, x: 22, filter: "blur(6px)" }}
+                  whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                  viewport={siteViewport}
+                  transition={{ duration: 0.6, delay: index * 0.07, ease: siteEase }}
                   className="grid gap-4 border-b border-border py-6 sm:grid-cols-[50px_0.8fr_1.2fr] sm:items-start"
                 >
                   <span className="font-mono text-[10px] text-accent">
@@ -215,11 +219,11 @@ export default function AboutPage() {
         <section className="border-b border-border py-14 lg:py-20">
           <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:gap-16">
             <motion.div
-              variants={reveal}
+              variants={revealLeft}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.65 }}
+              viewport={siteViewport}
+              transition={{ duration: 0.7, ease: siteEase }}
             >
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
                 03 / Process
@@ -239,10 +243,10 @@ export default function AboutPage() {
               {process.map((step, index) => (
                 <motion.article
                   key={step.title}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.5, delay: index * 0.07 }}
+                  initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={siteViewport}
+                  transition={{ duration: 0.6, delay: index * 0.07, ease: siteEase }}
                   className="group flex min-h-[220px] flex-col justify-between border-b border-r border-border p-6 transition-colors duration-300 hover:bg-card"
                 >
                   <div className="flex items-center justify-between">
@@ -270,11 +274,11 @@ export default function AboutPage() {
 
         <section className="py-16 lg:py-20">
           <motion.div
-            variants={reveal}
+            variants={revealUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.65 }}
+            viewport={siteViewport}
+            transition={{ duration: 0.7, ease: siteEase }}
             className="grid gap-9 lg:grid-cols-[1fr_auto] lg:items-end"
           >
             <div>

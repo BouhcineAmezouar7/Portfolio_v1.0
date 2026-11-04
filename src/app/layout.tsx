@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import "./globals.css";
 import { JetBrains_Mono } from "next/font/google";
 import PageTransition from "@/components/PageTransition";
+import SiteMotionProvider from "@/components/SiteMotionProvider";
 import ThemedGlowCursor from "@/components/ThemedGlowCursor";
 import PortfolioCubesBackground from "@/components/PortfolioCubesBackground";
 import type { Metadata } from "next";
@@ -57,7 +58,9 @@ export default function RootLayout({
         {/* Website content */}
         <div className="relative z-10">
           <Header />
-          <PageTransition>{children}</PageTransition>
+          <SiteMotionProvider>
+            <PageTransition>{children}</PageTransition>
+          </SiteMotionProvider>
         </div>
 
         {/* Cursor layer */}

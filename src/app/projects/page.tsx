@@ -13,6 +13,7 @@ import {
 } from "react-icons/fi";
 
 import { projects, projectFilters } from "@/data/portfolio";
+import { revealUp, siteEase, siteViewport } from "@/lib/site-motion";
 
 const PROJECTS_PER_PAGE = 6;
 
@@ -58,8 +59,10 @@ export default function ProjectsPage() {
       <div className="container mx-auto">
         {/* BACK */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          variants={revealUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.6, ease: siteEase }}
           className="mb-10"
         >
           <Link
@@ -77,21 +80,20 @@ export default function ProjectsPage() {
         {/* HERO */}
         <div className="border-b border-border py-5">
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            variants={revealUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.65, delay: 0.08, ease: siteEase }}
             className="mb-6 font-mono text-[10px] uppercase tracking-[0.2em] text-accent"
           >
             Selected & Experimental Work
           </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, y: 35 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.7,
-              delay: 0.15,
-            }}
+            variants={revealUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.8, delay: 0.14, ease: siteEase }}
             className="text-[clamp(3.8rem,12vw,10rem)] font-medium leading-[0.83] tracking-[-0.075em]"
           >
             PROJECT
@@ -154,20 +156,21 @@ export default function ProjectsPage() {
           <AnimatePresence mode="wait">
             <motion.div
               key={`${activeFilter}-${currentPage}`}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: -12, filter: "blur(4px)" }}
+              transition={{ duration: 0.45, ease: siteEase }}
               className="grid border-l border-border md:grid-cols-2"
             >
               {visibleProjects.map((project, index) => (
                 <motion.article
                   key={project.id}
-                  initial={{ opacity: 0, y: 25 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 28, filter: "blur(6px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   transition={{
-                    duration: 0.45,
+                    duration: 0.65,
                     delay: index * 0.06,
+                    ease: siteEase,
                   }}
                   className="group flex min-w-0 flex-col border-b border-r border-border"
                 >
@@ -356,9 +359,11 @@ export default function ProjectsPage() {
 
         {/* BOTTOM CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          variants={revealUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={siteViewport}
+          transition={{ duration: 0.7, ease: siteEase }}
           className="grid gap-8 border-b border-border py-14 lg:grid-cols-[1fr_auto] lg:items-end"
         >
           <div>

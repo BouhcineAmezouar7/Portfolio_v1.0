@@ -7,8 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { featuredProjects } from "@/data/portfolio";
-
-const ease = [0.22, 1, 0.36, 1] as const;
+import { revealUp, siteEase as homeEase, siteViewport as homeViewport } from "@/lib/site-motion";
 
 export default function ProjectsSection() {
   return (
@@ -23,10 +22,10 @@ export default function ProjectsSection() {
             SAME STYLE AS SKILLS
         ====================================== */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          variants={revealUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={homeViewport}
           className="mb-12 flex items-center justify-between border-b border-border pb-5"
         >
           <div className="flex items-center gap-3">
@@ -47,10 +46,10 @@ export default function ProjectsSection() {
             SAME STYLE AS SKILLS
         ====================================== */}
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          variants={revealUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={homeViewport}
           className="grid gap-8 border-b border-border pb-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end"
         >
           {/* LEFT HEADING */}
@@ -88,15 +87,12 @@ export default function ProjectsSection() {
             return (
               <motion.article
                 key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{
-                  once: true,
-                  amount: 0.15,
-                }}
+                initial={{ opacity: 0, y: 56, filter: "blur(9px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={homeViewport}
                 transition={{
-                  duration: 0.65,
-                  ease,
+                  duration: 0.88,
+                  ease: homeEase,
                 }}
                 className="border-b border-border py-12 lg:py-16"
               >
@@ -132,17 +128,21 @@ export default function ProjectsSection() {
                   <motion.div
                     initial={{
                       opacity: 0,
-                      x: reverse ? 25 : -25,
+                      x: reverse ? 64 : -64,
+                      scale: 0.965,
+                      filter: "blur(8px)",
                     }}
                     whileInView={{
                       opacity: 1,
                       x: 0,
+                      scale: 1,
+                      filter: "blur(0px)",
                     }}
-                    viewport={{ once: true }}
+                    viewport={homeViewport}
                     transition={{
-                      duration: 0.65,
-                      delay: 0.1,
-                      ease,
+                      duration: 0.9,
+                      delay: 0.08,
+                      ease: homeEase,
                     }}
                     className={`min-w-0 ${
                       reverse ? "lg:order-2" : "lg:order-1"
@@ -207,17 +207,19 @@ export default function ProjectsSection() {
                   <motion.div
                     initial={{
                       opacity: 0,
-                      x: reverse ? -25 : 25,
+                      x: reverse ? -52 : 52,
+                      filter: "blur(7px)",
                     }}
                     whileInView={{
                       opacity: 1,
                       x: 0,
+                      filter: "blur(0px)",
                     }}
-                    viewport={{ once: true }}
+                    viewport={homeViewport}
                     transition={{
-                      duration: 0.65,
-                      delay: 0.15,
-                      ease,
+                      duration: 0.85,
+                      delay: 0.16,
+                      ease: homeEase,
                     }}
                     className={`flex min-w-0 flex-col ${
                       reverse ? "lg:order-1" : "lg:order-2"
@@ -295,10 +297,10 @@ export default function ProjectsSection() {
             VIEW ALL PROJECTS
         ====================================== */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          variants={revealUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={homeViewport}
           className="flex flex-col justify-between gap-6 pt-10 sm:flex-row sm:items-center"
         >
           <div>

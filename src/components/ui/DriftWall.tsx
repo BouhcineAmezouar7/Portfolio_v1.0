@@ -1,6 +1,6 @@
 'use client';
 
-import { CSSProperties, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { CSSProperties, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 
 export interface DriftWallItem {
   image: string;
@@ -53,6 +53,12 @@ const cx = (...parts: (string | false | undefined)[]) => parts.filter(Boolean).j
 const prefersReducedMotion = (): boolean =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+const subscribeToReducedMotion = (onStoreChange: () => void) => {
+  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  mediaQuery.addEventListener('change', onStoreChange);
+  return () => mediaQuery.removeEventListener('change', onStoreChange);
+};
+
 const columnFactor = (index: number, variance: number): number => {
   const pseudo = ((index * 0.6180339887 + 0.35) % 1) * 2 - 1;
   return 1 + variance * pseudo;
@@ -99,15 +105,11 @@ const DriftWall = ({
   const [containerHeight, setContainerHeight] = useState(600);
   const [activeId, setActiveId] = useState<string | null>(null);
   const activeIdRef = useRef<string | null>(null);
-  const [reduced, setReduced] = useState(false);
-
-  useEffect(() => {
-    setReduced(prefersReducedMotion());
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const onChange = (e: MediaQueryListEvent) => setReduced(e.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
+  const reduced = useSyncExternalStore(
+    subscribeToReducedMotion,
+    prefersReducedMotion,
+    () => false,
+  );
 
   const columnItems = useMemo<DriftWallItem[][]>(() => {
     const cols: DriftWallItem[][] = Array.from({ length: columns }, () => []);

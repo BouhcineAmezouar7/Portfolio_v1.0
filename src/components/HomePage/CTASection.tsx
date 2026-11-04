@@ -9,6 +9,7 @@ import {
 } from "react-icons/fi";
 import Link from "next/link";
 import { socialLinks } from "@/data/portfolio";
+import { revealUp, siteEase as homeEase, siteViewport as homeViewport } from "@/lib/site-motion";
 
 export default function CTASection() {
   return (
@@ -30,10 +31,10 @@ export default function CTASection() {
         <div className="border-b border-border py-12 sm:py-16 lg:py-20">
           {/* Small intro */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            variants={revealUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={homeViewport}
             className="mb-10 flex items-center gap-4"
           >
             <div className="flex h-10 w-10 items-center justify-center border border-border">
@@ -53,12 +54,12 @@ export default function CTASection() {
 
           {/* HUGE TITLE */}
           <motion.h2
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 72, filter: "blur(12px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={homeViewport}
             transition={{
-              duration: 0.8,
-              ease: "easeOut",
+              duration: 1,
+              ease: homeEase,
             }}
             className="home-section-title"
           >
@@ -75,10 +76,10 @@ export default function CTASection() {
           {/* CTA ROW */}
           <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              initial={{ opacity: 0, y: 36, filter: "blur(7px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={homeViewport}
+              transition={{ duration: 0.75, delay: 0.18, ease: homeEase }}
               className="max-w-xl text-sm leading-7 text-muted sm:text-base"
             >
               I&apos;m interested in new projects, collaborations and opportunities.
@@ -87,10 +88,10 @@ export default function CTASection() {
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
+              initial={{ opacity: 0, y: 32, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={homeViewport}
+              transition={{ duration: 0.72, delay: 0.28, ease: homeEase }}
               className="flex flex-col gap-3 sm:flex-row"
             >
               <Link href="/contact">
@@ -152,10 +153,10 @@ export default function CTASection() {
         {/* SOCIAL LINKS */}
         <div className="border-b border-border">
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={homeViewport}
+            transition={{ duration: 0.65, delay: 0.42, ease: homeEase }}
             className="flex items-center justify-between py-5"
           >
             <span className="mr-5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">

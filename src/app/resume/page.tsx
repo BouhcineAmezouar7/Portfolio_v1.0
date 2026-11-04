@@ -14,6 +14,7 @@ import {
   resumeExperiences,
   socialLinks,
 } from "@/data/portfolio";
+import SiteReveal from "@/components/SiteReveal";
 
 const skills = [
   ["Frontend", "Next.js, React.js, TypeScript, Tailwind CSS, HTML5, CSS"],
@@ -28,15 +29,18 @@ export default function ResumePage() {
   return (
     <main className="min-h-screen px-4 pb-24 pt-12 sm:px-6 lg:px-8 lg:pt-20">
       <div className="container mx-auto">
-        <Link
-          href="/"
-          className="group mb-10 inline-flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/30 transition-colors hover:text-foreground"
-        >
-          <FiArrowLeft className="transition-transform group-hover:-translate-x-1" />
-          Back Home
-        </Link>
+        <SiteReveal>
+          <Link
+            href="/"
+            className="group mb-10 inline-flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/30 transition-colors hover:text-foreground"
+          >
+            <FiArrowLeft className="transition-transform group-hover:-translate-x-1" />
+            Back Home
+          </Link>
+        </SiteReveal>
 
-        <header className="grid gap-10 border-y border-border py-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+        <SiteReveal delay={0.08}>
+          <header className="grid gap-10 border-y border-border py-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div>
             <p className="mb-5 font-mono text-[9px] uppercase tracking-[0.25em] text-accent/70">
               Curriculum Vitae / Profile
@@ -85,9 +89,11 @@ export default function ResumePage() {
               <span>{profile.location}</span>
             </div>
           </div>
-        </header>
+          </header>
+        </SiteReveal>
 
-        <section className="grid border-b border-border lg:grid-cols-[0.35fr_0.65fr]">
+        <SiteReveal direction="left">
+          <section className="grid border-b border-border lg:grid-cols-[0.35fr_0.65fr]">
           <h2 className="py-10 text-3xl font-medium tracking-[-0.04em] text-foreground lg:border-r lg:border-border">
             Experience
           </h2>
@@ -105,9 +111,11 @@ export default function ResumePage() {
               </article>
             ))}
           </div>
-        </section>
+          </section>
+        </SiteReveal>
 
-        <section className="grid border-b border-border lg:grid-cols-[0.35fr_0.65fr]">
+        <SiteReveal direction="right">
+          <section className="grid border-b border-border lg:grid-cols-[0.35fr_0.65fr]">
           <h2 className="py-10 text-3xl font-medium tracking-[-0.04em] text-foreground lg:border-r lg:border-border">
             Education
           </h2>
@@ -133,9 +141,11 @@ export default function ResumePage() {
               <p className="mt-2 text-sm leading-7 text-muted">Life and Earth Sciences (SVT) · {profile.baccalaureateYear}</p>
             </div>
           </div>
-        </section>
+          </section>
+        </SiteReveal>
 
-        <section className="grid border-b border-border lg:grid-cols-[0.35fr_0.65fr]">
+        <SiteReveal direction="left">
+          <section className="grid border-b border-border lg:grid-cols-[0.35fr_0.65fr]">
           <h2 className="py-10 text-3xl font-medium tracking-[-0.04em] text-foreground lg:border-r lg:border-border">
             Selected Projects
           </h2>
@@ -147,9 +157,11 @@ export default function ResumePage() {
               </article>
             ))}
           </div>
-        </section>
+          </section>
+        </SiteReveal>
 
-        <section className="grid lg:grid-cols-[0.35fr_0.65fr]">
+        <SiteReveal direction="right">
+          <section className="grid lg:grid-cols-[0.35fr_0.65fr]">
           <h2 className="py-10 text-3xl font-medium tracking-[-0.04em] text-foreground lg:border-r lg:border-border">
             Technical Skills
           </h2>
@@ -161,9 +173,11 @@ export default function ResumePage() {
               </div>
             ))}
           </div>
-        </section>
+          </section>
+        </SiteReveal>
 
-        <section className="grid border-t border-border lg:grid-cols-[0.35fr_0.65fr]">
+        <SiteReveal>
+          <section className="grid border-t border-border lg:grid-cols-[0.35fr_0.65fr]">
           <h2 className="py-10 text-3xl font-medium tracking-[-0.04em] text-foreground lg:border-r lg:border-border">
             Languages
           </h2>
@@ -173,7 +187,8 @@ export default function ResumePage() {
               <span className="text-sm text-muted">Native</span>
             </div>
           </div>
-        </section>
+          </section>
+        </SiteReveal>
       </div>
     </main>
   );
